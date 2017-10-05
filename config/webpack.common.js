@@ -1,4 +1,5 @@
 const merge = require('webpack-merge');
+const path = require('path');
 const HtmlPlugin = require('html-webpack-plugin');
 const parts = require('./webpack.parts');
 const x = require('./paths');
@@ -15,6 +16,7 @@ exports.commonConfig = merge([
         plugins: [
             new HtmlPlugin({
                 title: 'Webpack - React',
+                template: x.PATHS.htmlTemplate,
             }),
         ],
     },
