@@ -7,4 +7,5 @@ exports.PATHS = {
     app: path.join(__dirname, '../src'),
     build: path.join(__dirname, '../build'),
     excludePath: path.join(__dirname, '../node_modules'),
+    htmlTemplate: path.join(__dirname, '../src/index.html'),
 };
