@@ -9,6 +9,8 @@ exports.devServer = ({ host, port } = {}) => ({
     devServer: {
         historyApiFallback: true,
         stats: 'errors-only',
+        hotOnly: true,
+        inline: true,
         host, // Defaults to `localhost`
         port, // Defaults to 8080
         overlay: {

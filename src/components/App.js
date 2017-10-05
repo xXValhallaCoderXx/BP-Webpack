@@ -15,7 +15,7 @@ class Application extends Component {
             <div>
                 <img src={require('../assets/images/bg.jpg')} style={{height: 100}}/>
                 <div className="counter-wrapper">
-                    <h3>Counter</h3>
+                    <h3>Countessr</h3>
                     <h2>{this.state.count}</h2>
                     <button onClick={() => this.increaseCounter()}>+</button>
                 </div>
