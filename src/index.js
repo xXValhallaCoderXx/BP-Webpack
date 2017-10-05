@@ -1,5 +1,6 @@
 import React from 'react';
 import { render } from 'react-dom';
+import { Provider } from 'react-redux';
 import { AppContainer } from 'react-hot-loader';
 import './assets/styles/main.css';
 
@@ -11,14 +12,18 @@ const store = configureStore();
 
 render(
     <AppContainer>
-        <App store={store}/>
+        <Provider store={store}>
+            <App />
+        </Provider>
     </AppContainer>, root);
 
 if (module.hot) {
     module.hot.accept('./components/App', () => {
         render(
             <AppContainer>
-                <App store={store}/>
+                <Provider store={store}>
+                    <App />
+                </Provider>
             </AppContainer>, root);
     });
 }
