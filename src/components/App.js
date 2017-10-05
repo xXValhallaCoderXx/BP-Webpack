@@ -26,7 +26,7 @@ class Application extends Component {
             <div>
                 <img src={require('../assets/images/bg.jpg')} style={{ height: 100 }} />
                 <div className="counter-wrapper">
-                    <h3>COUNTER</h3>
+                    <h3>sfd</h3>
                     <h2>{this.props.testState.counter}</h2>
                     <button onClick={() => this.props.increaseReduxCounter()}>+</button>
                     <button onClick={() => this.lazyLoad()} className={styles.redButton}>LAZY LOAD</button>
