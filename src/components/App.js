@@ -30,7 +30,7 @@ class Application extends Component {
                     <h2>{this.props.testState.counter}</h2>
                     <button onClick={() => this.props.increaseReduxCounter()}>+</button>
                     <button onClick={() => this.lazyLoad()} className={styles.redButton}>LAZY LOAD</button>
-                    <div>THE LAZY TEXT: {this.state.someData}</div>
+                    <div>THE LAZY WOW: {this.state.someData}</div>
                 </div>
             </div>
         );
