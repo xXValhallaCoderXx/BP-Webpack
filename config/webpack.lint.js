@@ -5,7 +5,7 @@ const parts = require('./webpack.parts');
 const x = require('./paths');
 
 exports.developmenLintConfig = merge([
-    parts.generateSourceMaps({ type: 'cheap-module-eval-source-map' }),
+    //parts.generateSourceMaps({ type: 'cheap-module-eval-source-map' }),
     parts.devServer({
         host: process.env.HOST,
         port: process.env.PORT,

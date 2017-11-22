@@ -31,7 +31,7 @@ exports.productionConfig = merge([
         },
     }),
 
-    parts.generateSourceMaps({ type: 'source-map' }),
+    //parts.generateSourceMaps({ type: 'source-map' }),
     parts.extractCSS({ include: x.PATHS.app }),
     parts.loadImages({
         options: {

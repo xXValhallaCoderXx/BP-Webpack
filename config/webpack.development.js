@@ -21,7 +21,7 @@ exports.developmentConfig = merge([
             new webpack.NamedModulesPlugin(),
         ],
     },
-    parts.generateSourceMaps({ type: 'cheap-module-eval-source-map' }),
+    //parts.generateSourceMaps({ type: 'cheap-module-eval-source-map' }),
     parts.devServer({
         host: process.env.HOST,
         port: process.env.PORT,

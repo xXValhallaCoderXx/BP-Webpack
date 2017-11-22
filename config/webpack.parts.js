@@ -196,7 +196,7 @@ exports.extractBundles = (bundles) => ({
 
 exports.clean = (path) => ({
     plugins: [
-        new CleanWebpackPlugin([path]),
+        new CleanWebpackPlugin([path], { allowExternal: true }),
     ],
 });
 
