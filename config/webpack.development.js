@@ -26,6 +26,7 @@ exports.developmentConfig = merge([
         host: process.env.HOST,
         port: process.env.PORT,
     }),
-    parts.loadCSS(),
+    parts.loadCSS({ include: x.PATHS.cssModules }),
+    parts.loadGlobalCSS({ include: x.PATHS.globalCSS }),
     parts.loadImages(),
 ]);

@@ -8,4 +8,6 @@ exports.PATHS = {
     build: path.join(__dirname, '../build'),
     excludePath: path.join(__dirname, '../node_modules'),
     htmlTemplate: path.join(__dirname, '../src/index.html'),
+    globalCSS: path.join(__dirname, '../src/assets/styles'),
+    cssModules: path.join(__dirname, '../src/app'),
 };

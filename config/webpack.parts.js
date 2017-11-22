@@ -51,6 +51,7 @@ exports.loadCSS = ({ include, exclude } = {}) => ({
                         loader: 'css-loader',
                         options: {
                             modules: true,
+                            localIdentName: '[local]___[hash:base64:5]'
                         },
                     },
                 ],
@@ -59,6 +60,25 @@ exports.loadCSS = ({ include, exclude } = {}) => ({
     },
 });
 
+exports.loadGlobalCSS = ({ include, exclude } = {}) => ({
+  module: {
+      rules: [
+          {
+              test: /\.css$/,
+              include,
+              exclude,
+              use: [
+                  {
+                      loader: 'style-loader',
+                  },
+                  {
+                      loader: 'css-loader',
+                  },
+              ],
+          },
+      ],
+  },
+});
 
 exports.extractCSS = ({ include, exclude }) => {
     // Output extracted CSS to a file

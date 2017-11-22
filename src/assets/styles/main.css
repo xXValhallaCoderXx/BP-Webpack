@@ -9,4 +9,11 @@ body {
 .redButton {
     background: purple;
 }
-    
+
+.testClass {
+  background: green;
+}
+
+.global-class {
+  background: pink;
+}

@@ -13,8 +13,8 @@ module.exports = {
     },
     rules: {
         'comma-dangle': ['error', 'always-multiline'],
-        indent: ['error', 4],
-        'linebreak-style': ['error', 'unix'],
+        indent: ['error', 2],
+        'linebreak-style': ['error', 'windows'],
         quotes: ['error', 'single'],
         semi: ['error', 'always'],
         'no-unused-vars': ['warn'],
