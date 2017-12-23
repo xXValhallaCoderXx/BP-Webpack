@@ -21,10 +21,8 @@ class Button extends Component {
   }
 
   lazyLoad() {
-    import('./lazy').then((lazy) => {
-      this.setState({
-        someData: lazy.default,
-      });
+    import('./LazyLoad/lazy').then((lazy) => {
+      this.setState({ someData: lazy.default });
     }).catch((err) => {
       console.error(err);
     });
