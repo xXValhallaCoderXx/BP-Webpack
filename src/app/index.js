@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import styles from './test.css';
 
-class Button extends Component {
+class Application extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -29,4 +29,4 @@ class Button extends Component {
   }
 }
 
-export default Button;
+export default Application;
