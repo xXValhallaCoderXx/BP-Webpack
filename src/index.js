@@ -7,15 +7,15 @@ import App from './app';
 const root = document.getElementById('render-app');
 
 render(
-    <AppContainer>
-        <App />
-    </AppContainer>, root);
+  <AppContainer>
+    <App />
+  </AppContainer>, root);
 
 if (module.hot) {
-    module.hot.accept('./app', () => {
-        render(
-            <AppContainer>
-                <App />
-            </AppContainer>, root);
-    });
+  module.hot.accept('./app', () => {
+    render(
+      <AppContainer>
+        <App />
+      </AppContainer>, root);
+  });
 }
