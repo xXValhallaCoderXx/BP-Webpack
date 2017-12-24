@@ -2,3 +2,4 @@ node_modules
 yarn.lock
 build
 .eslintcache
+yarn-error.log

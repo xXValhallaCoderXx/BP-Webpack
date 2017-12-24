@@ -44,7 +44,8 @@
         "start": "webpack-dev-server --env.target development --env.lint false",
         "start:lint": "webpack-dev-server --env.target development --env.lint true",
         "stats": "webpack --env.target production --profile --json > stats.json",
-        "build": "webpack --env.target production"
+        "build": "webpack --env.target production",
+        "staging": "webpack --env.target staging"
     },
     "husky": {
       "hooks": {
