@@ -15,7 +15,6 @@ class Application extends Component {
         <h3>Button Is Using A Global Style</h3>
         <button className="global-class">Global Style</button>
         <hr />
-
         <h3>Button using CSS Module</h3>
         <button className={styles.testClass}>CSS Module</button>
         <hr />
