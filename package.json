@@ -48,7 +48,7 @@
     },
     "husky": {
       "hooks": {
-        "pre-push": "prettier --write"
+        "pre-commit": "lint-staged"
       }
     },
     "dependencies": {

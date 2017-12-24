@@ -16,14 +16,12 @@ class Application extends Component {
         <button className="global-class">Global Style</button>
         <hr />
 
-
-      
         <h3>Button using CSS Module</h3>
         <button className={styles.testClass}>CSS Module</button>
-          <hr />
+        <hr />
         <h3>Lazy Load Example</h3>
         <button onClick={() => this.lazyLoad()}>Lazy Load Button</button>
-            <div style={{ marginTop: 10 }}>
+        <div style={{ marginTop: 10 }}>
           Dynamically Loaded: {this.state.someData}
         </div>
       </div>
