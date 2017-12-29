@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { hot } from "react-hot-loader";
 import styles from "./cssModule.css";
 
 class Application extends Component {
@@ -12,7 +13,7 @@ class Application extends Component {
   render() {
     return (
       <div>
-        <h3>Button Is Using A Global Style</h3>
+        <h3>Button Is Using A Global Styles</h3>
         <button className="global-class">Global Style</button>
         <hr />
         <h3>Button using CSS Module</h3>
@@ -38,4 +39,4 @@ class Application extends Component {
   }
 }
 
-export default Application;
+export default hot(module)(Application);

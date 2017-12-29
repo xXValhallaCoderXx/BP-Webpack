@@ -6,11 +6,7 @@ const x = require("./paths");
 
 exports.developmentConfig = merge([
   {
-    entry: [
-      "react-hot-loader/patch",
-      "webpack-dev-server/client?http://localhost:8080",
-      x.PATHS.app
-    ],
+    entry: [x.PATHS.app],
     plugins: [
       new webpack.DefinePlugin({
         "process.env": {
