@@ -3,7 +3,7 @@ const parts = require("./webpack.parts");
 const webpack = require("webpack");
 const x = require("./paths");
 
-exports.productionConfig = merge([
+exports.stagingConfig = merge([
   {
     performance: {
       hints: "warning", // 'error' or false are valid too
@@ -18,6 +18,7 @@ exports.productionConfig = merge([
       })
     ]
   },
+  parts.generateSourceMaps({ type: "cheap-source-map" }),
   parts.clean(x.PATHS.build),
   parts.minifyJavaScript(),
   parts.minifyCSS({
