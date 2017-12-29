@@ -15,7 +15,6 @@ class Application extends Component {
     this._increaseCount = this._increaseCount.bind(this);
   }
   render() {
-    console.log("PROPS", this.props);
     return (
       <div>
         <h3>Button Is Using A Global Styles</h3>
