@@ -18,7 +18,7 @@ class Application extends Component {
     console.log("PROPS", this.props);
     return (
       <div>
-        <h3>Button Is Using A Global Styless</h3>
+        <h3>Button Is Using A Global Styles</h3>
         <button className="global-class">Global Style</button>
         <hr />
         <h3>Button using CSS Module</h3>
