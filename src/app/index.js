@@ -9,6 +9,7 @@ class Application extends Component {
       count: 0,
       someData: "NONE"
     };
+    this._increaseCount = this._increaseCount.bind(this);
   }
   render() {
     return (
@@ -24,8 +25,16 @@ class Application extends Component {
         <div style={{ marginTop: 10 }}>
           Dynamically Loaded: {this.state.someData}
         </div>
+        <hr />
+        <h3>Counter to Display HMR</h3>
+        <p>Count: {this.state.count}</p>
+        <button onClick={this._increaseCount}>Increase</button>
       </div>
     );
+  }
+
+  _increaseCount() {
+    this.setState({ count: this.state.count + 1 });
   }
 
   lazyLoad() {
