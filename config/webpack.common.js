@@ -20,7 +20,7 @@ exports.commonConfig = merge([
       })
     ],
     resolve: {
-      extensions: [".ts", ".tsx", ".js"]
+      extensions: [".css", ".ts", ".tsx", ".js"]
     }
   },
   parts.loadFonts({
