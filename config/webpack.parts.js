@@ -1,23 +1,23 @@
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
-const CleanWebpackPlugin = require('clean-webpack-plugin');
-const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
-const cssnano = require('cssnano');
-const BabelWebpackPlugin = require('babel-minify-webpack-plugin');
-const webpack = require('webpack');
+const ExtractTextPlugin = require("extract-text-webpack-plugin");
+const CleanWebpackPlugin = require("clean-webpack-plugin");
+const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
+const cssnano = require("cssnano");
+const BabelWebpackPlugin = require("babel-minify-webpack-plugin");
+const webpack = require("webpack");
 
 exports.devServer = ({ host, port } = {}) => ({
   devServer: {
     historyApiFallback: true,
-    stats: 'errors-only',
+    stats: "errors-only",
     hotOnly: true,
     inline: true,
     host, // Defaults to `localhost`
     port, // Defaults to 8080
     overlay: {
       errors: true,
-      warnings: true,
-    },
-  },
+      warnings: true
+    }
+  }
 });
 
 exports.lintJavaScript = ({ include, exclude, options }) => ({
@@ -27,14 +27,13 @@ exports.lintJavaScript = ({ include, exclude, options }) => ({
         test: /\.js$/,
         include,
         exclude,
-        enforce: 'pre',
-        loader: 'eslint-loader',
-        options,
-      },
-    ],
-  },
+        enforce: "pre",
+        loader: "eslint-loader",
+        options
+      }
+    ]
+  }
 });
-
 
 exports.loadCSS = ({ include, exclude } = {}) => ({
   module: {
@@ -45,19 +44,19 @@ exports.loadCSS = ({ include, exclude } = {}) => ({
         exclude,
         use: [
           {
-            loader: 'style-loader',
+            loader: "style-loader"
           },
           {
-            loader: 'css-loader',
+            loader: "css-loader",
             options: {
               modules: true,
-              localIdentName: '[local]___[hash:base64:5]'
-            },
-          },
-        ],
-      },
-    ],
-  },
+              localIdentName: "[local]___[hash:base64:5]"
+            }
+          }
+        ]
+      }
+    ]
+  }
 });
 
 exports.loadGlobalCSS = ({ include, exclude } = {}) => ({
@@ -69,21 +68,21 @@ exports.loadGlobalCSS = ({ include, exclude } = {}) => ({
         exclude,
         use: [
           {
-            loader: 'style-loader',
+            loader: "style-loader"
           },
           {
-            loader: 'css-loader',
-          },
-        ],
-      },
-    ],
-  },
+            loader: "css-loader"
+          }
+        ]
+      }
+    ]
+  }
 });
 
 exports.extractCSS = ({ include, exclude }) => {
   // Output extracted CSS to a file
   const plugin = new ExtractTextPlugin({
-    filename: '/static/css/[name].css',
+    filename: "/static/css/[name].css"
   });
   return {
     module: {
@@ -95,31 +94,27 @@ exports.extractCSS = ({ include, exclude }) => {
           use: plugin.extract({
             use: [
               {
-                loader: 'css-loader',
+                loader: "css-loader",
                 options: {
-                  modules: true,
-                },
+                  modules: true
+                }
               },
-              autoprefix(),
-            ],
-          }),
-        },
-      ],
+              autoprefix()
+            ]
+          })
+        }
+      ]
     },
-    plugins: [plugin],
+    plugins: [plugin]
   };
 };
 
-
 const autoprefix = () => ({
-  loader: 'postcss-loader',
+  loader: "postcss-loader",
   options: {
-    plugins: () => ([
-      require('autoprefixer')(),
-    ]),
-  },
+    plugins: () => [require("autoprefixer")()]
+  }
 });
-
 
 exports.loadImages = ({ include, exclude, options } = {}) => ({
   module: {
@@ -129,12 +124,12 @@ exports.loadImages = ({ include, exclude, options } = {}) => ({
         include,
         exclude,
         use: {
-          loader: 'url-loader',
-          options,
-        },
-      },
-    ],
-  },
+          loader: "url-loader",
+          options
+        }
+      }
+    ]
+  }
 });
 
 exports.compressImages = ({ include, exclude } = {}) => ({
@@ -143,32 +138,30 @@ exports.compressImages = ({ include, exclude } = {}) => ({
       {
         test: /\.(gif|png|jpe?g|svg)$/,
         loaders: [
-
           {
-            loader: 'image-webpack-loader',
+            loader: "image-webpack-loader",
             query: {
               mozjpeg: {
                 progressive: true,
-                quality: '75',
+                quality: "75"
               },
               gifsicle: {
-                interlaced: false,
+                interlaced: false
               },
               optipng: {
-                optimizationLevel: 4,
+                optimizationLevel: 4
               },
               pngquant: {
-                quality: '75-90',
-                speed: 3,
-              },
-            },
-          },
-        ],
-      },
-    ],
-  },
+                quality: "75-90",
+                speed: 3
+              }
+            }
+          }
+        ]
+      }
+    ]
+  }
 });
-
 
 exports.loadFonts = ({ include, exclude, options } = {}) => ({
   module: {
@@ -179,12 +172,12 @@ exports.loadFonts = ({ include, exclude, options } = {}) => ({
         include,
         exclude,
         use: {
-          loader: 'file-loader',
-          options,
-        },
-      },
-    ],
-  },
+          loader: "file-loader",
+          options
+        }
+      }
+    ]
+  }
 });
 
 exports.loadJavaScript = ({ include, exclude }) => ({
@@ -194,37 +187,31 @@ exports.loadJavaScript = ({ include, exclude }) => ({
         test: /\.js$/,
         include,
         exclude,
-        loader: 'babel-loader',
+        loader: "babel-loader",
         options: {
-          cacheDirectory: true,
-        },
-      },
-    ],
-  },
+          cacheDirectory: true
+        }
+      }
+    ]
+  }
 });
-
 
 exports.generateSourceMaps = ({ type }) => ({
-  devtool: type,
+  devtool: type
 });
 
-exports.extractBundles = (bundles) => ({
-  plugins: bundles.map((bundle) => (
-    new webpack.optimize.CommonsChunkPlugin(bundle)
-  )),
+exports.extractBundles = bundles => ({
+  plugins: bundles.map(
+    bundle => new webpack.optimize.CommonsChunkPlugin(bundle)
+  )
 });
 
-exports.clean = (path) => ({
-  plugins: [
-    new CleanWebpackPlugin([path], { allowExternal: true }),
-  ],
+exports.clean = path => ({
+  plugins: [new CleanWebpackPlugin([path], { allowExternal: true })]
 });
-
 
 exports.minifyJavaScript = () => ({
-  plugins: [
-    new BabelWebpackPlugin(),
-  ],
+  plugins: [new BabelWebpackPlugin()]
 });
 
 exports.minifyCSS = ({ options }) => ({
@@ -232,7 +219,7 @@ exports.minifyCSS = ({ options }) => ({
     new OptimizeCSSAssetsPlugin({
       cssProcessor: cssnano,
       cssProcessorOptions: options,
-      canPrint: false,
-    }),
-  ],
+      canPrint: false
+    })
+  ]
 });

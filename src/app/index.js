@@ -1,6 +1,9 @@
 import React, { Component } from "react";
 import { hot } from "react-hot-loader";
 import styles from "./cssModule.css";
+import { connect } from "react-redux";
+import { bindActionCreators } from "redux";
+import { increaseCounter } from "../actions";
 
 class Application extends Component {
   constructor(props) {
@@ -27,14 +30,14 @@ class Application extends Component {
         </div>
         <hr />
         <h3>Counter to Display HMR</h3>
-        <p>Count: {this.state.count}</p>
+        <p>Count: {this.props.testState.counter}</p>
         <button onClick={this._increaseCount}>Increase</button>
       </div>
     );
   }
 
   _increaseCount() {
-    this.setState({ count: this.state.count + 1 });
+    this.props.increaseReduxCounter();
   }
 
   lazyLoad() {
@@ -48,4 +51,21 @@ class Application extends Component {
   }
 }
 
-export default hot(module)(Application);
+function mapDispatchToProps(dispatch) {
+  return bindActionCreators(
+    {
+      increaseReduxCounter: increaseCounter
+    },
+    dispatch
+  );
+}
+
+function mapStateToProps(state) {
+  return {
+    testState: state.demo
+  };
+}
+
+export default hot(module)(
+  connect(mapStateToProps, mapDispatchToProps)(Application)
+);
