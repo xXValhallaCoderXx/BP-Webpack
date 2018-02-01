@@ -1,4 +1,4 @@
-This is a development and build enviroment for a React JS web application, built on webpack and babel.
+This is a production ready development and build enviroment for a React + Redux + React Router JS web application, built on webpack and babel.
 
 # Getting Started
 
