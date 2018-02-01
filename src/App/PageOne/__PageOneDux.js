@@ -1,4 +1,4 @@
-import { makeActionCreator, createReducer } from "../../__utils__/redux-helper";
+import { makeActionCreator, createReducer } from "ReduxUtils";
 
 export const types = {
   INCREASE_COUNT: "INCREASE_COUNT"
