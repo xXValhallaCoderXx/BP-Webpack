@@ -1,29 +1,32 @@
 {
-    "presets": [
-        ["es2015", { "modules": false}],
-        "react",
-        [
-            "env",
-            {
-                "modules": false,
-                "targets": {
-                    "browsers": [
-                        "ie >= 9",
-                        "last 3 chrome versions",
-                        "last 3 safari versions",
-                        "last 3 firefox versions"
-                    ]
-                }
-            }
-        ]
-    ],
-    "env": {
-        "development": {
-            "plugins": ["react-hot-loader/babel"]
-        },
-        "production": {
-            "plugins": ["transform-remove-console"]
+  "presets": [
+    ["es2015", { "modules": false }],
+    "react",
+    [
+      "env",
+      {
+        "modules": false,
+        "targets": {
+          "browsers": [
+            "ie >= 9",
+            "last 3 chrome versions",
+            "last 3 safari versions",
+            "last 3 firefox versions"
+          ]
         }
+      }
+    ]
+  ],
+  "env": {
+    "development": {
+      "plugins": ["react-hot-loader/babel"]
     },
-    "plugins": ["syntax-dynamic-import"]
+    "production": {
+      "plugins": ["transform-remove-console"]
+    },
+    "test": {
+      "presets": ["es2015"]
+    }
+  },
+  "plugins": ["syntax-dynamic-import"]
 }

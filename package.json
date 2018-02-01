@@ -17,6 +17,9 @@
     "clean-webpack-plugin": "^0.1.17",
     "css-loader": "^0.28.7",
     "cssnano": "^3.10.0",
+    "enzyme": "^3.3.0",
+    "enzyme-adapter-react-16": "^1.1.1",
+    "enzyme-to-json": "^3.3.1",
     "eslint": "^4.8.0",
     "eslint-config-prettier": "^2.9.0",
     "eslint-loader": "^1.9.0",
@@ -27,6 +30,7 @@
     "html-webpack-plugin": "^2.30.1",
     "husky": "^0.15.0-beta.16",
     "image-webpack-loader": "^3.4.2",
+    "jest": "^22.1.4",
     "lint-staged": "^6.0.0",
     "optimize-css-assets-webpack-plugin": "^3.2.0",
     "postcss-loader": "^2.0.6",
@@ -47,14 +51,17 @@
     "redux": "^3.7.2"
   },
   "scripts": {
-    "lint:fix-js":
-      "eslint src/ webpack.*.js --cache --ignore-path .gitignore --fix",
+    "lint:fix-js": "eslint src/ webpack.*.js --cache --ignore-path .gitignore --fix",
     "lint:js": "eslint src/ webpack.*.js --cache --ignore-path .gitignore",
     "start": "webpack-dev-server --env.target development --env.lint false",
     "start:lint": "webpack-dev-server --env.target development --env.lint true",
     "stats": "webpack --env.target production --profile --json > stats.json",
     "build": "webpack --env.target production",
-    "staging": "webpack --env.target staging"
+    "staging": "webpack --env.target staging",
+    "test": "jest",
+    "test:coverage": "jest --coverage",
+    "test:watch": "jest --watch",
+    "jest:snapshot": "jest --updateSnapshot"
   },
   "husky": {
     "hooks": {
@@ -62,6 +69,32 @@
     }
   },
   "lint-staged": {
-    "*.js": ["prettier --write", "git add"]
+    "*.js": [
+      "prettier --write",
+      "git add"
+    ]
+  },
+  "jest": {
+    "transformIgnorePatterns": [
+      "/node_modules/"
+    ],
+    "testPathIgnorePatterns": [
+      "/node_modules/"
+    ],
+    "snapshotSerializers": [
+      "enzyme-to-json/serializer"
+    ],
+    "roots": [
+      "src"
+    ],
+    "verbose": true,
+    "bail": true,
+    "setupFiles": [
+      "<rootDir>/__jest__/setup.js"
+    ],
+    "moduleNameMapper": {
+      "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/__jest__/fileMock.js",
+      "\\.(css|less|scss)$": "<rootDir>/__jest__/styleMock.js"
+    }
   }
 }
