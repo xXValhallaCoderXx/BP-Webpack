@@ -9,5 +9,5 @@ exports.PATHS = {
   excludePath: path.join(__dirname, "../node_modules"),
   htmlTemplate: path.join(__dirname, "../src/index.html"),
   globalCSS: path.join(__dirname, "../src/assets/styles"),
-  cssModules: path.join(__dirname, "../src/app")
+  cssModules: path.join(__dirname, "../src/App")
 };

@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 import { hot } from "react-hot-loader";
-import styles from "./cssModule.css";
+import styles from "./styles.css";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { increaseCounter } from "../actions";
+import { actions } from "./__PageOneDux";
 
 class Application extends Component {
   constructor(props) {
@@ -30,14 +30,20 @@ class Application extends Component {
         </div>
         <hr />
         <h3>Counter to Display HMR</h3>
-        <p>Count: {this.props.testState.counter}</p>
+        <p>Count: {this.props.testState.count}</p>
         <button onClick={this._increaseCount}>Increase</button>
       </div>
     );
   }
 
   _increaseCount() {
-    this.props.increaseReduxCounter();
+    const test = {
+      hello: "FHDHS",
+      name: {
+        data: "4353"
+      }
+    };
+    this.props.increaseReduxCounter(test);
   }
 
   lazyLoad() {
@@ -54,7 +60,7 @@ class Application extends Component {
 function mapDispatchToProps(dispatch) {
   return bindActionCreators(
     {
-      increaseReduxCounter: increaseCounter
+      increaseReduxCounter: actions.fetch
     },
     dispatch
   );
