@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import { hot } from "react-hot-loader";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { actions } from "./__PageOneDux";
@@ -19,7 +18,4 @@ function mapStateToProps(state) {
     testState: state.demo
   };
 }
-
-export default hot(module)(
-  connect(mapStateToProps, mapDispatchToProps)(PageOneView)
-);
+export default connect(mapStateToProps, mapDispatchToProps)(PageOneView);
