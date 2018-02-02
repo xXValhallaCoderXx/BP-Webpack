@@ -1,6 +1,6 @@
 # Front-End Build Configuration
 
-This is a development and build enviroment for a React JS web application, built on webpack and babel.
+This is a development and build enviroment for a React JS web application, built on webpack and babel with Typescript for type checking.
 
 ## Features
 
