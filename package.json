@@ -59,11 +59,11 @@
     "start:lint": "webpack-dev-server --env.target development --env.lint true",
     "stats": "webpack --env.target production --profile --json > stats.json",
     "build": "webpack --env.target production",
-    "staging": "webpack --env.target staging",
-    "test": "jest",
+    "build:testing": "webpack --env.target testing",
+    "test:run": "jest",
     "test:coverage": "jest --coverage",
     "test:watch": "jest --watch",
-    "jest:snapshot": "jest --updateSnapshot"
+    "test:update": "jest --updateSnapshot"
   },
   "husky": {
     "hooks": {

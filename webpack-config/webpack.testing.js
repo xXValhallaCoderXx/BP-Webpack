@@ -3,7 +3,7 @@ const parts = require("./webpack.parts");
 const webpack = require("webpack");
 const x = require("./paths");
 
-exports.stagingConfig = merge([
+exports.testingConfig = merge([
   {
     performance: {
       hints: "warning", // 'error' or false are valid too

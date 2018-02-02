@@ -29,6 +29,10 @@ Bellow are the current CLI commands availible in the config:
   "stats": Get stats on the webpack build for reports,
   "build": Run script to build and compile the project for production,
   "build:testing": Run script to build and compile the project for testing
+  "test:run": Run the unit tests
+  "test:coverage": Provide unit test coverage
+  "test:watch": Run test runner in the background
+  "test:update": Update the jest snapshots
 ```
 
 ## Core Features
