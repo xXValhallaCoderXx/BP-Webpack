@@ -25,9 +25,7 @@
         "extract-text-webpack-plugin": "^3.0.1",
         "file-loader": "^1.1.5",
         "html-webpack-plugin": "^2.30.1",
-        "husky": "^0.15.0-beta.16",
         "image-webpack-loader": "^3.4.2",
-        "lint-staged": "^6.0.0",
         "optimize-css-assets-webpack-plugin": "^3.2.0",
         "postcss-loader": "^2.0.6",
         "prettier": "^1.9.2",
@@ -44,22 +42,10 @@
         "start": "webpack-dev-server --env.target development --env.lint false",
         "start:lint": "webpack-dev-server --env.target development --env.lint true",
         "stats": "webpack --env.target production --profile --json > stats.json",
-        "build": "webpack --env.target production",
-        "staging": "webpack --env.target staging"
-    },
-    "husky": {
-        "hooks": {
-            "pre-commit": "lint-staged"
-        }
+        "build": "webpack --env.target production"
     },
     "dependencies": {
         "react": "^16.0.0",
         "react-dom": "^16.0.0"
-    },
-    "lint-staged": {
-        "*.js": [
-            "prettier --write",
-            "git add"
-        ]
     }
 }
