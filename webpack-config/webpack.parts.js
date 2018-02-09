@@ -5,12 +5,13 @@ const cssnano = require('cssnano');
 const BabelWebpackPlugin = require('babel-minify-webpack-plugin');
 const webpack = require('webpack');
 
-exports.devServer = ({ host, port } = {}) => ({
+exports.devServer = ({ host, port, hostCheck } = {}) => ({
   devServer: {
     historyApiFallback: true,
     stats: 'errors-only',
     hotOnly: true,
     inline: true,
+    disableHostCheck: hostCheck,
     host, // Defaults to `localhost`
     port, // Defaults to 8080
     overlay: {
