@@ -11,7 +11,7 @@ exports.devServer = ({ host, port, hostCheck } = {}) => ({
     stats: 'errors-only',
     hotOnly: true,
     inline: true,
-    disableHostCheck: hostCheck,
+    disableHostCheck: hostCheck || false,
     host, // Defaults to `localhost`
     port, // Defaults to 8080
     overlay: {

@@ -21,7 +21,7 @@ exports.developmentConfig = merge([
   parts.devServer({
     host: process.env.HOST,
     port: process.env.PORT,
-    hostCheck: false
+    //hostCheck: false
   }),
   parts.loadCSS({ include: x.PATHS.cssModules }),
   parts.loadGlobalCSS({ include: x.PATHS.globalCSS }),
