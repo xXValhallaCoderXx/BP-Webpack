@@ -1,5 +1,5 @@
 import React from "react";
-import PageTwo from "./PageTwo";
+import PageTwo from "../index";
 
 describe("Page Two >>>> Renders correctly to the DOM", () => {
   it("should be defined", () => {
