@@ -20,7 +20,7 @@ exports.developmentConfig = merge([
   parts.generateSourceMaps({ type: "cheap-module-eval-source-map" }),
   parts.devServer({
     host: process.env.HOST,
-    port: process.env.PORT,
+    port: process.env.PORT
     //hostCheck: false
   }),
   parts.loadCSS({ include: x.PATHS.cssModules }),
