@@ -1,10 +1,18 @@
 # Front-End Build Configuration
 
-This is a development and build enviroment for a React JS web application, built on webpack and babel.
+This is a basic boilerplate for React JS to provide a development enviroment for creating SPA applications,
+It provides extra features baked in to aid development.
+
+This development enviroment also makes use of babel, to allow for users to use the latest JS trends in their code.
 
 ## Features
 
-WIP
+- Hot Module Reloading: HMR Will allow application to keep current state, when making changes to your code
+- SASS Ready: Sass is ready to be used straight out the box
+- CSS Modules Ready: Users can use SASS/CSS Modules without setup
+- CSS is Extracted into a single .css style sheet in production
+- Image optimization on production
+- NEED TO WRITE MORE...
 
 ## Getting Started
 
@@ -17,25 +25,29 @@ Ensure you to have the latest Node LTS ensured globally on your system, you can 
 
 ### Installing
 
-1. Clone this repo using `git clone https://github.com/xXValhallaCoderXx/Webpack-V3-React-HMR.git`.
+1. Clone this repo using `git clone`.
 2. Move to the appropriate directory.
 3. Run `npm -i` or `yarn` in order to install dependencies.<br />
-4. Run `npm start` or `yarn start` to start the development enviroment<br />
-5. Go to browser and visit: `localhost:8080`.
 
-## Tests
+## Development
 
-Unit-tests are created with Jest and Enzyme
+1. Run `npm start` or `yarn start` to start the development enviroment<br />
+2. Go to browser and visit: `localhost:8080`.
 
-### Break down into end to end tests
+This will start up a webpack dev server to allow for local development of your application.
 
-Explain what these tests test and why
+### CLI Scripts
+The development enviroment has various commands in the `package.json` which we are able to run via the CLI, which are as follows:
 
 ```
-Give an example
+  "lint:fix-js": This will run prettier and auto-format any code which may not be formatted correctly.
+  "lint:js": This will provide feedback via the CLI if there are currently any linting errors.
+  "start": This will start the development server on localhost:8080 by default.
+  "start:lint": This will start the development server, with linter so if any code if formatted incorrectly errors will be dislayed via CLI and project wont compile.
+  "stats": Provides a .json file of the build output, can be used with other applications for analyzing the output
+  "build": Builds the application
+
 ```
 
-## Deployment
 
-WIP
 
