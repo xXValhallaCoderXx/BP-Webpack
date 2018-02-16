@@ -51,6 +51,11 @@ The development enviroment has various commands in the `package.json` which we a
 - `start:lint`: Starts the development server, with linter, any code formatted incorrectly results in errors dislayed via CLI.
 - `stats`: Provides a .json file of the build output, can be used with other applications for analyzing the output
 - `build`: Builds the application into a bundle and prepare for deployment.
+- `build:testing`: Build application with source maps, to allow test server deployment and debugging code easier
+- `test:run`: Run the jest runner to run all the tests
+- `test:coverage`: Run the jest code coverage
+- `test:watch`: Run the jest test runner while development to alert of any errors during dev time
+- `test:update`: Update snapshots
 
 ## Deployment
 The build script will run several optimizations and preapre a single `.html` file which will link to the static files (`.js` and `.css`) as an application that will be ready to be served via a server.
