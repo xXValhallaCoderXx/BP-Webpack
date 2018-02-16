@@ -1,23 +1,22 @@
 # Front-End Build Configuration
 
-This is a basic boilerplate for React JS to provide a development enviroment for creating SPA applications,
-It provides extra features baked in to aid development.
+![alt text](https://www.bram.us/wordpress/wp-content/uploads/2016/04/es6-webpack-react-babel-560x107.png "React!")
 
-This development enviroment also makes use of babel, to allow for users to use the latest JS trends in their code.
+This is a basic React JS boilerplate, bootstrapped with a few other features to allow users to get up and going straight off the bat with a development enviroment, for quick prototyping.
+
+It makes use of Babel, to allow us to use ES6 and all the latest features which JS has to bring to the table.
 
 ## Features
 
-- Hot Module Reloading: HMR Will allow application to keep current state, when making changes to your code
-- SASS Ready: Sass is ready to be used straight out the box
-- CSS Modules Ready: Users can use SASS/CSS Modules without setup
-- CSS is Extracted into a single .css style sheet in production
-- Image optimization on production
-- NEED TO WRITE MORE...
+- **Hot Module Reloading**: HMR Ready - Keep application state while making live changes to your code!
+- **SASS**: Get Sassilicious straight out of the box
+- **CSS Modules**: Start building with CSS Module straight out of the box!
+- **CSS Extraction**: Projects CSS code is extracted into a `.css` file
+- **Build Optimizations**: Tree shaking, minification, image optimizations etc
 
 ## Getting Started
 
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. 
-See deployment for notes on how to deploy the project on a live system.
+Getting started is simple! The directions below will get you up and running to get hacking in no time!
 
 ### Prerequisites
 
@@ -39,15 +38,16 @@ This will start up a webpack dev server to allow for local development of your a
 ### CLI Scripts
 The development enviroment has various commands in the `package.json` which we are able to run via the CLI, which are as follows:
 
-```
-  "lint:fix-js": This will run prettier and auto-format any code which may not be formatted correctly.
-  "lint:js": This will provide feedback via the CLI if there are currently any linting errors.
-  "start": This will start the development server on localhost:8080 by default.
-  "start:lint": This will start the development server, with linter so if any code if formatted incorrectly errors will be dislayed via CLI and project wont compile.
-  "stats": Provides a .json file of the build output, can be used with other applications for analyzing the output
-  "build": Builds the application
+- `lint:fix-js` - Runs prettier will auto-format any code which may not be formatted correctly.
+- `lint:js`: This will provide feedback via the CLI if there are currently any linting errors.
+- `start`: Starts the development server on localhost:8080 by default.
+- `start:lint`: Starts the development server, with linter, any code formatted incorrectly results in errors dislayed via CLI.
+- `stats`: Provides a .json file of the build output, can be used with other applications for analyzing the output
+- `build`: Builds the application into a bundle and prepare for deployment.
 
-```
+## Deployment
+The build script will run several optimizations and preapre a single `.html` file which will link to the static files (`.js` and `.css`) as an application that will be ready to be served via a server.
 
-
+1. Run `yarn build` or `npm run build`
+2 Files will output in the `build` directory
 
