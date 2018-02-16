@@ -6,9 +6,9 @@ const x = require("./paths");
 exports.productionConfig = merge([
   {
     performance: {
-      hints: "warning", // 'error' or false are valid too
-      maxEntrypointSize: 80000, // in bytes
-      maxAssetSize: 450000 // in bytes
+      hints: "warning", // 'error' or false valid options
+      maxEntrypointSize: 80000,
+      maxAssetSize: 450000
     },
     plugins: [
       new webpack.DefinePlugin({
@@ -25,13 +25,10 @@ exports.productionConfig = merge([
       discardComments: {
         removeAll: true
       },
-      // Run cssnano in safe mode to avoid
-      // potentially unsafe transformations.
+      // Run cssnano in safe mode to avoid potentially unsafe transformations.
       safe: true
     }
   }),
-
-  //parts.generateSourceMaps({ type: 'source-map' }),
   parts.extractCSS({ include: x.PATHS.app }),
   parts.loadImages({
     options: {

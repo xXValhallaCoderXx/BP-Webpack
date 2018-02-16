@@ -6,7 +6,6 @@ const x = require("./paths");
 
 exports.developmentConfig = merge([
   {
-    entry: [x.PATHS.app],
     plugins: [
       new webpack.DefinePlugin({
         "process.env": {
