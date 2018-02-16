@@ -4,6 +4,7 @@ const webpack = require("webpack");
 const x = require("./paths");
 
 exports.testingConfig = merge([
+  parts.generateSourceMaps({ type: "source-map" }),
   {
     performance: {
       hints: "warning", // 'error' or false are valid too
@@ -18,7 +19,6 @@ exports.testingConfig = merge([
       })
     ]
   },
-  parts.generateSourceMaps({ type: "cheap-source-map" }),
   parts.clean(x.PATHS.build),
   parts.minifyJavaScript(),
   parts.minifyCSS({
@@ -32,7 +32,6 @@ exports.testingConfig = merge([
     }
   }),
 
-  //parts.generateSourceMaps({ type: 'source-map' }),
   parts.extractCSS({ include: x.PATHS.app }),
   parts.loadImages({
     options: {

@@ -2,7 +2,7 @@ const ExtractTextPlugin = require("extract-text-webpack-plugin");
 const CleanWebpackPlugin = require("clean-webpack-plugin");
 const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
 const cssnano = require("cssnano");
-const BabelWebpackPlugin = require("babel-minify-webpack-plugin");
+const UglifyJsPlugin = require("uglifyjs-webpack-plugin");
 const webpack = require("webpack");
 
 exports.devServer = ({ host, port } = {}) => ({
@@ -211,7 +211,7 @@ exports.clean = path => ({
 });
 
 exports.minifyJavaScript = () => ({
-  plugins: [new BabelWebpackPlugin()]
+  plugins: [new UglifyJsPlugin({ sourceMap: true })]
 });
 
 exports.minifyCSS = ({ options }) => ({
