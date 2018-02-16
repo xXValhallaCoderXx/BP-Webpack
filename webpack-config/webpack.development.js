@@ -6,6 +6,7 @@ const x = require("./paths");
 
 exports.developmentConfig = merge([
   {
+    entry: [x.PATHS.app],
     plugins: [
       new webpack.DefinePlugin({
         "process.env": {
@@ -25,4 +26,21 @@ exports.developmentConfig = merge([
   parts.loadCSS({ include: x.PATHS.cssModules }),
   parts.loadGlobalCSS({ include: x.PATHS.globalCSS }),
   parts.loadImages()
+]);
+
+exports.lintConfig = merge([
+  parts.lintJavaScript({ include: x.PATHS.app }),
+  {
+    plugins: [
+      new webpack.LoaderOptionsPlugin({
+        options: {
+          eslint: {
+            failOnWarning: false,
+            failOnError: true,
+            fix: false
+          }
+        }
+      })
+    ]
+  }
 ]);
