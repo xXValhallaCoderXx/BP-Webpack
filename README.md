@@ -1,6 +1,6 @@
-# Front-End Build Configuration
+# React JS + Webpack Build Config
 
-![alt text](https://www.bram.us/wordpress/wp-content/uploads/2016/04/es6-webpack-react-babel-560x107.png "React!")
+![alt text](https://brainhub.eu/static/media/reactjs-brainhub-development.9ea94b0d.png "React!")
 
 This is a basic React JS boilerplate, bootstrapped with a few other features to allow users to get up and going straight off the bat with a development enviroment, for quick prototyping.
 
