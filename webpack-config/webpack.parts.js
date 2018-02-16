@@ -8,7 +8,7 @@ const webpack = require("webpack");
 exports.devServer = ({ host, port, hostCheck } = {}) => ({
   devServer: {
     historyApiFallback: true,
-    stats: 'errors-only',
+    stats: "errors-only",
     hotOnly: true,
     inline: true,
     disableHostCheck: hostCheck || false,
@@ -16,9 +16,9 @@ exports.devServer = ({ host, port, hostCheck } = {}) => ({
     port, // Defaults to 8080
     overlay: {
       errors: true,
-      warnings: true,
-    },
-  },
+      warnings: true
+    }
+  }
 });
 
 exports.lintJavaScript = ({ include, exclude, options }) => ({
