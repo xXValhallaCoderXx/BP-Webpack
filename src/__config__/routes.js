@@ -2,7 +2,7 @@ import React from "react";
 import { Route, Router } from "react-router-dom";
 import createHistory from "history/createBrowserHistory";
 import { hot } from "react-hot-loader";
-import PageOne from "../App/PageOne";
+import PageOne from "../app/PageOne";
 import PageTwo from "../app/PageTwo";
 import PageThree from "../app/PageThree";
 

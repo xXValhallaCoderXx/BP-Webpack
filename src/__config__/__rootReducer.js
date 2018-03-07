@@ -1,5 +1,5 @@
 import { combineReducers } from "redux";
-import pageOneReducer from "../App/PageOne/__PageOneDux";
+import pageOneReducer from "../app/PageOne/__PageOneDux";
 
 export default combineReducers({
   demo: pageOneReducer
