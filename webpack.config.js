@@ -39,8 +39,8 @@ const productionConfig = merge([
     //   maxAssetSize: 450000
     // },
     output: {
-      chunkFilename: "[name].[chunkhash:8].js",
-      filename: "[name].[chunkhash:8].js",
+      chunkFilename: "static/js/[name].[chunkhash:8].js",
+      filename: "static/js/[name].[chunkhash:8].js",
     },
     recordsPath: path.join(__dirname, "records.json"),
   },
@@ -63,7 +63,7 @@ const productionConfig = merge([
   parts.loadImages({
     options: {
       limit: 15000,
-      name: "[name].[hash:8].[ext]",
+      name: "static/images/[name].[hash:8].[ext]",
     },
   }),
   // parts.attachRevision(),

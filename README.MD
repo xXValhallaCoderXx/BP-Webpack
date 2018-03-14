@@ -1,4 +1,6 @@
-# Need .browserslistrc (css) AND env (js)
+# Setup
 
 
-`yarn build --display-used-exports` - Dsplay if some treeshaking happening
+- Install packages via: `yarn` or `npm i`
+- Build: `yarn build` or `npm run build`
+- FIles will be in root `dist` folder

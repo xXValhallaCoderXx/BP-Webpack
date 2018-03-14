@@ -44,7 +44,7 @@ exports.extractCSS = ({ include, exclude, use }) => {
   const plugin = new ExtractTextPlugin({
     // `allChunks` is needed to extract from extracted chunks as wel\
     allChunks: true,
-    filename: "[name].[contenthash:8].css",
+    filename: "static/css/[name].[contenthash:8].css",
   });
   return {
     module: {
