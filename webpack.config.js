@@ -115,6 +115,7 @@ module.exports = mode => {
       entry: {
         app: PATHS.app,
       },
+      appName: "login",
       title: "LOGIN",
       path: "login",
       chunks: ["app", "manifest", "vendor"],
@@ -124,6 +125,7 @@ module.exports = mode => {
       entry: {
         another: path.join(PATHS.app, "another.js"),
       },
+      appName: "detect",
       title: "DETECT",
       path: "detect",
       chunks: ["another", "manifest", "vendor"],

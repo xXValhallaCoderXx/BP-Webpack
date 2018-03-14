@@ -44,7 +44,7 @@
         "byName": {},
         "bySource": {},
         "usedIds": [
-          0
+          1
         ]
       }
     }
@@ -178,6 +178,56 @@
           "node_modules/webpack/buildin/global.js": 1,
           "node_modules/lodash/lodash.js": 2,
           "node_modules/html-webpack-plugin/lib/loader.js!node_modules/html-webpack-plugin/default_index.ejs": 3,
+          "node_modules/html-webpack-plugin/lib/loader.js!src/login.html": 3
+        },
+        "usedIds": {
+          "0": 0,
+          "1": 1,
+          "2": 2,
+          "3": 3
+        }
+      },
+      "chunks": {
+        "byName": {},
+        "bySource": {},
+        "usedIds": [
+          0
+        ]
+      }
+    }
+  ],
+  "html-webpack-plugin for \"login.html\"": [
+    {
+      "modules": {
+        "byIdentifier": {
+          "node_modules/webpack/buildin/module.js": 0,
+          "node_modules/webpack/buildin/global.js": 1,
+          "node_modules/lodash/lodash.js": 2,
+          "node_modules/html-webpack-plugin/lib/loader.js!src/detect.html": 3
+        },
+        "usedIds": {
+          "0": 0,
+          "1": 1,
+          "2": 2,
+          "3": 3
+        }
+      },
+      "chunks": {
+        "byName": {},
+        "bySource": {},
+        "usedIds": [
+          0
+        ]
+      }
+    }
+  ],
+  "html-webpack-plugin for \"detect.html\"": [
+    {
+      "modules": {
+        "byIdentifier": {
+          "node_modules/webpack/buildin/module.js": 0,
+          "node_modules/webpack/buildin/global.js": 1,
+          "node_modules/lodash/lodash.js": 2,
           "node_modules/html-webpack-plugin/lib/loader.js!src/login.html": 3
         },
         "usedIds": {

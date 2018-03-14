@@ -162,13 +162,13 @@ exports.page = ({
   title,
   entry,
   chunks,
-  mountID,
+  appName,
 } = {}) => ({
   entry,
   plugins: [
     new HtmlWebpackPlugin({
       chunks,
-      filename: `${path && path + "/"}index.html`,
+      filename: `${appName}.html`,
       template,
       title,
     }),
