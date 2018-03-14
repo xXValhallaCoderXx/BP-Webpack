@@ -8,7 +8,7 @@
   "scripts": {
     "start": "webpack-dev-server --env development",
     "build": "webpack --env production",
-    "test": "webpack --devtool false --mode development"
+    "build:stats": "webpack --env production --json > stats.json"
   },
   "devDependencies": {
     "autoprefixer": "^8.1.0",
@@ -18,13 +18,17 @@
     "babel-preset-env": "^1.6.1",
     "clean-webpack-plugin": "^0.1.19",
     "css-loader": "^0.28.10",
+    "cssnano": "^3.10.0",
     "dotenv": "^5.0.1",
     "extract-text-webpack-plugin": "^4.0.0-beta.0",
     "file-loader": "^1.1.11",
+    "git-revision-webpack-plugin": "^2.5.1",
     "html-webpack-plugin": "^3.0.6",
     "l": "^0.6.0",
+    "optimize-css-assets-webpack-plugin": "^4.0.0",
     "postcss-loader": "^2.1.1",
     "style-loader": "^0.20.3",
+    "uglifyjs-webpack-plugin": "^1.2.3",
     "url-loader": "^1.0.1",
     "webpack": "^4.1.1",
     "webpack-cli": "^2.0.11",

@@ -1,6 +1,6 @@
 require('dotenv').config()
 const path = require("path");
-
+const webpack = require("webpack");
 const merge = require("webpack-merge");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const parts = require("./webpack-config/webpack.parts");
@@ -16,15 +16,40 @@ const commonConfig = merge([
       new HtmlWebpackPlugin({
         title: "Webpack demo",
       }),
+      //new webpack.NamedModulesPlugin()
     ],
   },
   parts.loadJavaScript({ include: PATHS.app }),
-
+  parts.setFreeVariable("HELLO", "hello from config"),
 ]);
 
 
 const productionConfig = merge([
+  {
+
+    // performance: {
+    //   hints: "warning",
+    //   maxEntrypointSize: 50000,
+    //   maxAssetSize: 450000
+    // },
+    output: {
+      chunkFilename: "[name].[chunkhash:8].js",
+      filename: "[name].[chunkhash:8].js",
+    },
+    recordsPath: path.join(__dirname, "records.json"),
+  },
   parts.clean(PATHS.build),
+  parts.minifyJavaScript(),
+  parts.minifyCSS({
+    options: {
+      discardComments: {
+        removeAll: true,
+      },
+      // Run cssnano in safe mode to avoid
+      // potentially unsafe transformations.
+      safe: true,
+    },
+  }),
   parts.generateSourceMaps({ type: "source-map" }),
   parts.extractCSS({
     use: ["css-loader", parts.autoprefix()],
@@ -32,9 +57,10 @@ const productionConfig = merge([
   parts.loadImages({
     options: {
       limit: 15000,
-      name: "[name].[ext]",
+      name: "[name].[hash:8].[ext]",
     },
   }),
+  // parts.attachRevision(),
   {
     optimization: {
       splitChunks: {
@@ -46,9 +72,11 @@ const productionConfig = merge([
           },
         },
       },
+      runtimeChunk: {
+        name: "manifest",
+      },
     },
   },
-
 ]);
 
 

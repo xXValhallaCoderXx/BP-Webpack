@@ -1,5 +1,15 @@
+const webpack = require("webpack");
+// const GitRevisionPlugin = require("git-revision-webpack-plugin");
+const path = require("path");
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
 const CleanWebpackPlugin = require("clean-webpack-plugin");
+const UglifyWebpackPlugin = require("uglifyjs-webpack-plugin");
+const OptimizeCSSAssetsPlugin = require(
+  "optimize-css-assets-webpack-plugin"
+);
+const cssnano = require("cssnano");
+
+
 
 exports.devServer = ({ host, port } = {}) => ({
   devServer: {
@@ -33,7 +43,7 @@ exports.extractCSS = ({ include, exclude, use }) => {
   const plugin = new ExtractTextPlugin({
     // `allChunks` is needed to extract from extracted chunks as wel\
     allChunks: true,
-    filename: "[name].css",
+    filename: "[name].[contenthash:8].css",
   });
   return {
     module: {
@@ -101,3 +111,45 @@ exports.generateSourceMaps = ({ type }) => ({
 exports.clean = path => ({
   plugins: [new CleanWebpackPlugin([path], { allowExternal: true })],
 });
+
+// Buggy with v4
+// exports.attachRevision = () => ({
+//   plugins: [
+//     new webpack.BannerPlugin({
+//       banner: new GitRevisionPlugin().version(),
+//     }),
+//   ],
+// });
+
+
+exports.minifyJavaScript = () => ({
+  optimization: {
+    minimizer: [new UglifyWebpackPlugin({
+      sourceMap: true,
+      cache: true,
+      parallel: 4,
+      exclude: path.resolve(__dirname, "../node_modules"),
+      // uglifyOptions: { warnings: true } 
+    })],
+  },
+});
+
+
+exports.minifyCSS = ({ options }) => ({
+  plugins: [
+    new OptimizeCSSAssetsPlugin({
+      cssProcessor: cssnano,
+      cssProcessorOptions: options,
+      canPrint: false,
+    }),
+  ],
+});
+
+
+exports.setFreeVariable = (key, value) => {
+  const env = {};
+  env[key] = JSON.stringify(value);
+  return {
+    plugins: [new webpack.DefinePlugin(env)],
+  };
+};
