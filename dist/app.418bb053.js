@@ -1,0 +1,2 @@
+(window.webpackJsonp=window.webpackJsonp||[]).push([[4],{17:function(n,e){},18:function(n,e,o){"use strict";o.r(e);o(17),o(4),o(15);var t=o(5);(()=>console.log("bake"))(),document.body.appendChild(Object(t.a)())},5:function(n,e,o){"use strict";e.a=((n="hello from config")=>{const e=document.createElement("div");return e.innerHTML=n,e.onclick=(()=>{o.e(0).then(o.bind(null,0)).then(n=>{e.textContent=n.default}).catch(n=>{console.error(n)})}),e})}},[[18,1,2]]]);
+//# sourceMappingURL=app.418bb053.js.map

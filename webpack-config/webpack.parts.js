@@ -3,6 +3,7 @@ const webpack = require("webpack");
 const path = require("path");
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
 const CleanWebpackPlugin = require("clean-webpack-plugin");
+const HtmlWebpackPlugin = require("html-webpack-plugin");
 const UglifyWebpackPlugin = require("uglifyjs-webpack-plugin");
 const OptimizeCSSAssetsPlugin = require(
   "optimize-css-assets-webpack-plugin"
@@ -153,3 +154,24 @@ exports.setFreeVariable = (key, value) => {
     plugins: [new webpack.DefinePlugin(env)],
   };
 };
+
+
+exports.page = ({
+  path = "",
+  template = require.resolve(
+    "html-webpack-plugin/default_index.ejs"
+  ),
+  title,
+  entry,
+  chunks,
+} = {}) => ({
+  entry,
+  plugins: [
+    new HtmlWebpackPlugin({
+      chunks,
+      filename: `${path && path + "/"}index.html`,
+      template,
+      title,
+    }),
+  ],
+});
