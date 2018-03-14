@@ -6,7 +6,8 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 const parts = require("./webpack-config/webpack.parts");
 
 const PATHS = {
-  app: path.resolve(__dirname, "src"),
+  app1: path.resolve(__dirname, "multi-page-app/app-1"),
+  app2: path.resolve(__dirname, "multi-page-app/app-2"),
   build: path.join(__dirname, "dist"),
 };
 
@@ -25,7 +26,7 @@ const commonConfig = merge([
   //     //new webpack.NamedModulesPlugin()
   //   ],
   // },
-  parts.loadJavaScript({ include: PATHS.app }),
+  parts.loadJavaScript({ include: [PATHS.app1, PATHS.app2] }),
   parts.setFreeVariable("HELLO", "hello from config"),
 ]);
 
@@ -101,23 +102,21 @@ module.exports = mode => {
   const pages = [
     parts.page({
       entry: {
-        app: PATHS.app,
+        app1: PATHS.app1,
       },
-      appName: "login",
-      title: "LOGIN",
-      path: "login",
-      chunks: ["app", "manifest", "vendor"],
-      template: path.resolve(__dirname, "./src/detect.html"),
+      appName: "app1",
+      title: "APP 1",
+      chunks: ["app1", "manifest", "vendor"],
+      template: path.resolve(__dirname, "./multi-page-app/app-1/index.html"),
     }),
     parts.page({
       entry: {
-        another: path.join(PATHS.app, "another.js"),
+        app2: PATHS.app2
       },
-      appName: "detect",
-      title: "DETECT",
-      path: "detect",
-      chunks: ["another", "manifest", "vendor"],
-      template: path.resolve(__dirname, "./src/login.html"),
+      appName: "app2",
+      title: "APP 2",
+      chunks: ["app2", "manifest", "vendor"],
+      template: path.resolve(__dirname, "./multi-page-app/app-2/index.html"),
     }),
   ];
 

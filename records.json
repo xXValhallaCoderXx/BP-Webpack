@@ -76,7 +76,11 @@
       "node_modules/babel-loader/lib/index.js!src/index.js 46b64f555acf7f62f03e204b84901d34": 18,
       "node_modules/babel-loader/lib/index.js!src/treeShake.js": 0,
       "node_modules/babel-loader/lib/index.js!src/another.js 946efc6aade2cb42e5ce8612a4a70e77": 5,
-      "node_modules/babel-loader/lib/index.js!src/index.js e33fa9b8630c87e5d3aecc829c706e93": 18
+      "node_modules/babel-loader/lib/index.js!src/index.js e33fa9b8630c87e5d3aecc829c706e93": 18,
+      "node_modules/babel-loader/lib/index.js!multi-page-app/app-2/index.js 3914941984bc775a232bfec1fd03b151": 0,
+      "node_modules/babel-loader/lib/index.js!multi-page-app/app-1/index.js abdcdd98cd40601afa91c11387bf50e9": 5,
+      "node_modules/extract-text-webpack-plugin/dist/loader.js??ref--5-0!node_modules/style-loader/index.js!node_modules/css-loader/index.js!node_modules/postcss-loader/lib/index.js??ref--5-3!multi-page-app/app-2/main.css": 17,
+      "node_modules/extract-text-webpack-plugin/dist/loader.js??ref--5-0!node_modules/style-loader/index.js!node_modules/css-loader/index.js!node_modules/postcss-loader/lib/index.js??ref--5-3!multi-page-app/app-1/main.css": 18
     },
     "usedIds": {
       "0": 0,
@@ -107,16 +111,18 @@
       "vendor": 2,
       "main": 3,
       "app": 4,
-      "another": 3
+      "another": 3,
+      "app2": 0,
+      "app1": 5
     },
     "bySource": {
       "0 node_modules/babel-loader/lib/index.js!src/component.js ./lazy": 0
     },
     "usedIds": [
+      0,
       1,
       2,
-      3,
-      4
+      5
     ]
   },
   "html-webpack-plugin for \"another/index.html\"": [
@@ -242,6 +248,106 @@
         "bySource": {},
         "usedIds": [
           0
+        ]
+      }
+    }
+  ],
+  "html-webpack-plugin for \"app1.html\"": [
+    {
+      "modules": {
+        "byIdentifier": {
+          "node_modules/webpack/buildin/module.js": 0,
+          "node_modules/webpack/buildin/global.js": 1,
+          "node_modules/lodash/lodash.js": 2,
+          "node_modules/html-webpack-plugin/lib/loader.js!multi-page-app/app-1/index.html": 3
+        },
+        "usedIds": {
+          "0": 0,
+          "1": 1,
+          "2": 2,
+          "3": 3
+        }
+      },
+      "chunks": {
+        "byName": {},
+        "bySource": {},
+        "usedIds": [
+          1
+        ]
+      }
+    }
+  ],
+  "html-webpack-plugin for \"app2.html\"": [
+    {
+      "modules": {
+        "byIdentifier": {
+          "node_modules/webpack/buildin/module.js": 0,
+          "node_modules/webpack/buildin/global.js": 1,
+          "node_modules/lodash/lodash.js": 2,
+          "node_modules/html-webpack-plugin/lib/loader.js!multi-page-app/app-2/index.html": 3
+        },
+        "usedIds": {
+          "0": 0,
+          "1": 1,
+          "2": 2,
+          "3": 3
+        }
+      },
+      "chunks": {
+        "byName": {},
+        "bySource": {},
+        "usedIds": [
+          1
+        ]
+      }
+    }
+  ],
+  "extract-text-webpack-plugin node_modules/extract-text-webpack-plugin/dist node_modules/css-loader/index.js!node_modules/postcss-loader/lib/index.js??ref--5-3!multi-page-app/app-1/main.css": [
+    {
+      "modules": {
+        "byIdentifier": {
+          "node_modules/url-loader/dist/cjs.js??ref--6!multi-page-app/app-1/yin.png": 0,
+          "node_modules/css-loader/lib/css-base.js": 1,
+          "node_modules/css-loader/lib/url/escape.js": 2,
+          "node_modules/css-loader/index.js!node_modules/postcss-loader/lib/index.js??ref--5-3!multi-page-app/app-1/main.css": 3
+        },
+        "usedIds": {
+          "0": 0,
+          "1": 1,
+          "2": 2,
+          "3": 3
+        }
+      },
+      "chunks": {
+        "byName": {},
+        "bySource": {},
+        "usedIds": [
+          1
+        ]
+      }
+    }
+  ],
+  "extract-text-webpack-plugin node_modules/extract-text-webpack-plugin/dist node_modules/css-loader/index.js!node_modules/postcss-loader/lib/index.js??ref--5-3!multi-page-app/app-2/main.css": [
+    {
+      "modules": {
+        "byIdentifier": {
+          "node_modules/url-loader/dist/cjs.js??ref--6!multi-page-app/app-2/yin.png": 0,
+          "node_modules/css-loader/lib/css-base.js": 1,
+          "node_modules/css-loader/lib/url/escape.js": 2,
+          "node_modules/css-loader/index.js!node_modules/postcss-loader/lib/index.js??ref--5-3!multi-page-app/app-2/main.css": 3
+        },
+        "usedIds": {
+          "0": 0,
+          "1": 1,
+          "2": 2,
+          "3": 3
+        }
+      },
+      "chunks": {
+        "byName": {},
+        "bySource": {},
+        "usedIds": [
+          1
         ]
       }
     }

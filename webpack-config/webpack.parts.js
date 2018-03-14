@@ -157,7 +157,6 @@ exports.setFreeVariable = (key, value) => {
 
 
 exports.page = ({
-  path = "",
   template,
   title,
   entry,
