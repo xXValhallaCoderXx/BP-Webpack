@@ -98,18 +98,6 @@ const developmentConfig = merge([
 
 
 module.exports = mode => {
-  // if (mode === "production") {
-  //   return merge(commonConfig, productionConfig, { mode });
-  // }
-  // console.log("DEVELOPMENT")
-  // return merge(commonConfig, developmentConfig, { mode });
-  // const pages = [
-  //   parts.page({ title: "Webpack demo" }),
-  //   parts.page({ title: "Another demo", path: "another" }),
-  // ];
-
-
-
   const pages = [
     parts.page({
       entry: {
