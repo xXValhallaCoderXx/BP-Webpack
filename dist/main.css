@@ -1,0 +1,13 @@
+body {
+  background:  cornsilk;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  background-image: url(yin.png);
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.pure-button {
+  border-radius:  1em;
+}
