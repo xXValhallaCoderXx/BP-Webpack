@@ -1,7 +1,5 @@
 body {
   background:  cornsilk;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
   background-image: url(yin.png);
   background-repeat: no-repeat;
@@ -11,3 +9,4 @@ body {
 .pure-button {
   border-radius:  1em;
 }
+/*# sourceMappingURL=main.css.map*/

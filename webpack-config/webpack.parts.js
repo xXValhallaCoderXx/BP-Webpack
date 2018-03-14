@@ -1,4 +1,5 @@
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
+const CleanWebpackPlugin = require("clean-webpack-plugin");
 
 exports.devServer = ({ host, port } = {}) => ({
   devServer: {
@@ -75,4 +76,28 @@ exports.loadImages = ({ include, exclude, options } = {}) => ({
       },
     ],
   },
+});
+
+
+
+exports.loadJavaScript = ({ include, exclude } = {}) => ({
+  module: {
+    rules: [
+      {
+        test: /\.js$/,
+        include,
+        exclude,
+        use: "babel-loader",
+      },
+    ],
+  },
+});
+
+exports.generateSourceMaps = ({ type }) => ({
+  devtool: type,
+});
+
+
+exports.clean = path => ({
+  plugins: [new CleanWebpackPlugin([path], { allowExternal: true })],
 });
