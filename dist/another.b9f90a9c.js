@@ -1,2 +1,0 @@
-(window.webpackJsonp=window.webpackJsonp||[]).push([[3],{17:function(n,e){},19:function(n,e,t){"use strict";t.r(e);t(17);var o=t(5);const c=Object(o.a)("Another");document.body.appendChild(c)},5:function(n,e,t){"use strict";e.a=((n="hello from config")=>{const e=document.createElement("div");return e.innerHTML=n,e.onclick=(()=>{t.e(0).then(t.bind(null,0)).then(n=>{e.textContent=n.default}).catch(n=>{console.error(n)})}),e})}},[[19,1]]]);
-//# sourceMappingURL=another.b9f90a9c.js.map

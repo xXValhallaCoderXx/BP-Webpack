@@ -44,7 +44,7 @@
         "byName": {},
         "bySource": {},
         "usedIds": [
-          1
+          0
         ]
       }
     }
@@ -69,10 +69,14 @@
       "node_modules/react-dom/index.js": 15,
       "node_modules/react/cjs/react.production.min.js": 16,
       "node_modules/extract-text-webpack-plugin/dist/loader.js??ref--5-0!node_modules/style-loader/index.js!node_modules/css-loader/index.js!node_modules/postcss-loader/lib/index.js??ref--5-3!src/main.css": 17,
-      "node_modules/babel-loader/lib/index.js!src/another.js f755f255b9fb0173c7c5d6c45d54fddd": 1,
+      "node_modules/babel-loader/lib/index.js!src/another.js f755f255b9fb0173c7c5d6c45d54fddd": 5,
       "node_modules/babel-loader/lib/index.js!src/component.js": 5,
       "node_modules/babel-loader/lib/index.js!src/index.js 4c0bcb6226b02c6dd36185f6d391c9a9": 18,
-      "node_modules/babel-loader/lib/index.js!src/another.js": 19
+      "node_modules/babel-loader/lib/index.js!src/another.js": 19,
+      "node_modules/babel-loader/lib/index.js!src/index.js 46b64f555acf7f62f03e204b84901d34": 18,
+      "node_modules/babel-loader/lib/index.js!src/treeShake.js": 0,
+      "node_modules/babel-loader/lib/index.js!src/another.js 946efc6aade2cb42e5ce8612a4a70e77": 5,
+      "node_modules/babel-loader/lib/index.js!src/index.js e33fa9b8630c87e5d3aecc829c706e93": 18
     },
     "usedIds": {
       "0": 0,
@@ -109,7 +113,6 @@
       "0 node_modules/babel-loader/lib/index.js!src/component.js ./lazy": 0
     },
     "usedIds": [
-      0,
       1,
       2,
       3,
@@ -137,6 +140,58 @@
         "bySource": {},
         "usedIds": [
           1
+        ]
+      }
+    }
+  ],
+  "html-webpack-plugin for \"login/index.html\"": [
+    {
+      "modules": {
+        "byIdentifier": {
+          "node_modules/webpack/buildin/module.js": 0,
+          "node_modules/webpack/buildin/global.js": 1,
+          "node_modules/lodash/lodash.js": 2,
+          "node_modules/html-webpack-plugin/lib/loader.js!node_modules/html-webpack-plugin/default_index.ejs": 3,
+          "node_modules/html-webpack-plugin/lib/loader.js!src/detect.html": 3
+        },
+        "usedIds": {
+          "0": 0,
+          "1": 1,
+          "2": 2,
+          "3": 3
+        }
+      },
+      "chunks": {
+        "byName": {},
+        "bySource": {},
+        "usedIds": [
+          0
+        ]
+      }
+    }
+  ],
+  "html-webpack-plugin for \"detect/index.html\"": [
+    {
+      "modules": {
+        "byIdentifier": {
+          "node_modules/webpack/buildin/module.js": 0,
+          "node_modules/webpack/buildin/global.js": 1,
+          "node_modules/lodash/lodash.js": 2,
+          "node_modules/html-webpack-plugin/lib/loader.js!node_modules/html-webpack-plugin/default_index.ejs": 3,
+          "node_modules/html-webpack-plugin/lib/loader.js!src/login.html": 3
+        },
+        "usedIds": {
+          "0": 0,
+          "1": 1,
+          "2": 2,
+          "3": 3
+        }
+      },
+      "chunks": {
+        "byName": {},
+        "bySource": {},
+        "usedIds": [
+          0
         ]
       }
     }

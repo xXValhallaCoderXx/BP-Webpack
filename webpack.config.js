@@ -56,7 +56,7 @@ const productionConfig = merge([
       safe: true,
     },
   }),
-  parts.generateSourceMaps({ type: "source-map" }),
+  //parts.generateSourceMaps({ type: "source-map" }),
   parts.extractCSS({
     use: ["css-loader", parts.autoprefix()],
   }),
@@ -112,19 +112,22 @@ module.exports = mode => {
 
   const pages = [
     parts.page({
-      title: "Webpack demo",
       entry: {
         app: PATHS.app,
       },
+      title: "LOGIN",
+      path: "login",
       chunks: ["app", "manifest", "vendor"],
+      template: path.resolve(__dirname, "./src/detect.html"),
     }),
     parts.page({
-      title: "Another demo",
-      path: "another",
       entry: {
         another: path.join(PATHS.app, "another.js"),
       },
+      title: "DETECT",
+      path: "detect",
       chunks: ["another", "manifest", "vendor"],
+      template: path.resolve(__dirname, "./src/login.html"),
     }),
   ];
 

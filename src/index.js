@@ -1,12 +1,21 @@
 import "./main.css";
-import "react";
-import "react-dom";
+import React from "react";
+import { render } from "react-dom";
+import ReactComponent from "./ReactComponent";
+
 import { bake } from "./treeShake";
 
-import component from "./component";
+// import component from "./component";
 
-bake();
-document.body.appendChild(component());
+// bake();
+// document.body.appendChild(component());
+
+const root = document.getElementById("render-app");
+
+render(
+  <ReactComponent />,
+  root
+);
 
 
 // Webpack has 3 "modes" - development, production and none
