@@ -1,1 +1,0 @@
-(window.webpackJsonp=window.webpackJsonp||[]).push([[5],{18:function(e,n){},5:function(e,n,t){"use strict";t.r(n);t(18);var r=t(4),c=t.n(r),o=t(15);const a=document.getElementById("render-app");Object(o.render)(c.a.createElement(class extends r.Component{render(){return c.a.createElement("div",null,"THIS IS A PAGE - MAYBE THE LOGIN")}},null),a)}},[[5,1,2]]]);
