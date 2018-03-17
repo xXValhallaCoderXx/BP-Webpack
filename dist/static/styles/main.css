@@ -1,0 +1,11 @@
+body {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  background: green;
+  background-image: url(/static/images/yin.png);
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+/*# sourceMappingURL=main.css.map*/

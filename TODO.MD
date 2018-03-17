@@ -1,3 +1,9 @@
+## NOTE
+
+- .browserlistrc: Works for auto prefixer and for babel-preset-env
+
+
+
 ## Plugins Worth Implementing
 
 ### Manage HTML File
