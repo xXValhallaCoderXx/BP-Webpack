@@ -1,4 +1,10 @@
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
+const CleanWebpackPlugin = require("clean-webpack-plugin");
+const UglifyWebpackPlugin = require("uglifyjs-webpack-plugin");
+const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
+const cssnano = require("cssnano");
+
+// DEVELOPMENT CONFIGS
 
 exports.devServer = ({ host, port } = {}) => ({
   devServer: {
@@ -11,6 +17,34 @@ exports.devServer = ({ host, port } = {}) => ({
     }
   }
 });
+
+exports.generateSourceMaps = ({ type }) => ({
+  devtool: type
+});
+
+// PRODUCTION CONFIGS
+
+exports.clean = path => ({
+  plugins: [new CleanWebpackPlugin([path], { allowExternal: true })]
+});
+
+exports.minifyJavaScript = () => ({
+  optimization: {
+    minimizer: [new UglifyWebpackPlugin({ sourceMap: true })]
+  }
+});
+
+exports.minifyCSS = ({ options }) => ({
+  plugins: [
+    new OptimizeCSSAssetsPlugin({
+      cssProcessor: cssnano,
+      cssProcessorOptions: options,
+      canPrint: false
+    })
+  ]
+});
+
+// CSS CONFIG
 
 exports.loadCSS = ({ include, exclude } = {}) => ({
   module: {
@@ -58,6 +92,8 @@ exports.autoprefix = () => ({
   }
 });
 
+// IMAGE CONFIGS
+
 exports.loadImages = ({ include, exclude, options } = {}) => ({
   module: {
     rules: [
@@ -74,6 +110,8 @@ exports.loadImages = ({ include, exclude, options } = {}) => ({
   }
 });
 
+// JAVASCRIPT CONFIGS
+
 exports.loadJavaScript = ({ include, exclude } = {}) => ({
   module: {
     rules: [
@@ -85,8 +123,4 @@ exports.loadJavaScript = ({ include, exclude } = {}) => ({
       }
     ]
   }
-});
-
-exports.generateSourceMaps = ({ type }) => ({
-  devtool: type
 });

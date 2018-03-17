@@ -5,7 +5,8 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 const parts = require("./webpack-config/webpack.parts");
 
 const PATHS = {
-  app: path.resolve(__dirname, "src")
+  app: path.resolve(__dirname, "src"),
+  build: path.resolve(__dirname, "dist")
 };
 
 const commonConfig = merge([
@@ -20,6 +21,16 @@ const commonConfig = merge([
 ]);
 
 const productionConfig = merge([
+  parts.clean(PATHS.build),
+  parts.minifyJavaScript(),
+  // parts.minifyCSS({
+  //   options: {
+  //     discardComments: {
+  //       removeAll: true
+  //     },
+  //     safe: true
+  //   }
+  // }),
   {
     output: {
       publicPath: "/" // Need this if you got Source maps on for Images to load
@@ -42,7 +53,7 @@ const productionConfig = merge([
   }),
   parts.loadImages({
     options: {
-      limit: 4000,
+      limit: 50000,
       name: "static/images/[name].[ext]"
     }
   })

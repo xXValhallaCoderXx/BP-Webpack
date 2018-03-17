@@ -4,12 +4,17 @@ export default (text = "Hello Geee") => {
   element.onclick = () => {
     import("./LazyLoad")
       .then(lazy => {
+        console.log(test());
         element.textContent = lazy.default;
       })
       .catch(err => {
         console.error(err);
       });
   };
-
+  
   return element;
 };
+
+function test() {
+  return x + 10;
+}
