@@ -51,8 +51,12 @@ const productionConfig = merge([
             chunks: "all"
           }
         }
+      },
+      runtimeChunk: {
+        name: "manifest"
       }
-    }
+    },
+    recordsPath: path.join(__dirname, "records.json")
   },
   parts.generateSourceMaps({ type: "source-map" }),
   parts.extractCSS({
