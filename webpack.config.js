@@ -1,4 +1,5 @@
 const path = require("path");
+const webpack = require("webpack");
 const merge = require("webpack-merge");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const parts = require("./webpack-config/webpack.parts");
@@ -8,7 +9,7 @@ const PATHS = {
 };
 
 const commonConfig = merge([
-  { 
+  {
     plugins: [
       new HtmlWebpackPlugin({
         title: "Webpack demo"
@@ -22,7 +23,18 @@ const productionConfig = merge([
   {
     output: {
       publicPath: "/" // Need this if you got Source maps on for Images to load
-    }, 
+    },
+    optimization: {
+      splitChunks: {
+        cacheGroups: {
+          commons: {
+            test: /[\\/]node_modules[\\/]/,
+            name: "vendor",
+            chunks: "all"
+          }
+        }
+      }
+    }
   },
   parts.generateSourceMaps({ type: "source-map" }),
   parts.extractCSS({
