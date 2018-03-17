@@ -1,8 +1,17 @@
+const webpack = require("webpack");
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
 const CleanWebpackPlugin = require("clean-webpack-plugin");
 const UglifyWebpackPlugin = require("uglifyjs-webpack-plugin");
 const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
 const cssnano = require("cssnano");
+
+exports.setFreeVariable = (key, value) => {
+  const env = {};
+  env[key] = JSON.stringify(value);
+  return {
+    plugins: [new webpack.DefinePlugin(env)]
+  };
+};
 
 // DEVELOPMENT CONFIGS
 
@@ -65,7 +74,7 @@ exports.extractCSS = ({ include, exclude, use }) => {
     // `allChunks` is needed to extract from extracted chunks as wel\
 
     allChunks: true,
-    filename: "static/styles/[name].css"
+    filename: "static/styles/[name].[contenthash:8].css"
   });
   return {
     module: {

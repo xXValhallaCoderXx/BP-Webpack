@@ -1,10 +1,10 @@
-export default (text = "Hello Geee") => {
+export default (text = SOME_VAR) => {
   const element = document.createElement("div");
   element.innerHTML = text;
   element.onclick = () => {
     import("./LazyLoad")
       .then(lazy => {
-        console.log(test());
+        //console.log(test());
         element.textContent = lazy.default;
       })
       .catch(err => {

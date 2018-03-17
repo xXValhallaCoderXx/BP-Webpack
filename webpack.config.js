@@ -11,29 +11,36 @@ const PATHS = {
 
 const commonConfig = merge([
   {
+    entry: {
+      app: PATHS.app
+    },
     plugins: [
       new HtmlWebpackPlugin({
         title: "Webpack demo"
-      })
+      }),
+      new webpack.NamedModulesPlugin()
     ]
   },
-  parts.loadJavaScript({ include: PATHS.app })
+  parts.loadJavaScript({ include: PATHS.app }),
+  parts.setFreeVariable("SOME_VAR", "This is from the freeee variables")
 ]);
 
 const productionConfig = merge([
   parts.clean(PATHS.build),
   parts.minifyJavaScript(),
-  // parts.minifyCSS({
-  //   options: {
-  //     discardComments: {
-  //       removeAll: true
-  //     },
-  //     safe: true
-  //   }
-  // }),
+  parts.minifyCSS({
+    options: {
+      discardComments: {
+        removeAll: true
+      },
+      safe: true
+    }
+  }),
   {
     output: {
-      publicPath: "/" // Need this if you got Source maps on for Images to load
+      publicPath: "/", // Need this if you got Source maps on for Images to load
+      filename: "[name].[chunkhash:8].js",
+      chunkFilename: "static/js/[name].[chunkhash:8].js"
     },
     optimization: {
       splitChunks: {
@@ -54,13 +61,13 @@ const productionConfig = merge([
   parts.loadImages({
     options: {
       limit: 50000,
-      name: "static/images/[name].[ext]"
+      name: "static/images/[name].[hash:8].[ext]"
     }
   })
 ]);
 
 const developmentConfig = merge([
-  parts.generateSourceMaps({ type: "cheap-eval-source-map" }),
+  parts.generateSourceMaps({ type: "eval-source-map" }),
   parts.devServer({
     // Customize host/port here if needed
     host: process.env.HOST,
