@@ -2,14 +2,18 @@ import "./assets/styles/styles.scss";
 import React from "react";
 import ReactDOM from "react-dom";
 import { AppContainer } from "react-hot-loader";
-import { bake } from "./app/shake";
+import { Provider } from "react-redux";
+
+import configureStore from "./app/store";
+import { bake } from "./app/shake"; // Example to show Tree shaking in Action
 import App from "./app/component";
 
 const root = document.getElementById("render-app");
-bake();
+const store = configureStore();
+bake(); // Using only 1 Function from file to display tree shaking
 
 const render = Component => {
-  ReactDOM.render(<App />, root);
+  ReactDOM.render(<Provider store={store}><App /></Provider>, root);
 };
 
 render(App);
