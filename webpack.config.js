@@ -16,14 +16,37 @@ const PATHS = {
 
 const commonConfig = merge([
   {
-    output: {
-      publicPath: "/"
-    },
     plugins: [new webpack.NamedModulesPlugin()]
   },
   parts.loadJavaScript({ include: PATHS.app }),
   parts.setFreeVariable("SOME_VAR", "This is from the freeee variables")
 ]);
+
+
+developmentConfig = currentApp =>
+  
+  merge([
+    {
+      entry: {
+        app: path.resolve(__dirname, `src/app/${currentApp}`),
+      },
+      plugins: [
+        new HtmlWebpackPlugin({
+          title: `Developing - `,
+          template: path.resolve(__dirname, `src/app/${currentApp}/index.html`)
+        }),
+        new webpack.HotModuleReplacementPlugin()
+      ]
+    },
+    parts.generateSourceMaps({ type: "eval-source-map" }),
+    parts.devServer({
+      host: process.env.HOST,
+      port: process.env.PORT
+    }),
+    parts.loadGlobalCSS({ include: PATHS.globalCSS }),
+    parts.cssModules({ include: PATHS.cssModules }),
+    parts.loadImages()
+  ]);
 
 const productionConfig = merge([
   parts.clean(PATHS.build),
@@ -70,34 +93,11 @@ const productionConfig = merge([
   })
 ]);
 
-const developmentConfig = merge([
-  {
-    entry: {
-      app1: PATHS.app1
-    },
-    plugins: [
-      new HtmlWebpackPlugin({
-        title: `Developing - `,
-        template: path.resolve(__dirname, "src/app/app1/index.html")
-      }),
-      new webpack.HotModuleReplacementPlugin()
-    ]
-  },
-  parts.generateSourceMaps({ type: "eval-source-map" }),
-  parts.devServer({
-    host: process.env.HOST,
-    port: process.env.PORT
-  }),
-  parts.loadGlobalCSS({ include: PATHS.globalCSS }),
-  parts.cssModules({ include: PATHS.cssModules }),
-  parts.loadImages()
-]);
-
 module.exports = mode => {
   console.log("**MODE** ", mode);
-  process.env.BABEL_ENV = mode.target;
+  const { target, application } = mode;
+  process.env.BABEL_ENV = target;
   mode = mode.target;
-
   const pages = [
     parts.page({
       title: "Webpack Boiler - Page 1",
@@ -128,9 +128,12 @@ module.exports = mode => {
     })
   ];
 
-  if(mode === "production"){
+  if (mode === "production") {
     return merge([commonConfig, productionConfig, { mode }].concat(pages));
   } else {
-    return merge(commonConfig, developmentConfig, { mode });
+    console.log("WHAT IS MODE :", application)
+    return merge(commonConfig, developmentConfig(application), { mode });
   }
 };
+
+

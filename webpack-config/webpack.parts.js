@@ -20,8 +20,8 @@ exports.devServer = ({ host, port } = {}) => ({
   devServer: {
     stats: "errors-only",
     hotOnly: true,
-    host, // Defaults to `localhost`
-    port, // Defaults to 8080
+    host,
+    port,
     overlay: {
       errors: true,
       warnings: true
