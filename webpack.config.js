@@ -3,16 +3,10 @@ const webpack = require("webpack");
 const merge = require("webpack-merge");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const parts = require("./webpack-config/webpack.parts");
+const developmentConfig = require("./webpack-config/webpack.dev");
 
-const PATHS = {
-  app: path.resolve(__dirname, "src"),
-  app1: path.resolve(__dirname, "src/app/app1"),
-  app2: path.resolve(__dirname, "src/app/app2"),
-  app3: path.resolve(__dirname, "src/app/app3"),
-  globalCSS: path.resolve(__dirname, "src/assets/styles"),
-  cssModules: path.resolve(__dirname, "src/app"),
-  build: path.resolve(__dirname, "dist")
-};
+const PATHS = require("./webpack-config/paths");
+
 
 const commonConfig = merge([
   {
@@ -23,81 +17,12 @@ const commonConfig = merge([
 ]);
 
 
-developmentConfig = currentApp =>
-  
-  merge([
-    {
-      entry: {
-        app: path.resolve(__dirname, `src/app/${currentApp}`),
-      },
-      plugins: [
-        new HtmlWebpackPlugin({
-          title: `Developing - `,
-          template: path.resolve(__dirname, `src/app/${currentApp}/index.html`)
-        }),
-        new webpack.HotModuleReplacementPlugin()
-      ]
-    },
-    parts.generateSourceMaps({ type: "eval-source-map" }),
-    parts.devServer({
-      host: process.env.HOST,
-      port: process.env.PORT
-    }),
-    parts.loadGlobalCSS({ include: PATHS.globalCSS }),
-    parts.cssModules({ include: PATHS.cssModules }),
-    parts.loadImages()
-  ]);
-
-const productionConfig = merge([
-  parts.clean(PATHS.build),
-  parts.minifyJavaScript(),
-  parts.minifyCSS({
-    options: {
-      discardComments: {
-        removeAll: true
-      },
-      safe: true
-    }
-  }),
-  {
-    output: {
-      publicPath: "/", // Need this if you got Source maps on for Images to load
-      filename: "[name].[chunkhash:8].js",
-      chunkFilename: "static/js/[name].[chunkhash:8].js"
-    },
-    optimization: {
-      splitChunks: {
-        cacheGroups: {
-          commons: {
-            test: /[\\/]node_modules[\\/]/,
-            name: "vendor",
-            chunks: "all"
-          }
-        }
-      },
-      runtimeChunk: {
-        name: "manifest"
-      }
-    },
-    recordsPath: path.join(__dirname, "records.json")
-  },
-  parts.generateSourceMaps({ type: "source-map" }),
-  parts.extractGlobalCSS({ include: PATHS.globalCSS }),
-  parts.extractCSS({ include: PATHS.cssModules }),
-
-  parts.loadImages({
-    options: {
-      limit: 50000,
-      name: "static/images/[name].[hash:8].[ext]"
-    }
-  })
-]);
-
 module.exports = mode => {
   console.log("**MODE** ", mode);
   const { target, application } = mode;
   process.env.BABEL_ENV = target;
-  mode = mode.target;
+  mode = target;
+
   const pages = [
     parts.page({
       title: "Webpack Boiler - Page 1",
@@ -131,7 +56,6 @@ module.exports = mode => {
   if (mode === "production") {
     return merge([commonConfig, productionConfig, { mode }].concat(pages));
   } else {
-    console.log("WHAT IS MODE :", application)
     return merge(commonConfig, developmentConfig(application), { mode });
   }
 };

@@ -6,9 +6,7 @@
   "author": "xXValhallaMonkXx <renate.gouveia@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "start:app1": "webpack-dev-server --env.target development --env.application app1",
-    "start:app2": "webpack-dev-server --env.target development --env.application app2",
-    "start:app3": "webpack-dev-server --env.target development --env.application app3",
+    "start": "webpack-dev-server --env.target development",
     "build": "webpack --env.target production"
   },
   "devDependencies": {

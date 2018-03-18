@@ -30,7 +30,7 @@ Ensure you to have the latest Node LTS ensured globally on your system, you can 
 
 ## Development
 
-1. Run `npm start` or `yarn start` to start the development enviroment<br />
+1. Run `npm start` or `yarn start --env.application app1` to start the development enviroment<br />
 2. Go to browser and visit: `localhost:8080`.
 
 This will start up a webpack dev server to allow for local development of your application.
