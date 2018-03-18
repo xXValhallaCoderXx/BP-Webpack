@@ -6,24 +6,20 @@ const parts = require("./webpack-config/webpack.parts");
 
 const PATHS = {
   app: path.resolve(__dirname, "src"),
+  app1: path.resolve(__dirname, "src/app/app1"),
+  app2: path.resolve(__dirname, "src/app/app2"),
+  app3: path.resolve(__dirname, "src/app/app3"),
   globalCSS: path.resolve(__dirname, "src/assets/styles"),
   cssModules: path.resolve(__dirname, "src/app"),
-  componentCssModules: path.resolve(__dirname, "src/components"),
   build: path.resolve(__dirname, "dist")
 };
 
 const commonConfig = merge([
   {
-    entry: {
-      app: PATHS.app
+    output: {
+      publicPath: "/"
     },
-    plugins: [
-      new HtmlWebpackPlugin({
-        title: "Webpack demo",
-        template: path.resolve(__dirname, "src/index.html")
-      }),
-      new webpack.NamedModulesPlugin()
-    ]
+    plugins: [new webpack.NamedModulesPlugin()]
   },
   parts.loadJavaScript({ include: PATHS.app }),
   parts.setFreeVariable("SOME_VAR", "This is from the freeee variables")
@@ -64,7 +60,7 @@ const productionConfig = merge([
   },
   parts.generateSourceMaps({ type: "source-map" }),
   parts.extractGlobalCSS({ include: PATHS.globalCSS }),
-  parts.extractCSS({ include: [PATHS.cssModules, PATHS.componentCssModules] }),
+  parts.extractCSS({ include: PATHS.cssModules }),
 
   parts.loadImages({
     options: {
@@ -84,7 +80,7 @@ const developmentConfig = merge([
     port: process.env.PORT
   }),
   parts.loadGlobalCSS({ include: PATHS.globalCSS }),
-  parts.cssModules({ include: [PATHS.cssModules, PATHS.componentCssModules] }),
+  parts.cssModules({ include: PATHS.cssModules }),
   parts.loadImages()
 ]);
 
@@ -92,8 +88,39 @@ module.exports = mode => {
   console.log("**MODE** ", mode);
   process.env.BABEL_ENV = mode.target;
   mode = mode.target;
-  if (mode === "production") {
-    return merge(commonConfig, productionConfig, { mode });
-  }
-  return merge(commonConfig, developmentConfig, { mode });
+  // if (mode === "production") {
+  //   return merge(commonConfig, productionConfig, { mode });
+  // }
+  // return merge(commonConfig, developmentConfig, { mode });
+  const pages = [
+    parts.page({
+      title: "Webpack Boiler - Page 1",
+      template: path.resolve(__dirname, "src/app/app1/index.html"),
+      path: "app1",
+      chunks: ["app1", "manifest", "vendor"],
+      entry: {
+        app1: PATHS.app1
+      }
+    }),
+    parts.page({
+      title: "Webpack Boiler - Page 2",
+      template: path.resolve(__dirname, "src/app/app2/index.html"),
+      path: "app2",
+      chunks: ["app2", "manifest", "vendor"],
+      entry: {
+        app2: PATHS.app2
+      }
+    }),
+    parts.page({
+      title: "Webpack Boiler - Page 3",
+      template: path.resolve(__dirname, "src/app/app3/index.html"),
+      path: "app3",
+      chunks: ["app3", "manifest", "vendor"],
+      entry: {
+        app3: PATHS.app3
+      }
+    })
+  ];
+  const config = mode === "production" ? productionConfig : developmentConfig;
+  return merge([commonConfig, config, { mode }].concat(pages));
 };

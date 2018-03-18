@@ -1,6 +1,7 @@
 const webpack = require("webpack");
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
 const CleanWebpackPlugin = require("clean-webpack-plugin");
+const HtmlWebpackPlugin = require("html-webpack-plugin");
 const UglifyWebpackPlugin = require("uglifyjs-webpack-plugin");
 const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
 const cssnano = require("cssnano");
@@ -50,6 +51,24 @@ exports.minifyCSS = ({ options }) => ({
       cssProcessor: cssnano,
       cssProcessorOptions: options,
       canPrint: false
+    })
+  ]
+});
+
+exports.page = ({
+  path,
+  template,
+  title,
+  entry,
+  chunks
+} = {}) => ({
+  entry,
+  plugins: [
+    new HtmlWebpackPlugin({
+      filename: `${path && path + "/"}index.html`,
+      template,
+      title,
+      chunks
     })
   ]
 });
@@ -112,7 +131,7 @@ exports.extractGlobalCSS = ({ include, exclude }) => {
           use: plugin.extract({
             use: [
               {
-                loader: "css-loader",
+                loader: "css-loader"
               },
               {
                 loader: "sass-loader"
@@ -126,8 +145,6 @@ exports.extractGlobalCSS = ({ include, exclude }) => {
     plugins: [plugin]
   };
 };
-
-
 
 exports.extractCSS = ({ include, exclude }) => {
   const plugin = new ExtractTextPlugin({

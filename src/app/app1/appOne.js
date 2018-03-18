@@ -1,8 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { bindActionCreators } from "redux";
-import { increaseCounter } from "./pageOneDux";
-import Header from "../../components/Header";
+
 
 import styles from "./cssModule.scss";
 
@@ -10,14 +8,14 @@ class Application extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      someData: "NONE"
+      someData: "NONE",
+      count: 0
     };
     this._increaseCount = this._increaseCount.bind(this);
   }
   render() {
     return (
       <div>
-        <Header />
         <h3>Button Is Using A Global Styles</h3>
         <button className="global-class">Global Style</button>
         <hr />
@@ -31,14 +29,14 @@ class Application extends Component {
         </div>
         <hr />
         <h3>Counter to Display HMR</h3>
-        <p>Count: {this.props.testState.counter}</p>
+        <p>Count: {this.state.count}</p>
         <button onClick={this._increaseCount}>Increase</button>
       </div>
     );
   }
 
   _increaseCount() {
-    this.props.increaseReduxCounter();
+    this.setState({ count: this.state.count + 1})
   }
 
   lazyLoad() {
@@ -52,19 +50,4 @@ class Application extends Component {
   }
 }
 
-function mapDispatchToProps(dispatch) {
-  return bindActionCreators(
-    {
-      increaseReduxCounter: increaseCounter
-    },
-    dispatch
-  );
-}
-
-function mapStateToProps(state) {
-  return {
-    testState: state.demo
-  };
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(Application);
+export default Application;
