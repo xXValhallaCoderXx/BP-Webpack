@@ -6,6 +6,8 @@ const parts = require("./webpack-config/webpack.parts");
 
 const PATHS = {
   app: path.resolve(__dirname, "src"),
+  globalCSS: path.resolve(__dirname, "src/assets/styles"),
+  cssModules: path.resolve(__dirname, "src/app"),
   build: path.resolve(__dirname, "dist")
 };
 
@@ -16,7 +18,8 @@ const commonConfig = merge([
     },
     plugins: [
       new HtmlWebpackPlugin({
-        title: "Webpack demo"
+        title: "Webpack demo",
+        template: path.resolve(__dirname, "src/index.html")
       }),
       new webpack.NamedModulesPlugin()
     ]
@@ -77,7 +80,8 @@ const developmentConfig = merge([
     host: process.env.HOST,
     port: process.env.PORT
   }),
-  parts.loadCSS(),
+  parts.loadGlobalCSS({ include: PATHS.globalCSS }),
+  parts.cssModules({ include: PATHS.cssModules }),
   parts.loadImages()
 ]);
 

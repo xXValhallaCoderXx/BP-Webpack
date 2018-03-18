@@ -1,8 +1,10 @@
-import "./styles.css";
-import "react";
-import "react-dom";
-import { bake } from "./shake";
-import component from "./component";
+import "./assets/styles/styles.css";
+import React from "react";
+import { render } from "react-dom";
+import { bake } from "./app/shake";
+import App from "./app/component";
 
+const root = document.getElementById("render-app");
 bake();
-document.body.appendChild(component());
+
+render(<App />, root);

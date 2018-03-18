@@ -55,7 +55,7 @@ exports.minifyCSS = ({ options }) => ({
 
 // CSS CONFIG
 
-exports.loadCSS = ({ include, exclude } = {}) => ({
+exports.loadGlobalCSS = ({ include, exclude } = {}) => ({
   module: {
     rules: [
       {
@@ -63,6 +63,30 @@ exports.loadCSS = ({ include, exclude } = {}) => ({
         include,
         exclude,
         use: ["style-loader", "css-loader"]
+      }
+    ]
+  }
+});
+
+exports.cssModules = ({ include, exclude } = {}) => ({
+  module: {
+    rules: [
+      {
+        test: /\.css$/,
+        include,
+        exclude,
+        use: [
+          {
+            loader: "style-loader"
+          },
+          {
+            loader: "css-loader",
+            options: {
+              modules: true,
+              localIdentName: "[local]_[hash:base64:8]"
+            }
+          }
+        ]
       }
     ]
   }
