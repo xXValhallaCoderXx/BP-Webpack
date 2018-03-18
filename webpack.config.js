@@ -72,7 +72,16 @@ const productionConfig = merge([
 
 const developmentConfig = merge([
   {
-    plugins: [new webpack.HotModuleReplacementPlugin()]
+    entry: {
+      app1: PATHS.app1
+    },
+    plugins: [
+      new HtmlWebpackPlugin({
+        title: `Developing - `,
+        template: path.resolve(__dirname, "src/app/app1/index.html")
+      }),
+      new webpack.HotModuleReplacementPlugin()
+    ]
   },
   parts.generateSourceMaps({ type: "eval-source-map" }),
   parts.devServer({
@@ -88,10 +97,7 @@ module.exports = mode => {
   console.log("**MODE** ", mode);
   process.env.BABEL_ENV = mode.target;
   mode = mode.target;
-  // if (mode === "production") {
-  //   return merge(commonConfig, productionConfig, { mode });
-  // }
-  // return merge(commonConfig, developmentConfig, { mode });
+
   const pages = [
     parts.page({
       title: "Webpack Boiler - Page 1",
