@@ -62,7 +62,9 @@ const productionConfig = merge([
     recordsPath: path.join(__dirname, "records.json")
   },
   parts.generateSourceMaps({ type: "source-map" }),
-  parts.extractCSS({ include: PATHS.app }),
+  parts.extractGlobalCSS({ include: PATHS.globalCSS }),
+  parts.extractCSS({ include: PATHS.cssModules }),
+
   parts.loadImages({
     options: {
       limit: 50000,

@@ -92,6 +92,35 @@ exports.cssModules = ({ include, exclude } = {}) => ({
   }
 });
 
+exports.extractGlobalCSS = ({ include, exclude }) => {
+  const plugin = new ExtractTextPlugin({
+    // `allChunks` is needed to extract from extracted chunks as well
+    allChunks: true,
+    filename: "static/styles/[name].[contenthash:8].css"
+  });
+  return {
+    module: {
+      rules: [
+        {
+          test: /\.css$/,
+          include,
+          exclude,
+          use: plugin.extract({
+            use: [
+              {
+                loader: "css-loader",
+              },
+              autoprefix()
+            ]
+          })
+        }
+      ]
+    },
+    plugins: [plugin]
+  };
+};
+
+
 
 exports.extractCSS = ({ include, exclude }) => {
   const plugin = new ExtractTextPlugin({
