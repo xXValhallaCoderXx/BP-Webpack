@@ -4,6 +4,7 @@ const merge = require("webpack-merge");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const parts = require("./webpack-config/webpack.parts");
 const developmentConfig = require("./webpack-config/webpack.dev");
+const productionConfig = require("./webpack-config/webpack.prod");
 
 const PATHS = require("./webpack-config/paths");
 
