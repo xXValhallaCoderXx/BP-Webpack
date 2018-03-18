@@ -127,6 +127,10 @@ module.exports = mode => {
       }
     })
   ];
-  const config = mode === "production" ? productionConfig : developmentConfig;
-  return merge([commonConfig, config, { mode }].concat(pages));
+
+  if(mode === "production"){
+    return merge([commonConfig, productionConfig, { mode }].concat(pages));
+  } else {
+    return merge(commonConfig, developmentConfig, { mode });
+  }
 };
