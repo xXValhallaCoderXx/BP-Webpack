@@ -60,10 +60,10 @@ exports.loadGlobalCSS = ({ include, exclude } = {}) => ({
   module: {
     rules: [
       {
-        test: /\.css$/,
+        test: /\.(scss|css)$/,
         include,
         exclude,
-        use: ["style-loader", "css-loader"]
+        use: ["style-loader", "css-loader", "sass-loader"]
       }
     ]
   }
@@ -73,7 +73,7 @@ exports.cssModules = ({ include, exclude } = {}) => ({
   module: {
     rules: [
       {
-        test: /\.css$/,
+        test: /\.(scss|css)$/,
         include,
         exclude,
         use: [
@@ -86,6 +86,9 @@ exports.cssModules = ({ include, exclude } = {}) => ({
               modules: true,
               localIdentName: "[local]_[hash:base64:8]"
             }
+          },
+          {
+            loader: "sass-loader"
           }
         ]
       }
@@ -103,13 +106,16 @@ exports.extractGlobalCSS = ({ include, exclude }) => {
     module: {
       rules: [
         {
-          test: /\.css$/,
+          test: /\.(scss|css)$/,
           include,
           exclude,
           use: plugin.extract({
             use: [
               {
                 loader: "css-loader",
+              },
+              {
+                loader: "sass-loader"
               },
               autoprefix()
             ]
@@ -133,7 +139,7 @@ exports.extractCSS = ({ include, exclude }) => {
     module: {
       rules: [
         {
-          test: /\.css$/,
+          test: /\.(scss|css)$/,
           include,
           exclude,
           use: plugin.extract({
@@ -144,6 +150,9 @@ exports.extractCSS = ({ include, exclude }) => {
                   modules: true,
                   localIdentName: "[local]_[hash:base64]"
                 }
+              },
+              {
+                loader: "sass-loader"
               },
               autoprefix()
             ]

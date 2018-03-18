@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import styles from "./cssModule.css";
+import styles from "./cssModule.scss";
 
 export default class Application extends Component {
   constructor(props) {

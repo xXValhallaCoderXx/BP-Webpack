@@ -1,4 +1,4 @@
-import "./assets/styles/styles.css";
+import "./assets/styles/styles.scss";
 import React from "react";
 import ReactDOM from "react-dom";
 import { AppContainer } from "react-hot-loader";
