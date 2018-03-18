@@ -62,9 +62,7 @@ const productionConfig = merge([
     recordsPath: path.join(__dirname, "records.json")
   },
   parts.generateSourceMaps({ type: "source-map" }),
-  parts.extractCSS({
-    use: ["css-loader", parts.autoprefix()]
-  }),
+  parts.extractCSS({ include: PATHS.app }),
   parts.loadImages({
     options: {
       limit: 50000,
@@ -76,7 +74,6 @@ const productionConfig = merge([
 const developmentConfig = merge([
   parts.generateSourceMaps({ type: "eval-source-map" }),
   parts.devServer({
-    // Customize host/port here if needed
     host: process.env.HOST,
     port: process.env.PORT
   }),

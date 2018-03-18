@@ -92,11 +92,10 @@ exports.cssModules = ({ include, exclude } = {}) => ({
   }
 });
 
-exports.extractCSS = ({ include, exclude, use }) => {
-  // Output extracted CSS to a file
-  const plugin = new ExtractTextPlugin({
-    // `allChunks` is needed to extract from extracted chunks as wel\
 
+exports.extractCSS = ({ include, exclude }) => {
+  const plugin = new ExtractTextPlugin({
+    // `allChunks` is needed to extract from extracted chunks as well
     allChunks: true,
     filename: "static/styles/[name].[contenthash:8].css"
   });
@@ -108,8 +107,16 @@ exports.extractCSS = ({ include, exclude, use }) => {
           include,
           exclude,
           use: plugin.extract({
-            use,
-            fallback: "style-loader"
+            use: [
+              {
+                loader: "css-loader",
+                options: {
+                  modules: true,
+                  localIdentName: "[local]_[hash:base64]"
+                }
+              },
+              autoprefix()
+            ]
           })
         }
       ]
@@ -118,7 +125,7 @@ exports.extractCSS = ({ include, exclude, use }) => {
   };
 };
 
-exports.autoprefix = () => ({
+autoprefix = () => ({
   loader: "postcss-loader",
   options: {
     plugins: () => [require("autoprefixer")()]
