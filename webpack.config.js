@@ -74,6 +74,9 @@ const productionConfig = merge([
 ]);
 
 const developmentConfig = merge([
+  {
+    plugins: [new webpack.HotModuleReplacementPlugin()]
+  },
   parts.generateSourceMaps({ type: "eval-source-map" }),
   parts.devServer({
     host: process.env.HOST,

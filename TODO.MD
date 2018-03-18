@@ -1,3 +1,8 @@
+
+## Display used imports
+- `yarn build --display-used-exports`
+
+
 ## NOTE
 
 - .browserlistrc: Works for auto prefixer and for babel-preset-env

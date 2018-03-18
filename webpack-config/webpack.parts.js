@@ -18,6 +18,7 @@ exports.setFreeVariable = (key, value) => {
 exports.devServer = ({ host, port } = {}) => ({
   devServer: {
     stats: "errors-only",
+    hotOnly: true,
     host, // Defaults to `localhost`
     port, // Defaults to 8080
     overlay: {
