@@ -7,6 +7,7 @@ const PATHS = {
   app3: path.resolve(__dirname, "../src/app/app3"),
   globalCSS: path.resolve(__dirname, "../src/assets/styles"),
   cssModules: path.resolve(__dirname, "../src/app"),
+  sharedComponentModules: path.resolve(__dirname, "../src/app/sharedComponents"),
   build: path.resolve(__dirname, "../dist")
 };
 
