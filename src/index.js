@@ -6,7 +6,7 @@ import { Provider } from "react-redux";
 
 import configureStore from "./app/store";
 import { bake } from "./app/shake"; // Example to show Tree shaking in Action
-import App from "./app/component";
+import App from "./routes";
 
 const root = document.getElementById("render-app");
 const store = configureStore();
@@ -19,8 +19,8 @@ const render = Component => {
 render(App);
 
 if (module.hot) {
-  module.hot.accept("./app/component", () => {
+  module.hot.accept("./routes", () => {
     render(App);
-    render(require("./app/component"));
+    render(require("./routes"));
   });
 }

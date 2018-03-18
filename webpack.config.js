@@ -8,6 +8,7 @@ const PATHS = {
   app: path.resolve(__dirname, "src"),
   globalCSS: path.resolve(__dirname, "src/assets/styles"),
   cssModules: path.resolve(__dirname, "src/app"),
+  componentCssModules: path.resolve(__dirname, "src/components"),
   build: path.resolve(__dirname, "dist")
 };
 
@@ -63,7 +64,7 @@ const productionConfig = merge([
   },
   parts.generateSourceMaps({ type: "source-map" }),
   parts.extractGlobalCSS({ include: PATHS.globalCSS }),
-  parts.extractCSS({ include: PATHS.cssModules }),
+  parts.extractCSS({ include: [PATHS.cssModules, PATHS.componentCssModules] }),
 
   parts.loadImages({
     options: {
@@ -83,7 +84,7 @@ const developmentConfig = merge([
     port: process.env.PORT
   }),
   parts.loadGlobalCSS({ include: PATHS.globalCSS }),
-  parts.cssModules({ include: PATHS.cssModules }),
+  parts.cssModules({ include: [PATHS.cssModules, PATHS.componentCssModules] }),
   parts.loadImages()
 ]);
 
