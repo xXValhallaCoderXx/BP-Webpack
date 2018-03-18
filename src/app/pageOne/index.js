@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { increaseCounter } from "../actions";
+import { increaseCounter } from "./pageOneDux";
 import Header from "../../components/Header";
 
 import styles from "./cssModule.scss";

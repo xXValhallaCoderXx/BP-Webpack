@@ -1,4 +1,12 @@
-import { ActionTypes } from "../actions";
+export const ActionTypes = {
+  INCREASE: "INCREASE"
+};
+
+export function increaseCounter() {
+  return {
+    type: ActionTypes.INCREASE
+  };
+}
 
 const initialState = {
   counter: 0

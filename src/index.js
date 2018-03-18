@@ -4,9 +4,9 @@ import ReactDOM from "react-dom";
 import { AppContainer } from "react-hot-loader";
 import { Provider } from "react-redux";
 
-import configureStore from "./app/store";
-import { bake } from "./app/shake"; // Example to show Tree shaking in Action
-import App from "./routes";
+import configureStore from "./appConfig/store";
+import { bake } from "./shake"; // Example to show Tree shaking in Action
+import App from "./appConfig/routes";
 
 const root = document.getElementById("render-app");
 const store = configureStore();
@@ -19,8 +19,8 @@ const render = Component => {
 render(App);
 
 if (module.hot) {
-  module.hot.accept("./routes", () => {
+  module.hot.accept("./appConfig/routes", () => {
     render(App);
-    render(require("./routes"));
+    render(require("./appConfig/routes"));
   });
 }
