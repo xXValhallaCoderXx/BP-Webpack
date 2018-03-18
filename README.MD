@@ -1,3 +1,3 @@
 
 ## Display used imports
-- `yarn build --displayused-exports`
+- `yarn build --display-used-exports`
