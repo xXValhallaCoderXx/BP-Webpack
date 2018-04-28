@@ -1,17 +1,24 @@
+const webpack = require("webpack");
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
 const CleanWebpackPlugin = require("clean-webpack-plugin");
+const UglifyWebpackPlugin = require("uglifyjs-webpack-plugin");
 const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
 const cssnano = require("cssnano");
-const BabelWebpackPlugin = require("babel-minify-webpack-plugin");
-const webpack = require("webpack");
 
-exports.devServer = ({ host, port, hostCheck } = {}) => ({
+exports.setFreeVariable = (key, value) => {
+  const env = {};
+  env[key] = JSON.stringify(value);
+  return {
+    plugins: [new webpack.DefinePlugin(env)]
+  };
+};
+
+// DEVELOPMENT CONFIGS
+
+exports.devServer = ({ host, port } = {}) => ({
   devServer: {
-    historyApiFallback: true,
     stats: "errors-only",
     hotOnly: true,
-    inline: true,
-    disableHostCheck: hostCheck || false,
     host, // Defaults to `localhost`
     port, // Defaults to 8080
     overlay: {
@@ -21,26 +28,52 @@ exports.devServer = ({ host, port, hostCheck } = {}) => ({
   }
 });
 
-exports.lintJavaScript = ({ include, exclude, options }) => ({
+exports.generateSourceMaps = ({ type }) => ({
+  devtool: type
+});
+
+// PRODUCTION CONFIGS
+
+exports.clean = path => ({
+  plugins: [new CleanWebpackPlugin([path], { allowExternal: true })]
+});
+
+exports.minifyJavaScript = () => ({
+  optimization: {
+    minimizer: [new UglifyWebpackPlugin({ sourceMap: true })]
+  }
+});
+
+exports.minifyCSS = ({ options }) => ({
+  plugins: [
+    new OptimizeCSSAssetsPlugin({
+      cssProcessor: cssnano,
+      cssProcessorOptions: options,
+      canPrint: false
+    })
+  ]
+});
+
+// CSS CONFIG
+
+exports.loadGlobalCSS = ({ include, exclude } = {}) => ({
   module: {
     rules: [
       {
-        test: /\.js$/,
+        test: /\.(scss|css)$/,
         include,
         exclude,
-        enforce: "pre",
-        loader: "eslint-loader",
-        options
+        use: ["style-loader", "css-loader", "sass-loader"]
       }
     ]
   }
 });
 
-exports.loadCSS = ({ include, exclude } = {}) => ({
+exports.cssModules = ({ include, exclude } = {}) => ({
   module: {
     rules: [
       {
-        test: /\.css$/,
+        test: /\.(scss|css)$/,
         include,
         exclude,
         use: [
@@ -51,28 +84,11 @@ exports.loadCSS = ({ include, exclude } = {}) => ({
             loader: "css-loader",
             options: {
               modules: true,
-              localIdentName: "[local]___[hash:base64:5]"
+              localIdentName: "[local]_[hash:base64:8]"
             }
-          }
-        ]
-      }
-    ]
-  }
-});
-
-exports.loadGlobalCSS = ({ include, exclude } = {}) => ({
-  module: {
-    rules: [
-      {
-        test: /\.css$/,
-        include,
-        exclude,
-        use: [
-          {
-            loader: "style-loader"
           },
           {
-            loader: "css-loader"
+            loader: "sass-loader"
           }
         ]
       }
@@ -80,25 +96,27 @@ exports.loadGlobalCSS = ({ include, exclude } = {}) => ({
   }
 });
 
-exports.extractCSS = ({ include, exclude }) => {
-  // Output extracted CSS to a file
+exports.extractGlobalCSS = ({ include, exclude }) => {
   const plugin = new ExtractTextPlugin({
-    filename: "/static/css/[name].css"
+    // `allChunks` is needed to extract from extracted chunks as well
+    allChunks: true,
+    //filename: "static/styles/[name].[contenthash:8].css"
+    filename: "static/styles/[name].[md5:contenthash:hex:20].css"
   });
   return {
     module: {
       rules: [
         {
-          test: /\.css$/,
+          test: /\.(scss|css)$/,
           include,
           exclude,
           use: plugin.extract({
             use: [
               {
                 loader: "css-loader",
-                options: {
-                  modules: true
-                }
+              },
+              {
+                loader: "sass-loader"
               },
               autoprefix()
             ]
@@ -110,18 +128,58 @@ exports.extractCSS = ({ include, exclude }) => {
   };
 };
 
-const autoprefix = () => ({
+
+
+exports.extractCSS = ({ include, exclude }) => {
+  const plugin = new ExtractTextPlugin({
+    // `allChunks` is needed to extract from extracted chunks as well
+    allChunks: true,
+    //filename: "static/styles/[name].[contenthash:8].css"
+    filename: "static/styles/[name].[md5:contenthash:hex:20].css"
+  });
+  return {
+    module: {
+      rules: [
+        {
+          test: /\.(scss|css)$/,
+          include,
+          exclude,
+          use: plugin.extract({
+            use: [
+              {
+                loader: "css-loader",
+                options: {
+                  modules: true,
+                  localIdentName: "[local]_[hash:base64]"
+                }
+              },
+              {
+                loader: "sass-loader"
+              },
+              autoprefix()
+            ]
+          })
+        }
+      ]
+    },
+    plugins: [plugin]
+  };
+};
+
+autoprefix = () => ({
   loader: "postcss-loader",
   options: {
     plugins: () => [require("autoprefixer")()]
   }
 });
 
+// IMAGE CONFIGS
+
 exports.loadImages = ({ include, exclude, options } = {}) => ({
   module: {
     rules: [
       {
-        test: /\.(png|jpg|svg|gif)$/,
+        test: /\.(png|jpg|svg)$/,
         include,
         exclude,
         use: {
@@ -133,59 +191,13 @@ exports.loadImages = ({ include, exclude, options } = {}) => ({
   }
 });
 
-exports.compressImages = ({ include, exclude } = {}) => ({
-  module: {
-    rules: [
-      {
-        test: /\.(gif|png|jpe?g|svg)$/,
-        loaders: [
-          {
-            loader: "image-webpack-loader",
-            query: {
-              mozjpeg: {
-                progressive: true,
-                quality: "75"
-              },
-              gifsicle: {
-                interlaced: false
-              },
-              optipng: {
-                optimizationLevel: 4
-              },
-              pngquant: {
-                quality: "75-90",
-                speed: 3
-              }
-            }
-          }
-        ]
-      }
-    ]
-  }
-});
-
-exports.loadFonts = ({ include, exclude, options } = {}) => ({
-  module: {
-    rules: [
-      {
-        // Capture eot, ttf, woff, and woff2
-        test: /\.(eot|ttf|woff|woff2)(\?v=\d+\.\d+\.\d+)?$/,
-        include,
-        exclude,
-        use: {
-          loader: "file-loader",
-          options
-        }
-      }
-    ]
-  }
-});
+// JAVASCRIPT CONFIGS
 
 exports.loadJavaScript = ({ include, exclude }) => ({
   module: {
     rules: [
       {
-        test: /\.(ts|tsx)?$/,
+        test: /\.(js|ts|tsx)?$/,
         include,
         exclude,
         use: [
@@ -202,32 +214,4 @@ exports.loadJavaScript = ({ include, exclude }) => ({
       }
     ]
   }
-});
-
-exports.generateSourceMaps = ({ type }) => ({
-  devtool: type
-});
-
-exports.extractBundles = bundles => ({
-  plugins: bundles.map(
-    bundle => new webpack.optimize.CommonsChunkPlugin(bundle)
-  )
-});
-
-exports.clean = path => ({
-  plugins: [new CleanWebpackPlugin([path], { allowExternal: true })]
-});
-
-exports.minifyJavaScript = () => ({
-  plugins: [new BabelWebpackPlugin()]
-});
-
-exports.minifyCSS = ({ options }) => ({
-  plugins: [
-    new OptimizeCSSAssetsPlugin({
-      cssProcessor: cssnano,
-      cssProcessorOptions: options,
-      canPrint: false
-    })
-  ]
 });
