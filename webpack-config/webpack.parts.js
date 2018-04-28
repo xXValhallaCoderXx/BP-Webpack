@@ -100,7 +100,8 @@ exports.extractGlobalCSS = ({ include, exclude }) => {
   const plugin = new ExtractTextPlugin({
     // `allChunks` is needed to extract from extracted chunks as well
     allChunks: true,
-    filename: "static/styles/[name].[contenthash:8].css"
+    //filename: "static/styles/[name].[contenthash:8].css"
+    filename: "static/styles/[name].[md5:contenthash:hex:20].css"
   });
   return {
     module: {
@@ -133,7 +134,8 @@ exports.extractCSS = ({ include, exclude }) => {
   const plugin = new ExtractTextPlugin({
     // `allChunks` is needed to extract from extracted chunks as well
     allChunks: true,
-    filename: "static/styles/[name].[contenthash:8].css"
+    //filename: "static/styles/[name].[contenthash:8].css"
+    filename: "static/styles/[name].[md5:contenthash:hex:20].css"
   });
   return {
     module: {
