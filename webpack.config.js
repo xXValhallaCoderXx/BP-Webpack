@@ -1,7 +1,6 @@
 const path = require("path");
 const webpack = require("webpack");
 const merge = require("webpack-merge");
-const HtmlWebpackPlugin = require("html-webpack-plugin");
 const parts = require("./webpack-config/webpack.parts");
 const developmentConfig = require("./webpack-config/webpack.dev");
 const productionConfig = require("./webpack-config/webpack.prod");
@@ -18,36 +17,36 @@ const commonConfig = merge([
 ]);
 
 
-module.exports = mode => {
-  console.log("**MODE** ", mode);
-  const { target, application } = mode;
+module.exports = env => {
+  console.log("**MODE** ", env);
+  const { target, application } = env;
   process.env.BABEL_ENV = target;
   mode = target;
 
   const pages = [
     parts.page({
       title: "Webpack Boiler - Page 1",
-      template: path.resolve(__dirname, "src/app/app1/index.html"),
+      template: path.resolve(__dirname, "src/app1/index.html"),
       path: "app1",
-      chunks: ["app1", "manifest", "vendor"],
+      //chunks: ["app1", "manifest", "vendor"],
       entry: {
         app1: PATHS.app1
       }
     }),
     parts.page({
       title: "Webpack Boiler - Page 2",
-      template: path.resolve(__dirname, "src/app/app2/index.html"),
+      template: path.resolve(__dirname, "src/app2/index.html"),
       path: "app2",
-      chunks: ["app2", "manifest", "vendor"],
+      //chunks: ["app2", "manifest", "vendor"],
       entry: {
         app2: PATHS.app2
       }
     }),
     parts.page({
       title: "Webpack Boiler - Page 3",
-      template: path.resolve(__dirname, "src/app/app3/index.html"),
+      template: path.resolve(__dirname, "src/app3/index.html"),
       path: "app3",
-      chunks: ["app3", "manifest", "vendor"],
+      //chunks: ["app3", "manifest", "vendor"],
       entry: {
         app3: PATHS.app3
       }
@@ -57,7 +56,8 @@ module.exports = mode => {
   if (mode === "production") {
     return merge([commonConfig, productionConfig, { mode }].concat(pages));
   } else {
-    return merge(commonConfig, developmentConfig(application), { mode });
+    console.log("WE ARE HERE: ", mode);
+    return merge(commonConfig, developmentConfig(env.application), { mode });
   }
 };
 

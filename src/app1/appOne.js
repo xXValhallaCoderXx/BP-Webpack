@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import styles from "./cssModule.scss";
-import Header from "../sharedCompoents/Header";
+//import Header from "../sharedCompoents/Header";
 
 class Application extends Component {
   constructor(props) {
@@ -14,7 +14,6 @@ class Application extends Component {
   render() {
     return (
       <div>
-        <Header />
         <h3>Button Is Using A Global Styles</h3>
         <button className="global-class">Global Style</button>
         <hr />

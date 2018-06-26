@@ -10,12 +10,12 @@ developmentConfig = currentApp =>
   merge([
     {
       entry: {
-        app: path.resolve(__dirname, `../src/app/${currentApp}`)
+        app: path.resolve(__dirname, `../src/${currentApp}`)
       },
       plugins: [
         new HtmlWebpackPlugin({
           title: `Developing - `,
-          template: path.resolve(__dirname, `../src/app/${currentApp}/index.html`)
+          template: path.resolve(__dirname, `../src/${currentApp}/index.html`)
         }),
         new webpack.HotModuleReplacementPlugin()
       ]

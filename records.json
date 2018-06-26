@@ -218,15 +218,16 @@
       "0 node_modules/babel-loader/lib/index.js!src/component.js ./LazyLoad": 0,
       "0 node_modules/babel-loader/lib/index.js!src/app/component.js ./LazyLoad": 0,
       "0 node_modules/babel-loader/lib/index.js!src/app/pageOne/index.js ./LazyLoad": 4,
-      "0 node_modules/babel-loader/lib/index.js!src/app/app1/appOne.js ./LazyLoad": 0
+      "0 node_modules/babel-loader/lib/index.js!src/app/app1/appOne.js ./LazyLoad": 0,
+      "0 node_modules/babel-loader/lib/index.js!src/app1/appOne.js ./LazyLoad": 6
     },
     "usedIds": [
-      0,
       1,
       2,
       3,
       4,
-      5
+      5,
+      6
     ]
   },
   "extract-text-webpack-plugin node_modules/extract-text-webpack-plugin/dist node_modules/css-loader/index.js??ref--5-1!node_modules/postcss-loader/lib/index.js??ref--5-2!src/assets/styles/styles.css": [
@@ -471,7 +472,7 @@
         "byName": {},
         "bySource": {},
         "usedIds": [
-          0
+          1
         ]
       }
     }
@@ -517,7 +518,7 @@
         "byName": {},
         "bySource": {},
         "usedIds": [
-          1
+          0
         ]
       }
     }
@@ -537,6 +538,81 @@
           "./node_modules/webpack/buildin/global.js": "./node_modules/webpack/buildin/global.js",
           "./node_modules/webpack/buildin/module.js": "./node_modules/webpack/buildin/module.js"
         }
+      },
+      "chunks": {
+        "byName": {},
+        "bySource": {},
+        "usedIds": [
+          0
+        ]
+      }
+    }
+  ],
+  "extract-text-webpack-plugin node_modules/extract-text-webpack-plugin/dist node_modules/css-loader/index.js??ref--5-1!node_modules/sass-loader/lib/loader.js!node_modules/postcss-loader/lib/index.js??ref--5-3!src/app1/cssModule.scss": [
+    {
+      "modules": {
+        "byIdentifier": {},
+        "usedIds": {}
+      },
+      "chunks": {
+        "byName": {},
+        "bySource": {},
+        "usedIds": [
+          1
+        ]
+      }
+    }
+  ],
+  "html-webpack-plugin for \"app1.html\"": [
+    {
+      "modules": {
+        "byIdentifier": {},
+        "usedIds": {}
+      },
+      "chunks": {
+        "byName": {},
+        "bySource": {},
+        "usedIds": [
+          0
+        ]
+      }
+    }
+  ],
+  "html-webpack-plugin for \"app2.html\"": [
+    {
+      "modules": {
+        "byIdentifier": {},
+        "usedIds": {}
+      },
+      "chunks": {
+        "byName": {},
+        "bySource": {},
+        "usedIds": [
+          0
+        ]
+      }
+    }
+  ],
+  "html-webpack-plugin for \"app3.html\"": [
+    {
+      "modules": {
+        "byIdentifier": {},
+        "usedIds": {}
+      },
+      "chunks": {
+        "byName": {},
+        "bySource": {},
+        "usedIds": [
+          0
+        ]
+      }
+    }
+  ],
+  "extract-text-webpack-plugin node_modules/extract-text-webpack-plugin/dist node_modules/css-loader/index.js??ref--6-1!node_modules/sass-loader/lib/loader.js!node_modules/postcss-loader/lib/index.js??ref--6-3!src/app1/cssModule.scss": [
+    {
+      "modules": {
+        "byIdentifier": {},
+        "usedIds": {}
       },
       "chunks": {
         "byName": {},
