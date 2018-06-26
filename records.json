@@ -129,9 +129,31 @@
       "node_modules/babel-loader/lib/index.js!src/app/app1/index.js 527d8204e8b4739206c1e826f974cc30": "./src/app/app1/index.js",
       "node_modules/babel-loader/lib/index.js!src/app/app2/index.js 0b18aebc788d3e4f446eef67b683da85": "./src/app/app2/index.js",
       "node_modules/babel-loader/lib/index.js!src/app/app3/index.js 4d0bfd2e2ec5fe4fa3659bfbdea961fa": "./src/app/app3/index.js",
-      "node_modules/babel-loader/lib/index.js!src/app/sharedCompoents/Header/index.js": "./src/app/sharedCompoents/Header/index.js"
+      "node_modules/babel-loader/lib/index.js!src/app/sharedCompoents/Header/index.js": "./src/app/sharedCompoents/Header/index.js",
+      "css node_modules/css-loader/index.js!node_modules/sass-loader/lib/loader.js!node_modules/postcss-loader/lib/index.js??ref--5-3!src/app3/cssModule.scss 0": 0,
+      "css node_modules/css-loader/index.js!node_modules/sass-loader/lib/loader.js!node_modules/postcss-loader/lib/index.js??ref--5-3!src/app2/cssModule.scss 0": 1,
+      "css node_modules/css-loader/index.js!node_modules/sass-loader/lib/loader.js!node_modules/postcss-loader/lib/index.js??ref--5-3!src/app1/cssModule.scss 0": 2,
+      "css node_modules/css-loader/index.js??ref--5-1!node_modules/sass-loader/lib/loader.js!node_modules/postcss-loader/lib/index.js??ref--5-3!src/app3/cssModule.scss 0": 0,
+      "css node_modules/css-loader/index.js??ref--5-1!node_modules/sass-loader/lib/loader.js!node_modules/postcss-loader/lib/index.js??ref--5-3!src/app2/cssModule.scss 0": 1,
+      "css node_modules/css-loader/index.js??ref--5-1!node_modules/sass-loader/lib/loader.js!node_modules/postcss-loader/lib/index.js??ref--5-3!src/app1/cssModule.scss 0": 2,
+      "css node_modules/css-loader/index.js??ref--6-1!node_modules/sass-loader/lib/loader.js!node_modules/postcss-loader/lib/index.js??ref--6-3!src/app3/cssModule.scss 0": 0,
+      "css node_modules/css-loader/index.js??ref--6-1!node_modules/sass-loader/lib/loader.js!node_modules/postcss-loader/lib/index.js??ref--6-3!src/app2/cssModule.scss 0": 1,
+      "css node_modules/css-loader/index.js??ref--6-1!node_modules/sass-loader/lib/loader.js!node_modules/postcss-loader/lib/index.js??ref--6-3!src/app1/cssModule.scss 0": 2,
+      "css node_modules/css-loader/index.js??ref--6-1!node_modules/sass-loader/lib/loader.js!node_modules/postcss-loader/lib/index.js??ref--6-3!src/shared/styles/styles.scss 0": 3,
+      "css node_modules/css-loader/index.js??ref--5-1!node_modules/sass-loader/lib/loader.js!node_modules/postcss-loader/lib/index.js??ref--5-3!src/shared/styles/styles.scss 0": 3,
+      "css node_modules/css-loader/index.js??ref--5-1!node_modules/sass-loader/lib/loader.js!node_modules/postcss-loader/lib/index.js??ref--5-3!src/app3/app/cssModule.scss 0": 0,
+      "css node_modules/css-loader/index.js??ref--5-1!node_modules/sass-loader/lib/loader.js!node_modules/postcss-loader/lib/index.js??ref--5-3!src/app2/app/cssModule.scss 0": 1,
+      "css node_modules/css-loader/index.js??ref--5-1!node_modules/sass-loader/lib/loader.js!node_modules/postcss-loader/lib/index.js??ref--5-3!src/app1/app/cssModule.scss 0": 2,
+      "css node_modules/css-loader/index.js??ref--6-1!node_modules/sass-loader/lib/loader.js!node_modules/postcss-loader/lib/index.js??ref--6-3!src/app3/app/cssModule.scss 0": 0,
+      "css node_modules/css-loader/index.js??ref--6-1!node_modules/sass-loader/lib/loader.js!node_modules/postcss-loader/lib/index.js??ref--6-3!src/app2/app/cssModule.scss 0": 1,
+      "css node_modules/css-loader/index.js??ref--6-1!node_modules/sass-loader/lib/loader.js!node_modules/postcss-loader/lib/index.js??ref--6-3!src/app1/app/cssModule.scss 0": 2,
+      "css node_modules/css-loader/index.js!node_modules/sass-loader/lib/loader.js!node_modules/postcss-loader/lib/index.js??ref--5-3!src/shared/styles/styles.scss 0": 3
     },
     "usedIds": {
+      "0": 0,
+      "1": 1,
+      "2": 2,
+      "3": 3,
       "./node_modules/fbjs/lib/EventListener.js": "./node_modules/fbjs/lib/EventListener.js",
       "./node_modules/fbjs/lib/ExecutionEnvironment.js": "./node_modules/fbjs/lib/ExecutionEnvironment.js",
       "./node_modules/fbjs/lib/containsNode.js": "./node_modules/fbjs/lib/containsNode.js",
@@ -219,7 +241,9 @@
       "0 node_modules/babel-loader/lib/index.js!src/app/component.js ./LazyLoad": 0,
       "0 node_modules/babel-loader/lib/index.js!src/app/pageOne/index.js ./LazyLoad": 4,
       "0 node_modules/babel-loader/lib/index.js!src/app/app1/appOne.js ./LazyLoad": 0,
-      "0 node_modules/babel-loader/lib/index.js!src/app1/appOne.js ./LazyLoad": 6
+      "0 node_modules/babel-loader/lib/index.js!src/app1/appOne.js ./LazyLoad": 6,
+      "0 node_modules/babel-loader/lib/index.js!src/app1/Component.js ./LazyLoad": 0,
+      "0 node_modules/babel-loader/lib/index.js!src/app1/app/Component.js ./LazyLoad": 6
     },
     "usedIds": [
       1,
@@ -573,7 +597,7 @@
         "byName": {},
         "bySource": {},
         "usedIds": [
-          0
+          1
         ]
       }
     }
@@ -588,7 +612,7 @@
         "byName": {},
         "bySource": {},
         "usedIds": [
-          0
+          1
         ]
       }
     }
@@ -603,7 +627,7 @@
         "byName": {},
         "bySource": {},
         "usedIds": [
-          0
+          1
         ]
       }
     }
@@ -618,7 +642,343 @@
         "byName": {},
         "bySource": {},
         "usedIds": [
-          1
+          0
+        ]
+      }
+    }
+  ],
+  "extract-text-webpack-plugin node_modules/extract-text-webpack-plugin/dist node_modules/css-loader/index.js??ref--6-1!node_modules/sass-loader/lib/loader.js!node_modules/postcss-loader/lib/index.js??ref--6-3!src/app3/cssModule.scss": [
+    {
+      "modules": {
+        "byIdentifier": {},
+        "usedIds": {}
+      },
+      "chunks": {
+        "byName": {},
+        "bySource": {},
+        "usedIds": [
+          0
+        ]
+      }
+    }
+  ],
+  "extract-text-webpack-plugin node_modules/extract-text-webpack-plugin/dist node_modules/css-loader/index.js??ref--6-1!node_modules/sass-loader/lib/loader.js!node_modules/postcss-loader/lib/index.js??ref--6-3!src/app2/cssModule.scss": [
+    {
+      "modules": {
+        "byIdentifier": {},
+        "usedIds": {}
+      },
+      "chunks": {
+        "byName": {},
+        "bySource": {},
+        "usedIds": [
+          0
+        ]
+      }
+    }
+  ],
+  "mini-css-extract-plugin node_modules/css-loader/index.js!node_modules/sass-loader/lib/loader.js!node_modules/postcss-loader/lib/index.js??ref--5-3!src/app2/cssModule.scss": [
+    {
+      "modules": {
+        "byIdentifier": {},
+        "usedIds": {}
+      },
+      "chunks": {
+        "byName": {
+          "mini-css-extract-plugin": 0
+        },
+        "bySource": {},
+        "usedIds": [
+          0
+        ]
+      }
+    }
+  ],
+  "mini-css-extract-plugin node_modules/css-loader/index.js!node_modules/sass-loader/lib/loader.js!node_modules/postcss-loader/lib/index.js??ref--5-3!src/app1/cssModule.scss": [
+    {
+      "modules": {
+        "byIdentifier": {},
+        "usedIds": {}
+      },
+      "chunks": {
+        "byName": {
+          "mini-css-extract-plugin": 0
+        },
+        "bySource": {},
+        "usedIds": [
+          0
+        ]
+      }
+    }
+  ],
+  "mini-css-extract-plugin node_modules/css-loader/index.js!node_modules/sass-loader/lib/loader.js!node_modules/postcss-loader/lib/index.js??ref--5-3!src/app3/cssModule.scss": [
+    {
+      "modules": {
+        "byIdentifier": {},
+        "usedIds": {}
+      },
+      "chunks": {
+        "byName": {
+          "mini-css-extract-plugin": 0
+        },
+        "bySource": {},
+        "usedIds": [
+          0
+        ]
+      }
+    }
+  ],
+  "mini-css-extract-plugin node_modules/css-loader/index.js??ref--5-1!node_modules/sass-loader/lib/loader.js!node_modules/postcss-loader/lib/index.js??ref--5-3!src/app1/cssModule.scss": [
+    {
+      "modules": {
+        "byIdentifier": {},
+        "usedIds": {}
+      },
+      "chunks": {
+        "byName": {
+          "mini-css-extract-plugin": 0
+        },
+        "bySource": {},
+        "usedIds": [
+          0
+        ]
+      }
+    }
+  ],
+  "mini-css-extract-plugin node_modules/css-loader/index.js??ref--5-1!node_modules/sass-loader/lib/loader.js!node_modules/postcss-loader/lib/index.js??ref--5-3!src/app3/cssModule.scss": [
+    {
+      "modules": {
+        "byIdentifier": {},
+        "usedIds": {}
+      },
+      "chunks": {
+        "byName": {
+          "mini-css-extract-plugin": 0
+        },
+        "bySource": {},
+        "usedIds": [
+          0
+        ]
+      }
+    }
+  ],
+  "mini-css-extract-plugin node_modules/css-loader/index.js??ref--5-1!node_modules/sass-loader/lib/loader.js!node_modules/postcss-loader/lib/index.js??ref--5-3!src/app2/cssModule.scss": [
+    {
+      "modules": {
+        "byIdentifier": {},
+        "usedIds": {}
+      },
+      "chunks": {
+        "byName": {
+          "mini-css-extract-plugin": 0
+        },
+        "bySource": {},
+        "usedIds": [
+          0
+        ]
+      }
+    }
+  ],
+  "mini-css-extract-plugin node_modules/css-loader/index.js??ref--6-1!node_modules/sass-loader/lib/loader.js!node_modules/postcss-loader/lib/index.js??ref--6-3!src/shared/styles/styles.scss": [
+    {
+      "modules": {
+        "byIdentifier": {},
+        "usedIds": {}
+      },
+      "chunks": {
+        "byName": {
+          "mini-css-extract-plugin": 0
+        },
+        "bySource": {},
+        "usedIds": [
+          0
+        ]
+      }
+    }
+  ],
+  "mini-css-extract-plugin node_modules/css-loader/index.js??ref--6-1!node_modules/sass-loader/lib/loader.js!node_modules/postcss-loader/lib/index.js??ref--6-3!src/app3/cssModule.scss": [
+    {
+      "modules": {
+        "byIdentifier": {},
+        "usedIds": {}
+      },
+      "chunks": {
+        "byName": {
+          "mini-css-extract-plugin": 0
+        },
+        "bySource": {},
+        "usedIds": [
+          0
+        ]
+      }
+    }
+  ],
+  "mini-css-extract-plugin node_modules/css-loader/index.js??ref--6-1!node_modules/sass-loader/lib/loader.js!node_modules/postcss-loader/lib/index.js??ref--6-3!src/app1/cssModule.scss": [
+    {
+      "modules": {
+        "byIdentifier": {},
+        "usedIds": {}
+      },
+      "chunks": {
+        "byName": {
+          "mini-css-extract-plugin": 0
+        },
+        "bySource": {},
+        "usedIds": [
+          0
+        ]
+      }
+    }
+  ],
+  "mini-css-extract-plugin node_modules/css-loader/index.js??ref--6-1!node_modules/sass-loader/lib/loader.js!node_modules/postcss-loader/lib/index.js??ref--6-3!src/app2/cssModule.scss": [
+    {
+      "modules": {
+        "byIdentifier": {},
+        "usedIds": {}
+      },
+      "chunks": {
+        "byName": {
+          "mini-css-extract-plugin": 0
+        },
+        "bySource": {},
+        "usedIds": [
+          0
+        ]
+      }
+    }
+  ],
+  "mini-css-extract-plugin node_modules/css-loader/index.js??ref--5-1!node_modules/sass-loader/lib/loader.js!node_modules/postcss-loader/lib/index.js??ref--5-3!src/shared/styles/styles.scss": [
+    {
+      "modules": {
+        "byIdentifier": {},
+        "usedIds": {}
+      },
+      "chunks": {
+        "byName": {
+          "mini-css-extract-plugin": 0
+        },
+        "bySource": {},
+        "usedIds": [
+          0
+        ]
+      }
+    }
+  ],
+  "mini-css-extract-plugin node_modules/css-loader/index.js??ref--5-1!node_modules/sass-loader/lib/loader.js!node_modules/postcss-loader/lib/index.js??ref--5-3!src/app3/app/cssModule.scss": [
+    {
+      "modules": {
+        "byIdentifier": {},
+        "usedIds": {}
+      },
+      "chunks": {
+        "byName": {
+          "mini-css-extract-plugin": 0
+        },
+        "bySource": {},
+        "usedIds": [
+          0
+        ]
+      }
+    }
+  ],
+  "mini-css-extract-plugin node_modules/css-loader/index.js??ref--5-1!node_modules/sass-loader/lib/loader.js!node_modules/postcss-loader/lib/index.js??ref--5-3!src/app1/app/cssModule.scss": [
+    {
+      "modules": {
+        "byIdentifier": {},
+        "usedIds": {}
+      },
+      "chunks": {
+        "byName": {
+          "mini-css-extract-plugin": 0
+        },
+        "bySource": {},
+        "usedIds": [
+          0
+        ]
+      }
+    }
+  ],
+  "mini-css-extract-plugin node_modules/css-loader/index.js??ref--5-1!node_modules/sass-loader/lib/loader.js!node_modules/postcss-loader/lib/index.js??ref--5-3!src/app2/app/cssModule.scss": [
+    {
+      "modules": {
+        "byIdentifier": {},
+        "usedIds": {}
+      },
+      "chunks": {
+        "byName": {
+          "mini-css-extract-plugin": 0
+        },
+        "bySource": {},
+        "usedIds": [
+          0
+        ]
+      }
+    }
+  ],
+  "mini-css-extract-plugin node_modules/css-loader/index.js??ref--6-1!node_modules/sass-loader/lib/loader.js!node_modules/postcss-loader/lib/index.js??ref--6-3!src/app3/app/cssModule.scss": [
+    {
+      "modules": {
+        "byIdentifier": {},
+        "usedIds": {}
+      },
+      "chunks": {
+        "byName": {
+          "mini-css-extract-plugin": 0
+        },
+        "bySource": {},
+        "usedIds": [
+          0
+        ]
+      }
+    }
+  ],
+  "mini-css-extract-plugin node_modules/css-loader/index.js??ref--6-1!node_modules/sass-loader/lib/loader.js!node_modules/postcss-loader/lib/index.js??ref--6-3!src/app1/app/cssModule.scss": [
+    {
+      "modules": {
+        "byIdentifier": {},
+        "usedIds": {}
+      },
+      "chunks": {
+        "byName": {
+          "mini-css-extract-plugin": 0
+        },
+        "bySource": {},
+        "usedIds": [
+          0
+        ]
+      }
+    }
+  ],
+  "mini-css-extract-plugin node_modules/css-loader/index.js??ref--6-1!node_modules/sass-loader/lib/loader.js!node_modules/postcss-loader/lib/index.js??ref--6-3!src/app2/app/cssModule.scss": [
+    {
+      "modules": {
+        "byIdentifier": {},
+        "usedIds": {}
+      },
+      "chunks": {
+        "byName": {
+          "mini-css-extract-plugin": 0
+        },
+        "bySource": {},
+        "usedIds": [
+          0
+        ]
+      }
+    }
+  ],
+  "mini-css-extract-plugin node_modules/css-loader/index.js!node_modules/sass-loader/lib/loader.js!node_modules/postcss-loader/lib/index.js??ref--5-3!src/shared/styles/styles.scss": [
+    {
+      "modules": {
+        "byIdentifier": {},
+        "usedIds": {}
+      },
+      "chunks": {
+        "byName": {
+          "mini-css-extract-plugin": 0
+        },
+        "bySource": {},
+        "usedIds": [
+          0
         ]
       }
     }

@@ -7,19 +7,11 @@ const parts = require("./webpack.parts");
 
 const productionConfig = merge([
   parts.clean(PATHS.build),
-  parts.minifyJavaScript(),
-  parts.minifyCSS({
-    options: {
-      discardComments: {
-        removeAll: true
-      },
-      safe: true
-    }
-  }),
+
   {
     output: {
       publicPath: "/", // Need this if you got Source maps on for Images to load
-      filename: "[name].[chunkhash:8].js",
+      filename: "static/js/[name].[chunkhash:8].js",
       chunkFilename: "static/js/[name].[chunkhash:8].js"
     },
     optimization: {
@@ -29,6 +21,12 @@ const productionConfig = merge([
             test: /[\\/]node_modules[\\/]/,
             name: "vendor",
             chunks: "all"
+          },
+          styles: {
+            name: 'styles',
+            test: /\.css$/,
+            chunks: 'all',
+            enforce: true
           }
         }
       },
@@ -39,8 +37,18 @@ const productionConfig = merge([
     recordsPath: path.join(__dirname, "../records.json")
   },
   //parts.generateSourceMaps({ type: "source-map" }),
-  parts.extractGlobalCSS({ include: PATHS.globalCSS }),
-  parts.extractCSS({ include: PATHS.cssModules }),
+  
+  parts.minifyJavaScript(),
+  parts.minifyCSS({
+    options: {
+      discardComments: {
+        removeAll: true
+      },
+      safe: true
+    }
+  }),
+  parts.extractGlobalCSS({ include: PATHS.appGlobalModules }),
+  parts.extractCSS({ include: PATHS.appCSSModules(["app1", "app2", "app3"]) }),
 
   parts.loadImages({
     options: {

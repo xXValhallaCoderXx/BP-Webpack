@@ -1,7 +1,7 @@
 //import "../../assets/styles/styles.scss";
 import React from "react";
 import ReactDOM from "react-dom";
-import App from "./appThree";
+import App from "./app/Component";
 
 const root = document.getElementById("render-app3");
 
@@ -12,8 +12,7 @@ const render = Component => {
 render(App);
 
 if (module.hot) {
-  module.hot.accept("./appThree", () => {
+  module.hot.accept("./app/Component", () => {
     render(App);
-    render(require("./appThree"));
   });
 }

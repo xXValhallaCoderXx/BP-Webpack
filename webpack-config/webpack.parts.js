@@ -1,5 +1,5 @@
 const webpack = require("webpack");
-const ExtractTextPlugin = require("extract-text-webpack-plugin");
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const CleanWebpackPlugin = require("clean-webpack-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const UglifyWebpackPlugin = require("uglifyjs-webpack-plugin");
@@ -116,68 +116,82 @@ exports.cssModules = ({ include, exclude } = {}) => ({
 });
 
 exports.extractGlobalCSS = ({ include, exclude }) => {
-  const plugin = new ExtractTextPlugin({
+  return {
+    plugins: [
+      new MiniCssExtractPlugin({
     // `allChunks` is needed to extract from extracted chunks as well
     allChunks: true,
-    filename: "static/styles/[name].[hash:8].css"
-  });
-  return {
+    filename: "static/styles/global.css"
+      })
+    ],
     module: {
       rules: [
         {
           test: /\.(scss|css)$/,
           include,
           exclude,
-          use: plugin.extract({
-            use: [
-              {
-                loader: "css-loader"
-              },
-              {
-                loader: "sass-loader"
-              },
-              autoprefix()
-            ]
-          })
+          use: [
+            {
+              loader: MiniCssExtractPlugin.loader,
+              options: {
+                // you can specify a publicPath here
+                // by default it use publicPath in webpackOptions.output
+                // publicPath: '../'
+              }
+            },
+            {
+              loader: "css-loader"
+            },
+            {
+              loader: "sass-loader"
+            },
+            autoprefix()
+          ]
         }
       ]
     },
-    plugins: [plugin]
   };
 };
 
 exports.extractCSS = ({ include, exclude }) => {
-  const plugin = new ExtractTextPlugin({
+  return {
+    plugins: [
+      new MiniCssExtractPlugin({
     // `allChunks` is needed to extract from extracted chunks as well
     allChunks: true,
     filename: "static/styles/[name].[hash:8].css"
-  });
-  return {
+      })
+    ],
     module: {
       rules: [
         {
           test: /\.(scss|css)$/,
           include,
           exclude,
-          use: plugin.extract({
-            use: [
-              {
-                loader: "css-loader",
-                options: {
-                  modules: true,
-                  localIdentName: "[local]_[hash:base64]"
-                }
-              },
-              {
-                loader: "sass-loader"
-              },
-              autoprefix()
-            ]
-          })
+          use: [
+            {
+              loader: MiniCssExtractPlugin.loader,
+              options: {
+                // you can specify a publicPath here
+                // by default it use publicPath in webpackOptions.output
+                // publicPath: '../'
+              }
+            },
+            {
+              loader: "css-loader",
+              options: {
+                modules: true,
+                localIdentName: "[local]_[hash:base64:8]"
+              }
+            },
+            {
+              loader: "sass-loader"
+            },
+            autoprefix()
+          ]
         }
       ]
     },
-    plugins: [plugin]
   };
 };
 

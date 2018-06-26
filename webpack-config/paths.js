@@ -8,7 +8,19 @@ const PATHS = {
   globalCSS: path.resolve(__dirname, "../src/assets/styles"),
   cssModules: path.resolve(__dirname, "../src"),
   sharedComponentModules: path.resolve(__dirname, "../src/sharedComponents"),
-  build: path.resolve(__dirname, "../dist")
+  build: path.resolve(__dirname, "../dist"),
+  appCSSModules: apps => {
+    // Gets a name of current Apps
+    // Defines an entry point for Global CSS in each application
+    let paths = [];
+    apps.map(app_name => {
+      paths.push(
+        path.resolve(__dirname, `../src/${app_name}/app`)
+      );
+    });
+    return paths;
+  },
+  appGlobalModules: path.resolve(__dirname, "../src/shared/styles"),
 };
 
 module.exports = PATHS;
