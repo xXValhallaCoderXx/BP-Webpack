@@ -1,18 +1,9 @@
 # React JS + Webpack Build Config
 
-![alt text](https://brainhub.eu/static/media/reactjs-brainhub-development.9ea94b0d.png "React!")
-
-This is a basic React JS boilerplate, bootstrapped with a few other features to allow users to get up and going straight off the bat with a development enviroment, for quick prototyping.
-
-It makes use of Babel, to allow us to use ES6 and all the latest features which JS has to bring to the table.
-
+DESCRIPTION
 ## Features
 
 - **Hot Module Reloading**: HMR Ready - Keep application state while making live changes to your code!
-- **SASS**: Get Sassilicious straight out of the box
-- **CSS Modules**: Start building with CSS Module straight out of the box!
-- **CSS Extraction**: Projects CSS code is extracted into a `.css` file
-- **Build Optimizations**: Tree shaking, minification, image optimizations etc
 
 ## Getting Started
 
