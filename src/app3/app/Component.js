@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import styles from "./cssModule.scss";
+import styles from "./app3.module.scss";
 class PageThree extends Component {
   render() {
     return <div>

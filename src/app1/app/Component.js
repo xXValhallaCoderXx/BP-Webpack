@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import styles from "./cssModule.scss";
+import styles from "./test.module.scss";
 //import Header from "../sharedCompoents/Header";
 
 class Application extends Component {

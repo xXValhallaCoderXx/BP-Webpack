@@ -26,19 +26,19 @@ const productionConfig = merge([
         title: `Storyfier`,
         template: PATHS.appHtmlTemplate("app1"),
         filename: "app1.html",
-        chunks: ["manifest", "vendor" ,"app1"]
+        chunks: ["global-styles" ,"manifest", "vendor" ,"app1"]
       }),
       new HtmlWebpackPlugin({
         title: `Storyfier`,
         template: PATHS.appHtmlTemplate("app2"),
         filename: "app2.html",
-        chunks: ["manifest", "vendor" ,"app2"]
+        chunks: ["global-styles" ,"manifest", "vendor" ,"app2"]
       }),
       new HtmlWebpackPlugin({
         title: `Storyfier`,
         template: PATHS.appHtmlTemplate("app3"),
         filename: "app3.html",
-        chunks: ["manifest", "vendor" ,"app3"]
+        chunks: ["global-styles" ,"manifest", "vendor" ,"app3"]
       })
     ],
     optimization: {
@@ -74,8 +74,7 @@ const productionConfig = merge([
       safe: true
     }
   }),
-  //parts.extractGlobalCSS({ include: PATHS.appGlobalModules, exclude: path.resolve(__dirname, "../src/app/**") }),
-  parts.extractCSS({ include: PATHS.appCSSModules2 }),
+  parts.extractCSS(),
 
   parts.loadImages({
     options: {

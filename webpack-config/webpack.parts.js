@@ -1,4 +1,5 @@
 const webpack = require("webpack");
+const path = require("path");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const CleanWebpackPlugin = require("clean-webpack-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
@@ -115,7 +116,7 @@ exports.cssModules = ({ include, exclude } = {}) => ({
   }
 });
 
-exports.extractGlobalCSS = ({ include, exclude }) => {
+exports.extractGlobalCSS = () => {
   return {
     plugins: [
       new MiniCssExtractPlugin({
@@ -127,9 +128,9 @@ exports.extractGlobalCSS = ({ include, exclude }) => {
     module: {
       rules: [
         {
-          test: /\.(scss|css)$/,
-          include,
-          exclude,
+          test: /^((?!\.module).)*scss$/,
+          include: path.resolve(__dirname, "../src/shared"),
+          exclude: [path.resolve(__dirname, "../src/app1"),path.resolve(__dirname, "../src/app2"),path.resolve(__dirname, "../src/app3")],
           use: [
             {
               loader: MiniCssExtractPlugin.loader,
@@ -153,7 +154,7 @@ exports.extractGlobalCSS = ({ include, exclude }) => {
   };
 };
 
-exports.extractCSS = ({ include }) => {
+exports.extractCSS = () => {
   return {
     plugins: [
       new MiniCssExtractPlugin({
@@ -165,9 +166,31 @@ exports.extractCSS = ({ include }) => {
     module: {
       rules: [
         {
-          test: /\.(scss|css)$/,
-          include,
-          exclude: [/\.shared/],
+          test:  /^((?!\.module).)*scss$/,
+          include: path.resolve(__dirname, "../src/shared"),
+          exclude: [path.resolve(__dirname, "../src/app1"),path.resolve(__dirname, "../src/app2"),path.resolve(__dirname, "../src/app3")],
+          use: [
+            {
+              loader: MiniCssExtractPlugin.loader,
+              options: {
+                // you can specify a publicPath here
+                // by default it use publicPath in webpackOptions.output
+                // publicPath: '../'
+              }
+            },
+            {
+              loader: "css-loader"
+            },
+            {
+              loader: "sass-loader"
+            },
+            autoprefix()
+          ]
+        },
+        {
+          test: /\.module.scss$/,
+          include: [path.resolve(__dirname, "../src/app1"),path.resolve(__dirname, "../src/app2"),path.resolve(__dirname, "../src/app3")],
+          exclude: path.resolve(__dirname, "../src/shared"),
           use: [
             {
               loader: MiniCssExtractPlugin.loader,

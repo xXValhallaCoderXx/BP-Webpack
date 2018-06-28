@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import styles from "./cssModule.scss";
+import styles from "./app2.module.scss";
 class PageTwo extends Component {
   render() {
     return <div>
