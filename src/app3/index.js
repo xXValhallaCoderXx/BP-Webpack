@@ -4,7 +4,7 @@ if(process.env.NODE_ENV !== "production"){
 import React from "react";
 import ReactDOM from "react-dom";
 import App from "./app/Component";
-
+import "lodash";
 const root = document.getElementById("render-app3");
 
 const render = Component => {

@@ -26,36 +26,24 @@ const productionConfig = merge([
         title: `Storyfier`,
         template: PATHS.appHtmlTemplate("app1"),
         filename: "app1.html",
-        chunks: ["global-styles" ,"manifest", "vendor" ,"app1"]
+
       }),
       new HtmlWebpackPlugin({
         title: `Storyfier`,
         template: PATHS.appHtmlTemplate("app2"),
         filename: "app2.html",
-        chunks: ["global-styles" ,"manifest", "vendor" ,"app2"]
+//chunks: ["global-styles" ,"manifest", "vendor" ,"app2"]
       }),
       new HtmlWebpackPlugin({
         title: `Storyfier`,
         template: PATHS.appHtmlTemplate("app3"),
         filename: "app3.html",
-        chunks: ["global-styles" ,"manifest", "vendor" ,"app3"]
+        //chunks: ["global-styles" ,"manifest", "vendor" ,"app3"]
       })
     ],
     optimization: {
       splitChunks: {
-        cacheGroups: {
-          commons: {
-            test: /[\\/]node_modules[\\/]/,
-            name: "vendor",
-            chunks: "all"
-          },
-          styles: {
-            name: "styles",
-            test: /\.css$/,
-            chunks: "all",
-            enforce: true
-          }
-        }
+        chunks : "all"
       },
       runtimeChunk: {
         name: "manifest"
