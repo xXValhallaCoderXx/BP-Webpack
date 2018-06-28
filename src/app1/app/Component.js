@@ -21,7 +21,7 @@ class Application extends Component {
         <button className={styles.testClass}>CSS Module</button>
         <hr />
         <h3>Lazy Load Example</h3>
-        <button onClick={() => this.lazyLoad()}>Lazy Load Button</button>
+        {/* <button onClick={() => this.lazyLoad()}>Lazy Load Button</button> */}
         <div style={{ marginTop: 10 }}>
           Dynamically Loaded: {this.state.someData}
         </div>
@@ -37,15 +37,15 @@ class Application extends Component {
     this.setState({ count: this.state.count + 1})
   }
 
-  lazyLoad() {
-    import("./LazyLoad")
-      .then(lazy => {
-        this.setState({ someData: lazy.default });
-      })
-      .catch(err => {
-        console.error(err);
-      });
-  }
+  // lazyLoad() {
+  //   import("./LazyLoad")
+  //     .then(lazy => {
+  //       this.setState({ someData: lazy.default });
+  //     })
+  //     .catch(err => {
+  //       console.error(err);
+  //     });
+  // }
 }
 
 export default Application;

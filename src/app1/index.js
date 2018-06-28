@@ -1,4 +1,4 @@
-import "../shared/modules";
+// import "../shared/modules";
 import React from "react";
 import ReactDOM from "react-dom";
 import App from "./app/Component";

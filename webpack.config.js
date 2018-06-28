@@ -54,9 +54,8 @@ module.exports = env => {
   ];
 
   if (mode === "production") {
-    return merge([commonConfig, productionConfig, { mode }].concat(pages));
+    return merge(commonConfig, productionConfig, { mode });
   } else {
-    console.log("WE ARE HERE: ", mode);
     return merge(commonConfig, developmentConfig(env.application), { mode });
   }
 };

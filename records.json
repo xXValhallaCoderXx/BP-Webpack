@@ -147,13 +147,15 @@
       "css node_modules/css-loader/index.js??ref--6-1!node_modules/sass-loader/lib/loader.js!node_modules/postcss-loader/lib/index.js??ref--6-3!src/app3/app/cssModule.scss 0": 0,
       "css node_modules/css-loader/index.js??ref--6-1!node_modules/sass-loader/lib/loader.js!node_modules/postcss-loader/lib/index.js??ref--6-3!src/app2/app/cssModule.scss 0": 1,
       "css node_modules/css-loader/index.js??ref--6-1!node_modules/sass-loader/lib/loader.js!node_modules/postcss-loader/lib/index.js??ref--6-3!src/app1/app/cssModule.scss 0": 2,
-      "css node_modules/css-loader/index.js!node_modules/sass-loader/lib/loader.js!node_modules/postcss-loader/lib/index.js??ref--5-3!src/shared/styles/styles.scss 0": 3
+      "css node_modules/css-loader/index.js!node_modules/sass-loader/lib/loader.js!node_modules/postcss-loader/lib/index.js??ref--5-3!src/shared/styles/styles.scss 0": 3,
+      "multi src/app1 src/app2 src/app3": 4
     },
     "usedIds": {
       "0": 0,
       "1": 1,
       "2": 2,
       "3": 3,
+      "4": 4,
       "./node_modules/fbjs/lib/EventListener.js": "./node_modules/fbjs/lib/EventListener.js",
       "./node_modules/fbjs/lib/ExecutionEnvironment.js": "./node_modules/fbjs/lib/ExecutionEnvironment.js",
       "./node_modules/fbjs/lib/containsNode.js": "./node_modules/fbjs/lib/containsNode.js",
@@ -234,7 +236,8 @@
       "app1": 5,
       "app3": 3,
       "app2": 4,
-      "vendor-file": 6
+      "vendor-file": 6,
+      "main": 0
     },
     "bySource": {
       "0 node_modules/babel-loader/lib/index.js!src/component.js ./LazyLoad": 0,
@@ -250,8 +253,7 @@
       2,
       3,
       4,
-      5,
-      6
+      5
     ]
   },
   "extract-text-webpack-plugin node_modules/extract-text-webpack-plugin/dist node_modules/css-loader/index.js??ref--5-1!node_modules/postcss-loader/lib/index.js??ref--5-2!src/assets/styles/styles.css": [
