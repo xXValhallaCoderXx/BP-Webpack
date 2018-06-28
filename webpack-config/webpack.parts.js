@@ -153,7 +153,7 @@ exports.extractGlobalCSS = ({ include, exclude }) => {
   };
 };
 
-exports.extractCSS = ({ include, exclude }) => {
+exports.extractCSS = ({ include }) => {
   return {
     plugins: [
       new MiniCssExtractPlugin({
@@ -167,7 +167,7 @@ exports.extractCSS = ({ include, exclude }) => {
         {
           test: /\.(scss|css)$/,
           include,
-          exclude,
+          exclude: [/\.shared/],
           use: [
             {
               loader: MiniCssExtractPlugin.loader,

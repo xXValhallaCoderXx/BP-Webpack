@@ -14,6 +14,7 @@ const productionConfig = merge([
       app1: path.resolve(__dirname, "../src/app1"),
       app2: path.resolve(__dirname, "../src/app2"),
       app3: path.resolve(__dirname, "../src/app3"),
+      ['global-styles']: path.resolve(__dirname, "../src/shared/styles/index.scss")
     },
     output: {
       publicPath: "/", // Need this if you got Source maps on for Images to load

@@ -259,6 +259,7 @@
       "0 node_modules/babel-loader/lib/index.js!src/app1/app/Component.js ./LazyLoad": 6
     },
     "usedIds": [
+      0,
       1,
       2,
       3,
@@ -609,7 +610,7 @@
         "byName": {},
         "bySource": {},
         "usedIds": [
-          0
+          1
         ]
       }
     }
@@ -624,7 +625,7 @@
         "byName": {},
         "bySource": {},
         "usedIds": [
-          0
+          1
         ]
       }
     }
@@ -639,7 +640,7 @@
         "byName": {},
         "bySource": {},
         "usedIds": [
-          0
+          1
         ]
       }
     }
