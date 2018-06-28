@@ -180,6 +180,7 @@ exports.extractCSS = ({ include, exclude }) => {
             {
               loader: "css-loader",
               options: {
+                importLoaders: 1,
                 modules: true,
                 localIdentName: "[local]_[hash:base64:8]"
               }

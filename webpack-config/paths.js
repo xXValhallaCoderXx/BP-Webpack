@@ -1,13 +1,7 @@
 const path = require("path");
 
 const PATHS = {
-  app: path.resolve(__dirname, "../src"),
-  app1: path.resolve(__dirname, "../src/app1"),
-  app2: path.resolve(__dirname, "../src/app2"),
-  app3: path.resolve(__dirname, "../src/app3"),
-  globalCSS: path.resolve(__dirname, "../src/assets/styles"),
   cssModules: path.resolve(__dirname, "../src"),
-  sharedComponentModules: path.resolve(__dirname, "../src/sharedComponents"),
   build: path.resolve(__dirname, "../dist"),
   appCSSModules: apps => {
     // Gets a name of current Apps
@@ -34,7 +28,8 @@ const PATHS = {
     // Defines an entry point for Global CSS in each application
     return path.resolve(__dirname, `../src/${app_name}/index.html`)
   },
-  appGlobalModules: path.resolve(__dirname, "../src/shared/styles"),
+  appGlobalModules: path.resolve(__dirname, "../src/shared/styles/index.scss"),
+  appCSSModules2: path.resolve(__dirname, "../src"),
 };
 
 module.exports = PATHS;

@@ -1,8 +1,10 @@
 const path = require("path");
+const glob = require("glob");
 const merge = require("webpack-merge");
 const PATHS = require("./paths");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const parts = require("./webpack.parts");
+
 
 const productionConfig = merge([
   parts.clean(PATHS.build),
@@ -11,7 +13,7 @@ const productionConfig = merge([
     entry: {
       app1: path.resolve(__dirname, "../src/app1"),
       app2: path.resolve(__dirname, "../src/app2"),
-      app3: path.resolve(__dirname, "../src/app3")
+      app3: path.resolve(__dirname, "../src/app3"),
     },
     output: {
       publicPath: "/", // Need this if you got Source maps on for Images to load
@@ -21,7 +23,21 @@ const productionConfig = merge([
     plugins: [
       new HtmlWebpackPlugin({
         title: `Storyfier`,
-        template: PATHS.appHtmlTemplate("app1")
+        template: PATHS.appHtmlTemplate("app1"),
+        filename: "app1.html",
+        chunks: ["manifest", "vendor" ,"app1"]
+      }),
+      new HtmlWebpackPlugin({
+        title: `Storyfier`,
+        template: PATHS.appHtmlTemplate("app2"),
+        filename: "app2.html",
+        chunks: ["manifest", "vendor" ,"app2"]
+      }),
+      new HtmlWebpackPlugin({
+        title: `Storyfier`,
+        template: PATHS.appHtmlTemplate("app3"),
+        filename: "app3.html",
+        chunks: ["manifest", "vendor" ,"app3"]
       })
     ],
     optimization: {
@@ -57,8 +73,8 @@ const productionConfig = merge([
       safe: true
     }
   }),
-  //parts.extractGlobalCSS({ include: PATHS.appGlobalModules }),
-  parts.extractCSS({ include: PATHS.appCSSModules(["app1", "app2", "app3"]) }),
+  //parts.extractGlobalCSS({ include: PATHS.appGlobalModules, exclude: path.resolve(__dirname, "../src/app/**") }),
+  parts.extractCSS({ include: PATHS.appCSSModules2 }),
 
   parts.loadImages({
     options: {

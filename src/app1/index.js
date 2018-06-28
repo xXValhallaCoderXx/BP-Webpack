@@ -1,4 +1,6 @@
-// import "../shared/modules";
+if(process.env.NODE_ENV !== "production"){
+  require("../../shared/styles/index.scss");
+}
 import React from "react";
 import ReactDOM from "react-dom";
 import App from "./app/Component";
