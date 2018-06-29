@@ -5,7 +5,7 @@ const CleanWebpackPlugin = require("clean-webpack-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const UglifyWebpackPlugin = require("uglifyjs-webpack-plugin");
 const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
-const cssnano = require("cssnano");
+const PATHS = require("./paths");
 
 exports.setFreeVariable = (key, value) => {
   const env = {};
@@ -80,22 +80,14 @@ exports.loadCSS = ({ include, exclude } = {}) => ({
     rules: [
       {
         test: /^((?!\.module).)*scss$/,
-        include: path.resolve(__dirname, "../../src/shared"),
-        exclude: [
-          path.resolve(__dirname, "../../src/app1"),
-          path.resolve(__dirname, "../../src/app2"),
-          path.resolve(__dirname, "../../src/app3")
-        ],
+        include: PATHS.sharedFolder,
+        exclude: PATHS.projectApps(),
         use: ["style-loader", "css-loader", "sass-loader"]
       },
       {
         test: /\.module.scss$/,
-        include: [
-          path.resolve(__dirname, "../../src/app1"),
-          path.resolve(__dirname, "../../src/app2"),
-          path.resolve(__dirname, "../../src/app3")
-        ],
-        exclude: path.resolve(__dirname, "../../src/shared"),
+        include: PATHS.projectApps(),
+        exclude: PATHS.sharedFolder,
         use: [
           {
             loader: "style-loader"
@@ -129,12 +121,8 @@ exports.extractCSS = () => {
       rules: [
         {
           test: /^((?!\.module).)*scss$/,
-          include: path.resolve(__dirname, "../../src/shared"),
-          exclude: [
-            path.resolve(__dirname, "../../src/app1"),
-            path.resolve(__dirname, "../../src/app2"),
-            path.resolve(__dirname, "../../src/app3")
-          ],
+          include: PATHS.sharedFolder,
+          exclude: PATHS.projectApps(),
           use: [
             {
               loader: MiniCssExtractPlugin.loader,
@@ -155,12 +143,8 @@ exports.extractCSS = () => {
         },
         {
           test: /\.module.scss$/,
-          include: [
-            path.resolve(__dirname, "../../src/app1"),
-            path.resolve(__dirname, "../../src/app2"),
-            path.resolve(__dirname, "../../src/app3")
-          ],
-          exclude: path.resolve(__dirname, "../../src/shared"),
+          include: PATHS.projectApps(),
+          exclude: PATHS.sharedFolder,
           use: [
             {
               loader: MiniCssExtractPlugin.loader,
