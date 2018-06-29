@@ -2,19 +2,23 @@ const path = require("path");
 const webpack = require("webpack");
 const merge = require("webpack-merge");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
+const PATHS = require("./paths");
 
 const parts = require("./webpack.parts");
 
-developmentConfig = currentApp =>
+developmentConfig = app =>
   merge([
     {
       entry: {
-        app: path.resolve(__dirname, `../../src/${currentApp}`)
+        app: path.resolve(__dirname, `../../src/${app}`)
       },
       plugins: [
         new HtmlWebpackPlugin({
           title: `Developing - `,
-          template: path.resolve(__dirname, `../../src/${currentApp}/index.html`)
+          template: path.resolve(
+            __dirname,
+            `../../src/${app}/index.html`
+          )
         }),
         new webpack.HotModuleReplacementPlugin()
       ]
@@ -25,7 +29,11 @@ developmentConfig = currentApp =>
       port: process.env.PORT
     }),
     parts.loadCSS(),
-    parts.loadImages()
+    parts.loadImages(),
+    parts.loadJavaScript({
+      include: PATHS.devAppEntry(app),
+      exclude: PATHS.nodeModules
+    })
   ]);
 
 module.exports = developmentConfig;

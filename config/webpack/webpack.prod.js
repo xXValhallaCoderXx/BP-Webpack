@@ -46,6 +46,10 @@ const productionConfig = merge([
       limit: 50000,
       name: "static/images/[name].[hash:8].[ext]"
     }
+  }),
+  parts.loadJavaScript({
+    include: PATHS.prodAppEntry,
+    exclude: PATHS.nodeModules
   })
 ]);
 
