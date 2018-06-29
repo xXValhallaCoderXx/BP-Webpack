@@ -42,60 +42,60 @@ exports.clean = path => ({
 
 exports.minifyJavaScript = () => ({
   optimization: {
-    minimizer: [new UglifyWebpackPlugin({ sourceMap: true })]
+    minimizer: [
+      new UglifyWebpackPlugin({
+        cache: true,
+        parallel: 4,
+        exclude: /\/node_modules/,
+        sourceMap: true
+      })
+    ]
   }
 });
 
 exports.minifyCSS = ({ options }) => ({
   plugins: [
     new OptimizeCSSAssetsPlugin({
-      cssProcessor: cssnano,
+      cssProcessor: require("cssnano"),
       cssProcessorOptions: options,
       canPrint: false
     })
   ]
 });
 
-exports.page = ({
-  path,
-  template,
-  title,
-  entry,
-  chunks
-} = {}) => ({
+exports.page = ({ path, template, title, entry, chunks } = {}) => ({
   entry,
   plugins: [
     new HtmlWebpackPlugin({
       filename: `${path}.html`,
       template,
       title,
-      chunks
     })
   ]
 });
 
 // CSS CONFIG
-
-exports.loadGlobalCSS = ({ include, exclude } = {}) => ({
+exports.loadCSS = ({ include, exclude } = {}) => ({
   module: {
     rules: [
       {
-        test: /\.(scss|css)$/,
-        include,
-        exclude,
+        test: /^((?!\.module).)*scss$/,
+        include: path.resolve(__dirname, "../../src/shared"),
+        exclude: [
+          path.resolve(__dirname, "../../src/app1"),
+          path.resolve(__dirname, "../../src/app2"),
+          path.resolve(__dirname, "../../src/app3")
+        ],
         use: ["style-loader", "css-loader", "sass-loader"]
-      }
-    ]
-  }
-});
-
-exports.cssModules = ({ include, exclude } = {}) => ({
-  module: {
-    rules: [
+      },
       {
-        test: /\.(scss|css)$/,
-        include,
-        exclude,
+        test: /\.module.scss$/,
+        include: [
+          path.resolve(__dirname, "../../src/app1"),
+          path.resolve(__dirname, "../../src/app2"),
+          path.resolve(__dirname, "../../src/app3")
+        ],
+        exclude: path.resolve(__dirname, "../../src/shared"),
         use: [
           {
             loader: "style-loader"
@@ -116,59 +116,25 @@ exports.cssModules = ({ include, exclude } = {}) => ({
   }
 });
 
-exports.extractGlobalCSS = () => {
+exports.extractCSS = () => {
   return {
     plugins: [
       new MiniCssExtractPlugin({
-    // `allChunks` is needed to extract from extracted chunks as well
-    allChunks: true,
-    filename: "static/styles/global.css"
+        // `allChunks` is needed to extract from extracted chunks as well
+        allChunks: true,
+        filename: "static/styles/[name].[hash:8].css"
       })
     ],
     module: {
       rules: [
         {
           test: /^((?!\.module).)*scss$/,
-          include: path.resolve(__dirname, "../src/shared"),
-          exclude: [path.resolve(__dirname, "../src/app1"),path.resolve(__dirname, "../src/app2"),path.resolve(__dirname, "../src/app3")],
-          use: [
-            {
-              loader: MiniCssExtractPlugin.loader,
-              options: {
-                // you can specify a publicPath here
-                // by default it use publicPath in webpackOptions.output
-                // publicPath: '../'
-              }
-            },
-            {
-              loader: "css-loader"
-            },
-            {
-              loader: "sass-loader"
-            },
-            autoprefix()
-          ]
-        }
-      ]
-    },
-  };
-};
-
-exports.extractCSS = () => {
-  return {
-    plugins: [
-      new MiniCssExtractPlugin({
-    // `allChunks` is needed to extract from extracted chunks as well
-    allChunks: true,
-    filename: "static/styles/[name].[hash:8].css"
-      })
-    ],
-    module: {
-      rules: [
-        {
-          test:  /^((?!\.module).)*scss$/,
-          include: path.resolve(__dirname, "../src/shared"),
-          exclude: [path.resolve(__dirname, "../src/app1"),path.resolve(__dirname, "../src/app2"),path.resolve(__dirname, "../src/app3")],
+          include: path.resolve(__dirname, "../../src/shared"),
+          exclude: [
+            path.resolve(__dirname, "../../src/app1"),
+            path.resolve(__dirname, "../../src/app2"),
+            path.resolve(__dirname, "../../src/app3")
+          ],
           use: [
             {
               loader: MiniCssExtractPlugin.loader,
@@ -189,8 +155,12 @@ exports.extractCSS = () => {
         },
         {
           test: /\.module.scss$/,
-          include: [path.resolve(__dirname, "../src/app1"),path.resolve(__dirname, "../src/app2"),path.resolve(__dirname, "../src/app3")],
-          exclude: path.resolve(__dirname, "../src/shared"),
+          include: [
+            path.resolve(__dirname, "../../src/app1"),
+            path.resolve(__dirname, "../../src/app2"),
+            path.resolve(__dirname, "../../src/app3")
+          ],
+          exclude: path.resolve(__dirname, "../../src/shared"),
           use: [
             {
               loader: MiniCssExtractPlugin.loader,
@@ -215,7 +185,7 @@ exports.extractCSS = () => {
           ]
         }
       ]
-    },
+    }
   };
 };
 

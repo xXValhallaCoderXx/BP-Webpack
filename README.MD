@@ -4,13 +4,10 @@
 
 - WIP
 
-## Getting Started
-
-Getting started is simple! The directions below will get you up and running to get hacking in no time!
-
 ### Prerequisites
 
-Ensure you to have the latest Node LTS ensured globally on your system, you can download it from [HERE](https://nodejs.org/en/).
+- Ensure you to have the latest Node LTS ensured globally on your system, you can download it from [HERE](https://nodejs.org/en/).
+- We suggest you use `yarn` though feel free to use `npm`
 
 ### Installing
 
@@ -20,10 +17,17 @@ Ensure you to have the latest Node LTS ensured globally on your system, you can 
 
 ## Development
 
-1. Run `npm start` or `yarn start --env.application app1` to start the development enviroment<br />
-2. Go to browser and visit: `localhost:8080`.
+1. Run `yarn start --env.app NAME_OF_APPLICATION` to start the development enviroment<br />
+2. The `NAME_OF_APPLICATION` will be the folder name of an application you have in `src` folder.
 
-This will start up a webpack dev server to allow for local development of your application.
+```
+/src
+    /dashboard
+    /settings
+    /shared
+```
+3. To run the `dashboard` app would required you to type: `yarn start --env.app dashboard`
+4. This will start up a webpack dev server on `localhost:8080`
 
 ## Todo
 - Dynamically Sort Chunks

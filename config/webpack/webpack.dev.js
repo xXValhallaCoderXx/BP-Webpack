@@ -2,7 +2,6 @@ const path = require("path");
 const webpack = require("webpack");
 const merge = require("webpack-merge");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
-const PATHS = require("./paths");
 
 const parts = require("./webpack.parts");
 
@@ -10,12 +9,12 @@ developmentConfig = currentApp =>
   merge([
     {
       entry: {
-        app: path.resolve(__dirname, `../src/${currentApp}`)
+        app: path.resolve(__dirname, `../../src/${currentApp}`)
       },
       plugins: [
         new HtmlWebpackPlugin({
           title: `Developing - `,
-          template: path.resolve(__dirname, `../src/${currentApp}/index.html`)
+          template: path.resolve(__dirname, `../../src/${currentApp}/index.html`)
         }),
         new webpack.HotModuleReplacementPlugin()
       ]
@@ -25,8 +24,7 @@ developmentConfig = currentApp =>
       host: process.env.HOST,
       port: process.env.PORT
     }),
-    parts.loadGlobalCSS({ include: PATHS.globalCSS }),
-    parts.cssModules({ include: PATHS.cssModules }),
+    parts.loadCSS(),
     parts.loadImages()
   ]);
 
