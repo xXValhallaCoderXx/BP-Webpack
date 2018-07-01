@@ -1,11 +1,10 @@
 const webpack = require("webpack");
-const path = require("path");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const CleanWebpackPlugin = require("clean-webpack-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const UglifyWebpackPlugin = require("uglifyjs-webpack-plugin");
 const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
-const PATHS = require("./paths");
+const PATHS = require("../paths");
 
 exports.setFreeVariable = (key, value) => {
   const env = {};

@@ -4,7 +4,7 @@ const merge = require("webpack-merge");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const PATHS = require("./paths");
 
-const parts = require("./webpack.parts");
+const parts = require("./utils/webpack.parts");
 
 developmentConfig = app =>
   merge([

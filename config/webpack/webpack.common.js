@@ -1,5 +1,5 @@
 const merge = require("webpack-merge");
-const parts = require("./webpack.parts");
+const parts = require("./utils/webpack.parts");
 const webpack = require("webpack");
 
 const commonConfig = merge([

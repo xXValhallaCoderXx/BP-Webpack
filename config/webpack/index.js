@@ -2,7 +2,7 @@ const merge = require("webpack-merge");
 const commonConfig = require("./webpack.common");
 const developmentConfig = require("./webpack.dev");
 const productionConfig = require("./webpack.prod");
-const pages = require("./pages");
+const pages = require("./utils/pages");
 
 module.exports = env => {
   console.log("** MODE ** ", env.target);
@@ -11,7 +11,7 @@ module.exports = env => {
   mode = target;
 
   if (mode === "production") {
-    return merge([productionConfig].concat(pages));
+    return merge([commonConfig, productionConfig].concat(pages));
   } else {
     return merge(commonConfig, developmentConfig(app), { mode });
   }

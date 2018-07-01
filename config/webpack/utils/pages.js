@@ -1,9 +1,11 @@
 const path = require("path");
 const parts = require("./webpack.parts");
+const { parseAppPath } = require("./page-parser");
+const pageJSON = require("./page-config.json");
 
 let pages = [];
 
-["app1", "app2", "app3"].map(app_name => {
+parseAppPath(pageJSON).map(app_name => {
   pages.push(
     parts.page({
       title: `Horangi - ${app_name[0].toUpperCase() + app_name.slice(1)}`,
@@ -13,7 +15,7 @@ let pages = [];
       // ),
       template: path.resolve(
         __dirname,
-        `../../src/${app_name}/index.html`
+        `../../../src/${app_name}/index.html`
       ),
       path: app_name,
       // chunks: [
@@ -27,7 +29,7 @@ let pages = [];
       //   "auth-lib"
       // ],
       entry: {
-        [`${app_name}`]: path.resolve(__dirname, `../../src/${app_name}`)
+        [`${app_name}`]: path.resolve(__dirname, `../../../src/${app_name}`)
       }
     })
   );
