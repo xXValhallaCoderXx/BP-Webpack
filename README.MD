@@ -29,7 +29,30 @@
 3. To run the `dashboard` app would required you to type: `yarn start --env.app dashboard`
 4. This will start up a webpack dev server on `localhost:8080`
 
+## Enviroment Variables
+In side of `config/env-vars.json` you can place keys for specific dev / production enviroments, in the following format.
+
+```
+{
+  "prod": {
+    "ENV_VAR": "PROD",
+    "TEST": "PROD2"
+  },
+  "stage": {
+    "ENV_VAR": "STAGE",
+    "TEST": "STAGE2"
+  },
+  "dev": {
+    "ENV_VAR": "DEV",
+    "TEST": "DEV2"
+  }
+}
+```
+1. Enter a `key value` pair in either of the 3 enviroments `dev, stage, prod`.
+2. It will be accessible on `process.env.MY_VAR` or directly as `MY_VAR` within the application
+
 ## Todo
 - Dynamically Sort Chunks
-- Try concat method of pafges
+- Clean up CLI
+- Clean up loose ends
 
