@@ -1,0 +1,14 @@
+{
+  "prod": {
+    "ENV_VAR": "PROD",
+    "TEST": "PROD2"
+  },
+  "stage": {
+    "ENV_VAR": "STAGE",
+    "TEST": "STAGE2"
+  },
+  "dev": {
+    "ENV_VAR": "DEV",
+    "TEST": "DEV2"
+  }
+}
