@@ -21,7 +21,7 @@
         "byName": {},
         "bySource": {},
         "usedIds": [
-          0
+          1
         ]
       }
     }
@@ -105,7 +105,11 @@
       "node_modules/webpack/buildin/global.js": "./node_modules/webpack/buildin/global.js",
       "node_modules/babel-loader/lib/index.js!src/app/actions/index.js": "./src/app/actions/index.js",
       "node_modules/babel-loader/lib/index.js!src/app/store/index.js": "./src/app/store/index.js",
-      "node_modules/babel-loader/lib/index.js!src/app/store/store.prod.js 2f494cd620598caaff3d3a7a68182809": "./src/app/store/store.prod.js"
+      "node_modules/babel-loader/lib/index.js!src/app/store/store.prod.js 2f494cd620598caaff3d3a7a68182809": "./src/app/store/store.prod.js",
+      "node_modules/react-redux/es/index.js 2d0b2db530afeb97b0eff1f8ba99a160": "./node_modules/react-redux/es/index.js",
+      "node_modules/redux/es/redux.js": "./node_modules/redux/es/redux.js",
+      "node_modules/babel-loader/lib/index.js!src/app/store/store.prod.js e06923319fdb716caa5273d0ae035205": "./src/app/store/store.prod.js",
+      "node_modules/babel-loader/lib/index.js!src/index.js 7349cf39025dbcb53066743ae4839885": "./src/index.js"
     },
     "usedIds": {
       "./node_modules/fbjs/lib/EventListener.js": "./node_modules/fbjs/lib/EventListener.js",
@@ -155,7 +159,8 @@
       "./node_modules/webpack/buildin/global.js": "./node_modules/webpack/buildin/global.js",
       "./src/app/actions/index.js": "./src/app/actions/index.js",
       "./src/app/store/index.js": "./src/app/store/index.js",
-      "./src/app/store/store.prod.js": "./src/app/store/store.prod.js"
+      "./src/app/store/store.prod.js": "./src/app/store/store.prod.js",
+      "./node_modules/redux/es/redux.js": "./node_modules/redux/es/redux.js"
     }
   },
   "chunks": {
@@ -329,7 +334,7 @@
         "byName": {},
         "bySource": {},
         "usedIds": [
-          1
+          0
         ]
       }
     }
@@ -350,7 +355,7 @@
         "byName": {},
         "bySource": {},
         "usedIds": [
-          1
+          0
         ]
       }
     }
