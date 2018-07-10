@@ -56,3 +56,16 @@ In side of `config/env-vars.json` you can place keys for specific dev / producti
 - Clean up CLI
 - Clean up loose ends
 
+
+## NOTE
+- In package.json `sideEffects: false` is required for a Webpack v4 flag so tree shaking works for react classes
+
+Look Into this
+```
+    [
+      "transform-es2015-classes",
+      {
+        "loose": true
+      }
+    ],
+```

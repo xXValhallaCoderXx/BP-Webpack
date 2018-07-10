@@ -1,6 +1,9 @@
 {
   "compact": false,
-  "plugins": ["syntax-dynamic-import"],
+  "plugins": [
+
+    "syntax-dynamic-import"
+  ],
   "presets": [
     [
       "env",
@@ -12,11 +15,8 @@
   ],
   "env": {
     "development": {
-      
       "plugins": ["react-hot-loader/babel"]
     },
-    "production": {
-      
-    }
+    "production": {}
   }
 }

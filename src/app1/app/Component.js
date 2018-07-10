@@ -1,7 +1,9 @@
 import React, { Component } from "react";
 import styles from "./test.module.scss";
-//import Header from "../sharedCompoents/Header";
 
+//import { bake, shake } from "./shake"; // Example to show Tree shaking in Action
+// import { Button, NewButton, CardFunction } from "./ReactLib";
+import { Button } from "./ReactLib";
 class Application extends Component {
   constructor(props) {
     super(props);
@@ -10,8 +12,10 @@ class Application extends Component {
       count: 0
     };
     this._increaseCount = this._increaseCount.bind(this);
+
   }
   render() {
+
     return (
       <div>
         <h3>Button Is Using A Global Styles</h3>
@@ -29,6 +33,9 @@ class Application extends Component {
         <h3>Counter to Display HMR</h3>
         <p>Count: {this.state.count}</p>
         <button onClick={this._increaseCount}>Increase</button>
+        <Button />
+        {/* <CardFunction /> */}
+        {/* <NewButton /> */}
       </div>
     );
   }

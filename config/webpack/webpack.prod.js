@@ -3,24 +3,32 @@ const merge = require("webpack-merge");
 const PATHS = require("./paths");
 const parts = require("./utils/webpack.parts");
 
-
 const productionConfig = merge([
   parts.clean(PATHS.build),
 
   {
     entry: {
-      ['global-styles']: path.resolve(__dirname, "../../src/shared/styles/index.scss")
+      ["global-styles"]: path.resolve(
+        __dirname,
+        "../../src/shared/styles/index.scss"
+      )
     },
     output: {
       publicPath: "/", // Need this if you got Source maps on for Images to load
       filename: "static/js/[name].[chunkhash:8].js",
       chunkFilename: "static/js/[name].[chunkhash:8].js"
     },
-    plugins: [
-    ],
+    // plugins: [
+    // ],
+    stats: {
+      all: undefined,
+      children: false,
+      modules: false,
+    },
+    mode: "production",
     optimization: {
       splitChunks: {
-        chunks : "all"
+        chunks: "all"
       },
       runtimeChunk: {
         name: "manifest"
