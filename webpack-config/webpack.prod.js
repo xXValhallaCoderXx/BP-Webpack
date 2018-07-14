@@ -24,23 +24,15 @@ productionConfig = app =>
       },
       optimization: {
         splitChunks: {
-          cacheGroups: {
-            commons: {
-              test: /[\\/]node_modules[\\/]/,
-              name: "vendor",
-              chunks: "all"
-            }
-          }
+          chunks: "all"
         },
         runtimeChunk: {
           name: "manifest"
         }
       },
-      recordsPath: path.join(__dirname, "records.json")
+      recordsPath: path.join(__dirname, "../dist/records.json")
     },
-    // parts.generateSourceMaps({ type: "source-map" }),
-    parts.extractGlobalCSS({ include: PATHS.globalCSS }),
-    parts.extractCSS({ include: PATHS.cssModules }),
+    parts.extractCSS({ globalInclude: PATHS.globalCSS, moduleinclude: PATHS.cssModules }),
 
     parts.loadImages({
       options: {
