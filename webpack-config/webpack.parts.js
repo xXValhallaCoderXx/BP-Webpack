@@ -5,17 +5,15 @@ const UglifyWebpackPlugin = require("uglifyjs-webpack-plugin");
 const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
 const cssnano = require("cssnano");
 
-exports.setFreeVariable = (key, value) => {
-  const env = {};
-  env[key] = JSON.stringify(value);
-  return {
-    plugins: [new webpack.DefinePlugin(env)]
-  };
-};
 
-// DEVELOPMENT CONFIGS
+/********************
+ * DEVELOPMENT CONFIGS
+    - Functions below are for helping with Development Process
+
+********************/
 
 exports.devServer = ({ host, port } = {}) => ({
+  // Handles the WDS for Development
   devServer: {
     stats: "errors-only",
     hotOnly: true,
@@ -29,22 +27,30 @@ exports.devServer = ({ host, port } = {}) => ({
 });
 
 exports.generateSourceMaps = ({ type }) => ({
+  // Handles the type of Source map to use
   devtool: type
 });
 
-// PRODUCTION CONFIGS
+/********************
+ * BUILD CONFIGS
+    - Functions below are for helping with Building / Deployment
+
+********************/
 
 exports.clean = path => ({
+  // Clean the current build folder to ensure to old files are leftover
   plugins: [new CleanWebpackPlugin([path], { allowExternal: true })]
 });
 
 exports.minifyJavaScript = () => ({
+  // Minify JS Code
   optimization: {
     minimizer: [new UglifyWebpackPlugin({ sourceMap: true })]
   }
 });
 
 exports.minifyCSS = ({ options }) => ({
+  // Minify CSS Code
   plugins: [
     new OptimizeCSSAssetsPlugin({
       cssProcessor: cssnano,
@@ -54,8 +60,61 @@ exports.minifyCSS = ({ options }) => ({
   ]
 });
 
-// CSS CONFIG
+/********************
+ * UTIL FUNCTIONS
+    - Functions below provide extra utilities for either enviroment
 
+********************/
+
+
+exports.setFreeVariable = (key, value) => {
+  // Sets a global variable which can be accessed throughout the app
+  const env = {};
+  env[key] = JSON.stringify(value);
+  return {
+    plugins: [new webpack.DefinePlugin(env)]
+  };
+};
+
+/********************
+ * LOADERS
+    - Various loader functions for different uses
+
+********************/
+
+// Javascript Loader
+exports.loadJavaScript = ({ include, exclude } = {}) => ({
+  module: {
+    rules: [
+      {
+        test: /\.js$/,
+        include,
+        exclude,
+        use: "babel-loader"
+      }
+    ]
+  }
+});
+
+// Image Loader
+exports.loadImages = ({ include, exclude, options } = {}) => ({
+  module: {
+    rules: [
+      {
+        test: /\.(png|jpg|svg|gif)$/,
+        include,
+        exclude,
+        use: {
+          loader: "url-loader",
+          options
+        }
+      }
+    ]
+  }
+});
+
+
+// CSS Loader for global Stylesheets
 exports.loadGlobalCSS = ({ include, exclude } = {}) => ({
   module: {
     rules: [
@@ -69,6 +128,7 @@ exports.loadGlobalCSS = ({ include, exclude } = {}) => ({
   }
 });
 
+// CSS Loader for CSS Modules
 exports.cssModules = ({ include, exclude } = {}) => ({
   module: {
     rules: [
@@ -96,6 +156,7 @@ exports.cssModules = ({ include, exclude } = {}) => ({
   }
 });
 
+// Extract CSS
 exports.extractGlobalCSS = ({ include, exclude }) => {
   const plugin = new ExtractTextPlugin({
     // `allChunks` is needed to extract from extracted chunks as well
@@ -168,38 +229,5 @@ autoprefix = () => ({
   loader: "postcss-loader",
   options: {
     plugins: () => [require("autoprefixer")()]
-  }
-});
-
-// IMAGE CONFIGS
-
-exports.loadImages = ({ include, exclude, options } = {}) => ({
-  module: {
-    rules: [
-      {
-        test: /\.(png|jpg|svg)$/,
-        include,
-        exclude,
-        use: {
-          loader: "url-loader",
-          options
-        }
-      }
-    ]
-  }
-});
-
-// JAVASCRIPT CONFIGS
-
-exports.loadJavaScript = ({ include, exclude } = {}) => ({
-  module: {
-    rules: [
-      {
-        test: /\.js$/,
-        include,
-        exclude,
-        use: "babel-loader"
-      }
-    ]
   }
 });

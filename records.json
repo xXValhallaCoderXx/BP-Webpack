@@ -21,7 +21,7 @@
         "byName": {},
         "bySource": {},
         "usedIds": [
-          1
+          0
         ]
       }
     }
@@ -171,13 +171,14 @@
     },
     "bySource": {
       "0 node_modules/babel-loader/lib/index.js!src/component.js ./LazyLoad": 0,
-      "0 node_modules/babel-loader/lib/index.js!src/app/component.js ./LazyLoad": 0
+      "0 node_modules/babel-loader/lib/index.js!src/app/component.js ./LazyLoad": 0,
+      "0 node_modules/babel-loader/lib/index.js!src/app/index.js ./lazyLoad": 4
     },
     "usedIds": [
-      0,
       1,
       2,
-      3
+      3,
+      4
     ]
   },
   "extract-text-webpack-plugin node_modules/extract-text-webpack-plugin/dist node_modules/css-loader/index.js??ref--5-1!node_modules/postcss-loader/lib/index.js??ref--5-2!src/assets/styles/styles.css": [
@@ -334,7 +335,7 @@
         "byName": {},
         "bySource": {},
         "usedIds": [
-          0
+          1
         ]
       }
     }
@@ -355,7 +356,7 @@
         "byName": {},
         "bySource": {},
         "usedIds": [
-          0
+          1
         ]
       }
     }

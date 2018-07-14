@@ -40,7 +40,7 @@ class Application extends Component {
   }
 
   lazyLoad() {
-    import("./LazyLoad")
+    import("./lazyLoad")
       .then(lazy => {
         this.setState({ someData: lazy.default });
       })
