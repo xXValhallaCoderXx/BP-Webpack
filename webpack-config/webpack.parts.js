@@ -1,10 +1,9 @@
 const webpack = require("webpack");
-const ExtractTextPlugin = require("extract-text-webpack-plugin");
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const CleanWebpackPlugin = require("clean-webpack-plugin");
 const UglifyWebpackPlugin = require("uglifyjs-webpack-plugin");
 const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
 const cssnano = require("cssnano");
-
 
 /********************
  * DEVELOPMENT CONFIGS
@@ -66,7 +65,6 @@ exports.minifyCSS = ({ options }) => ({
 
 ********************/
 
-
 exports.setFreeVariable = (key, value) => {
   // Sets a global variable which can be accessed throughout the app
   const env = {};
@@ -113,7 +111,6 @@ exports.loadImages = ({ include, exclude, options } = {}) => ({
   }
 });
 
-
 // CSS Loader for global Stylesheets
 exports.loadGlobalCSS = ({ include, exclude } = {}) => ({
   module: {
@@ -157,71 +154,61 @@ exports.cssModules = ({ include, exclude } = {}) => ({
 });
 
 // Extract CSS
-exports.extractGlobalCSS = ({ include, exclude }) => {
-  const plugin = new ExtractTextPlugin({
-    // `allChunks` is needed to extract from extracted chunks as well
-    allChunks: true,
-    filename: "static/styles/[name].[hash:8].css"
-  });
+exports.extractCSS = ({ globalInclude, moduleinclude }) => {
   return {
+    plugins: [
+      new MiniCssExtractPlugin({
+        filename: "static/styles/[name].[hash:8].css"
+      })
+    ],
     module: {
       rules: [
         {
-          test: /\.(scss|css)$/,
-          include,
-          exclude,
-          use: plugin.extract({
-            use: [
-              {
-                loader: "css-loader",
-              },
-              {
-                loader: "sass-loader"
-              },
-              autoprefix()
-            ]
-          })
-        }
-      ]
-    },
-    plugins: [plugin]
-  };
-};
-
-
-
-exports.extractCSS = ({ include, exclude }) => {
-  const plugin = new ExtractTextPlugin({
-    // `allChunks` is needed to extract from extracted chunks as well
-    allChunks: true,
-    filename: "static/styles/[name].[hash:8].css"
-  });
-  return {
-    module: {
-      rules: [
+          test: /^((?!\.module).)*scss$/,
+          include: globalInclude,
+          //exclude: PATHS.prodAppEntry,
+          use: [
+            {
+              loader: MiniCssExtractPlugin.loader,
+              options: {
+                // you can specify a publicPath here
+                // by default it use publicPath in webpackOptions.output
+                // publicPath: '../'
+              }
+            },
+            {
+              loader: "css-loader"
+            },
+            {
+              loader: "sass-loader"
+            },
+            autoprefix()
+          ]
+        },
         {
-          test: /\.(scss|css)$/,
-          include,
-          exclude,
-          use: plugin.extract({
-            use: [
-              {
-                loader: "css-loader",
-                options: {
-                  modules: true,
-                  localIdentName: "[local]_[hash:base64]"
-                }
-              },
-              {
-                loader: "sass-loader"
-              },
-              autoprefix()
-            ]
-          })
+          test: /\.module.scss$/,
+          include: moduleinclude,
+          //exclude: PATHS.subModuleShared,
+          use: [
+            {
+              loader: MiniCssExtractPlugin.loader
+            },
+            {
+              loader: "css-loader",
+              options: {
+                importLoaders: 1,
+                modules: true,
+                localIdentName: "[local]_[hash:base64:8]"
+              }
+            },
+            {
+              loader: "sass-loader"
+            },
+            autoprefix()
+          ]
         }
       ]
-    },
-    plugins: [plugin]
+    }
   };
 };
 

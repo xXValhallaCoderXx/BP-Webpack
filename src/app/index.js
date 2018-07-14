@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { increaseCounter } from "./actions";
 
-import styles from "./cssModule.scss";
+import styles from "./styles.module.scss";
 
 class Application extends Component {
   constructor(props) {
@@ -65,4 +65,7 @@ function mapStateToProps(state) {
   };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Application);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Application);
