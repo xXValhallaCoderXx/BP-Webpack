@@ -3,7 +3,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 import { AppContainer } from "react-hot-loader";
 import { bake } from "./app/shake";
-import App from "./app/component";
+import App from "./app";
 
 const root = document.getElementById("render-app");
 bake();
@@ -15,8 +15,7 @@ const render = Component => {
 render(App);
 
 if (module.hot) {
-  module.hot.accept("./app/component", () => {
+  module.hot.accept("./app", () => {
     render(App);
-    render(require("./app/component"));
   });
 }
