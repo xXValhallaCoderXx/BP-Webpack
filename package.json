@@ -6,8 +6,8 @@
   "author": "xXValhallaMonkXx <renate.gouveia@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "start": "webpack-dev-server --env.target development",
-    "build": "webpack --env.target production"
+    "start": "webpack-dev-server --env.target development --config ./webpack-config/index.js",
+    "build": "webpack --env.target production --config ./webpack-config/index.js"
   },
   "devDependencies": {
     "autoprefixer": "^8.6.3",
