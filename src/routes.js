@@ -2,9 +2,9 @@ import React, { Fragment } from "react";
 import { Route, Router } from "react-router-dom";
 import createHistory from "history/createBrowserHistory";
 
-import PageOne from "./app/pageOne";
-import PageTwo from "./app/pageTwo";
-import PageThree from "./app/pageThree";
+import PageOne from "./app/page_one";
+import PageTwo from "./app/page_two";
+import PageThree from "./app/page_three";
 
 const history = createHistory();
 

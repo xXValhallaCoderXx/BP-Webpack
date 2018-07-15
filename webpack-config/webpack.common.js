@@ -4,6 +4,7 @@ const PATHS = require("./paths");
 const path = require("path");
 const parts = require("./webpack.parts");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
+const config = require("../env-keys.json");
 
 commonConfig = app =>
   merge([
@@ -20,7 +21,10 @@ commonConfig = app =>
       ]
     },
     parts.loadJavaScript({ include: PATHS.app }),
-    parts.setFreeVariable("SOME_VAR", "This is from the freeee variables")
+    // Set Env Variable indivdually
+    parts.setFreeVariable("SOME_VAR", "This is from the freeee variables"),
+    // Will read from env-vars.json and set Variables for Production/Development
+    parts.setFreeVariables(config[app.target])
   ]);
 
 module.exports = commonConfig;

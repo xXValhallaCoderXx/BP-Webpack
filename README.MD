@@ -47,3 +47,10 @@ The build script will run several optimizations and preapre a single `.html` fil
 1. Run `yarn build` or `npm run build`
 2 Files will output in the `build` directory
 
+## Transpile Targets
+
+### CSS Vendor Prefix
+- Define browser targets in `./browserslistc` file
+
+### JS Tanspilation
+- Define browsers in `.babelrc` file

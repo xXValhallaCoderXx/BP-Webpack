@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 import { Link } from "react-router-dom";
 
 import styles from "./style.module.scss";
@@ -10,6 +10,6 @@ export default class Header extends Component {
         <Link to="/two">Page Two</Link>
         <Link to="/three">Page THree</Link>
       </div>
-    )
+    );
   }
 }
