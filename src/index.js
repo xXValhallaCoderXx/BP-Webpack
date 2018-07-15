@@ -4,7 +4,7 @@ import ReactDOM from "react-dom";
 import { AppContainer } from "react-hot-loader";
 import { Provider } from "react-redux";
 
-import configureStore from "./app/store";
+import configureStore from "./config/store";
 import { bake } from "./app/shake"; // Example to show Tree shaking in Action
 import App from "./app";
 
