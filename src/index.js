@@ -1,21 +1,3 @@
-import "./assets/styles/styles.scss";
-import React from "react";
-import ReactDOM from "react-dom";
-import { AppContainer } from "react-hot-loader";
-import { bake } from "./app/shake";
-import App from "./app";
+import component from "./component";
 
-const root = document.getElementById("render-app");
-bake();
-
-const render = Component => {
-  ReactDOM.render(<App />, root);
-};
-
-render(App);
-
-if (module.hot) {
-  module.hot.accept("./app", () => {
-    render(App);
-  });
-}
+document.body.appendChild(component());
