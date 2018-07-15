@@ -130,28 +130,20 @@ exports.loadImages = ({ include, exclude, options } = {}) => ({
   }
 });
 
-// CSS Loader for global Stylesheets
-exports.loadGlobalCSS = ({ include, exclude } = {}) => ({
+// Load CSS for Development
+exports.developmentCSS = ({ globalInclude, moduleInclude } = {}) => ({
   module: {
     rules: [
       {
-        test: /\.(scss|css)$/,
-        include,
-        exclude,
+        test: /^((?!\.module).)*scss$/,
+        include: globalInclude,
+        //exclude: PATHS.projectApps(),
         use: ["style-loader", "css-loader", "sass-loader"]
-      }
-    ]
-  }
-});
-
-// CSS Loader for CSS Modules
-exports.cssModules = ({ include, exclude } = {}) => ({
-  module: {
-    rules: [
+      },
       {
-        test: /\.(scss|css)$/,
-        include,
-        exclude,
+        test: /\.module.scss$/,
+        include: moduleInclude,
+        //exclude: PATHS.sharedFolder,
         use: [
           {
             loader: "style-loader"
@@ -171,6 +163,7 @@ exports.cssModules = ({ include, exclude } = {}) => ({
     ]
   }
 });
+
 
 // Extract CSS
 exports.extractCSS = ({ globalInclude, moduleinclude }) => {
