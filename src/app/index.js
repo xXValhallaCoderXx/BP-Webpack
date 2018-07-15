@@ -14,6 +14,8 @@ class Application extends Component {
     this._increaseCount = this._increaseCount.bind(this);
   }
   render() {
+    // This is a global variable defined in env-keys.json
+    console.log("ENV: ", ENV_VAR)
     return (
       <div>
         <h3>Button Is Using A Global Styles</h3>
