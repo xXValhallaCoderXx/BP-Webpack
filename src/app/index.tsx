@@ -1,6 +1,6 @@
 import React, { Component } from "react";
-const styles = require('./cssModule.css');
-import { hot } from "react-hot-loader";
+const styles = require("./styles.module.scss");
+// import styles from "./styles.module.scss";
 
 interface ComponentProps {
   name: string;
@@ -11,7 +11,7 @@ interface ComponentState {
   someData: String;
 }
 
-class Application extends Component<ComponentProps, ComponentState> {
+export default class Application extends Component<ComponentProps, ComponentState> {
   constructor(props: ComponentProps) {
     super(props);
     this.state = {
@@ -49,7 +49,7 @@ class Application extends Component<ComponentProps, ComponentState> {
   }
 
   lazyLoad() {
-    import("./LazyLoad/lazy")
+    import("./lazyLoad")
       .then(lazy => {
         this.setState({ someData: lazy.default });
       })
@@ -58,5 +58,3 @@ class Application extends Component<ComponentProps, ComponentState> {
       });
   }
 }
-
-export default hot(module)(Application);

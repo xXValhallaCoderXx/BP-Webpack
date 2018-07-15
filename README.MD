@@ -38,11 +38,7 @@ This will start up a webpack dev server to allow for local development of your a
 ### CLI Scripts
 The development enviroment has various commands in the `package.json` which we are able to run via the CLI, which are as follows:
 
-- `lint:fix-js` - Runs prettier will auto-format any code which may not be formatted correctly.
-- `lint:js`: This will provide feedback via the CLI if there are currently any linting errors.
 - `start`: Starts the development server on localhost:8080 by default.
-- `start:lint`: Starts the development server, with linter, any code formatted incorrectly results in errors dislayed via CLI.
-- `stats`: Provides a .json file of the build output, can be used with other applications for analyzing the output
 - `build`: Builds the application into a bundle and prepare for deployment.
 
 ## Deployment
