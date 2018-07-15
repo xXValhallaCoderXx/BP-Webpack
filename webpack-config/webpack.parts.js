@@ -8,7 +8,6 @@ const cssnano = require("cssnano");
 /********************
  * DEVELOPMENT CONFIGS
     - Functions below are for helping with Development Process
-
 ********************/
 
 exports.devServer = ({ host, port } = {}) => ({
@@ -33,7 +32,6 @@ exports.generateSourceMaps = ({ type }) => ({
 /********************
  * BUILD CONFIGS
     - Functions below are for helping with Building / Deployment
-
 ********************/
 
 exports.clean = path => ({
@@ -62,7 +60,6 @@ exports.minifyCSS = ({ options }) => ({
 /********************
  * UTIL FUNCTIONS
     - Functions below provide extra utilities for either enviroment
-
 ********************/
 
 exports.setFreeVariable = (key, value) => {
@@ -77,7 +74,6 @@ exports.setFreeVariable = (key, value) => {
 /********************
  * LOADERS
     - Various loader functions for different uses
-
 ********************/
 
 // Javascript Loader
@@ -89,6 +85,29 @@ exports.loadJavaScript = ({ include, exclude } = {}) => ({
         include,
         exclude,
         use: "babel-loader"
+      }
+    ]
+  }
+});
+
+exports.loadTypescript = ({ include, exclude }) => ({
+  module: {
+    rules: [
+      {
+        test: /\.(js|ts|tsx)?$/,
+        include,
+        exclude,
+        use: [
+          {
+            loader: "babel-loader",
+            options: {
+              cacheDirectory: true
+            }
+          },
+          {
+            loader: "ts-loader"
+          }
+        ]
       }
     ]
   }
