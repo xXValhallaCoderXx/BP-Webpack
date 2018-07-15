@@ -71,6 +71,16 @@ exports.setFreeVariable = (key, value) => {
   };
 };
 
+exports.setFreeVariables = data => {
+  const env = {};
+  Object.keys(data).forEach(function(key) {
+    env[key] = JSON.stringify(data[key]);
+  });
+  return {
+    plugins: [new webpack.DefinePlugin(env)]
+  };
+};
+
 /********************
  * LOADERS
     - Various loader functions for different uses
