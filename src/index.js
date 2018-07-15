@@ -21,6 +21,5 @@ render(App);
 if (module.hot) {
   module.hot.accept("./routes", () => {
     render(App);
-    render(require("./routes"));
   });
 }

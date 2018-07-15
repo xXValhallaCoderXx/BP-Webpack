@@ -1,10 +1,9 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { increaseCounter } from "../actions";
-import Header from "../../components/Header";
+import { increaseCounter } from "./actions";
 
-import styles from "./style.module.scss";
+import styles from "./styles.module.scss";
 
 class Application extends Component {
   constructor(props) {
@@ -17,7 +16,6 @@ class Application extends Component {
   render() {
     return (
       <div>
-        <Header />
         <h3>Button Is Using A Global Styles</h3>
         <button className="global-class">Global Style</button>
         <hr />
@@ -42,7 +40,7 @@ class Application extends Component {
   }
 
   lazyLoad() {
-    import("./LazyLoad")
+    import("./lazyLoad")
       .then(lazy => {
         this.setState({ someData: lazy.default });
       })
@@ -67,4 +65,7 @@ function mapStateToProps(state) {
   };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Application);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Application);

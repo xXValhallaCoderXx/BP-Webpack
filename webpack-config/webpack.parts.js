@@ -1,21 +1,18 @@
 const webpack = require("webpack");
-const ExtractTextPlugin = require("extract-text-webpack-plugin");
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const CleanWebpackPlugin = require("clean-webpack-plugin");
 const UglifyWebpackPlugin = require("uglifyjs-webpack-plugin");
 const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
 const cssnano = require("cssnano");
 
-exports.setFreeVariable = (key, value) => {
-  const env = {};
-  env[key] = JSON.stringify(value);
-  return {
-    plugins: [new webpack.DefinePlugin(env)]
-  };
-};
+/********************
+ * DEVELOPMENT CONFIGS
+    - Functions below are for helping with Development Process
 
-// DEVELOPMENT CONFIGS
+********************/
 
 exports.devServer = ({ host, port } = {}) => ({
+  // Handles the WDS for Development
   devServer: {
     stats: "errors-only",
     hotOnly: true,
@@ -29,22 +26,30 @@ exports.devServer = ({ host, port } = {}) => ({
 });
 
 exports.generateSourceMaps = ({ type }) => ({
+  // Handles the type of Source map to use
   devtool: type
 });
 
-// PRODUCTION CONFIGS
+/********************
+ * BUILD CONFIGS
+    - Functions below are for helping with Building / Deployment
+
+********************/
 
 exports.clean = path => ({
+  // Clean the current build folder to ensure to old files are leftover
   plugins: [new CleanWebpackPlugin([path], { allowExternal: true })]
 });
 
 exports.minifyJavaScript = () => ({
+  // Minify JS Code
   optimization: {
     minimizer: [new UglifyWebpackPlugin({ sourceMap: true })]
   }
 });
 
 exports.minifyCSS = ({ options }) => ({
+  // Minify CSS Code
   plugins: [
     new OptimizeCSSAssetsPlugin({
       cssProcessor: cssnano,
@@ -54,8 +59,59 @@ exports.minifyCSS = ({ options }) => ({
   ]
 });
 
-// CSS CONFIG
+/********************
+ * UTIL FUNCTIONS
+    - Functions below provide extra utilities for either enviroment
 
+********************/
+
+exports.setFreeVariable = (key, value) => {
+  // Sets a global variable which can be accessed throughout the app
+  const env = {};
+  env[key] = JSON.stringify(value);
+  return {
+    plugins: [new webpack.DefinePlugin(env)]
+  };
+};
+
+/********************
+ * LOADERS
+    - Various loader functions for different uses
+
+********************/
+
+// Javascript Loader
+exports.loadJavaScript = ({ include, exclude } = {}) => ({
+  module: {
+    rules: [
+      {
+        test: /\.js$/,
+        include,
+        exclude,
+        use: "babel-loader"
+      }
+    ]
+  }
+});
+
+// Image Loader
+exports.loadImages = ({ include, exclude, options } = {}) => ({
+  module: {
+    rules: [
+      {
+        test: /\.(png|jpg|svg|gif)$/,
+        include,
+        exclude,
+        use: {
+          loader: "url-loader",
+          options
+        }
+      }
+    ]
+  }
+});
+
+// CSS Loader for global Stylesheets
 exports.loadGlobalCSS = ({ include, exclude } = {}) => ({
   module: {
     rules: [
@@ -69,6 +125,7 @@ exports.loadGlobalCSS = ({ include, exclude } = {}) => ({
   }
 });
 
+// CSS Loader for CSS Modules
 exports.cssModules = ({ include, exclude } = {}) => ({
   module: {
     rules: [
@@ -96,71 +153,62 @@ exports.cssModules = ({ include, exclude } = {}) => ({
   }
 });
 
-exports.extractGlobalCSS = ({ include, exclude }) => {
-  const plugin = new ExtractTextPlugin({
-    // `allChunks` is needed to extract from extracted chunks as well
-    allChunks: true,
-    filename: "static/styles/[name].[hash:8].css"
-  });
+// Extract CSS
+exports.extractCSS = ({ globalInclude, moduleinclude }) => {
   return {
+    plugins: [
+      new MiniCssExtractPlugin({
+        filename: "static/styles/[name].[hash:8].css"
+      })
+    ],
     module: {
       rules: [
         {
-          test: /\.(scss|css)$/,
-          include,
-          exclude,
-          use: plugin.extract({
-            use: [
-              {
-                loader: "css-loader",
-              },
-              {
-                loader: "sass-loader"
-              },
-              autoprefix()
-            ]
-          })
-        }
-      ]
-    },
-    plugins: [plugin]
-  };
-};
-
-
-
-exports.extractCSS = ({ include, exclude }) => {
-  const plugin = new ExtractTextPlugin({
-    // `allChunks` is needed to extract from extracted chunks as well
-    allChunks: true,
-    filename: "static/styles/[name].[hash:8].css"
-  });
-  return {
-    module: {
-      rules: [
+          test: /^((?!\.module).)*scss$/,
+          include: globalInclude,
+          //exclude: PATHS.prodAppEntry,
+          use: [
+            {
+              loader: MiniCssExtractPlugin.loader,
+              options: {
+                // you can specify a publicPath here
+                // by default it use publicPath in webpackOptions.output
+                // publicPath: '../'
+              }
+            },
+            {
+              loader: "css-loader"
+            },
+            {
+              loader: "sass-loader"
+            },
+            autoprefix()
+          ]
+        },
         {
-          test: /\.(scss|css)$/,
-          include,
-          exclude,
-          use: plugin.extract({
-            use: [
-              {
-                loader: "css-loader",
-                options: {
-                  modules: true,
-                  localIdentName: "[local]_[hash:base64]"
-                }
-              },
-              {
-                loader: "sass-loader"
-              },
-              autoprefix()
-            ]
-          })
+          test: /\.module.scss$/,
+          include: moduleinclude,
+          //exclude: PATHS.subModuleShared,
+          use: [
+            {
+              loader: MiniCssExtractPlugin.loader
+            },
+            {
+              loader: "css-loader",
+              options: {
+                importLoaders: 1,
+                modules: true,
+                localIdentName: "[local]_[hash:base64:8]"
+              }
+            },
+            {
+              loader: "sass-loader"
+            },
+            autoprefix()
+          ]
         }
       ]
-    },
-    plugins: [plugin]
+    }
   };
 };
 
@@ -168,38 +216,5 @@ autoprefix = () => ({
   loader: "postcss-loader",
   options: {
     plugins: () => [require("autoprefixer")()]
-  }
-});
-
-// IMAGE CONFIGS
-
-exports.loadImages = ({ include, exclude, options } = {}) => ({
-  module: {
-    rules: [
-      {
-        test: /\.(png|jpg|svg)$/,
-        include,
-        exclude,
-        use: {
-          loader: "url-loader",
-          options
-        }
-      }
-    ]
-  }
-});
-
-// JAVASCRIPT CONFIGS
-
-exports.loadJavaScript = ({ include, exclude } = {}) => ({
-  module: {
-    rules: [
-      {
-        test: /\.js$/,
-        include,
-        exclude,
-        use: "babel-loader"
-      }
-    ]
   }
 });
