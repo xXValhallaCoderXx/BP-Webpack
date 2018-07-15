@@ -14,7 +14,6 @@ exports.devServer = ({ host, port } = {}) => ({
   // Handles the WDS for Development
   devServer: {
     stats: "errors-only",
-    hotOnly: true,
     host, // Defaults to `localhost`
     port, // Defaults to 8080
     overlay: {

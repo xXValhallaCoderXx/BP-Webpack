@@ -5,9 +5,6 @@ const parts = require("./webpack.parts");
 
 developmentConfig = app =>
   merge([
-    {
-      plugins: [new webpack.HotModuleReplacementPlugin()]
-    },
     parts.generateSourceMaps({ type: "eval-source-map" }),
     parts.devServer({
       host: process.env.HOST,
