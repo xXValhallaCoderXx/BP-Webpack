@@ -2,17 +2,14 @@ import React, { Component } from "react";
 import styles from "./styles.module.scss";
 
 export default class Application extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      count: 0,
-      someData: "NONE"
-    };
-    this._increaseCount = this._increaseCount.bind(this);
-  }
+  state = {
+    count: 0,
+    someData: "NONE"
+  };
   render() {
     // This is a global variable defined in env-keys.json
-    console.log("ENV: ", ENV_VAR)
+    console.log("ENV: ", ENV_VAR);
+    const { someData, count } = this.state;
     return (
       <div>
         <h3>Button Is Using A Global Styles</h3>
@@ -22,23 +19,21 @@ export default class Application extends Component {
         <button className={styles.testClass}>CSS Module</button>
         <hr />
         <h3>Lazy Load Example</h3>
-        <button onClick={() => this.lazyLoad()}>Lazy Load Button</button>
-        <div style={{ marginTop: 10 }}>
-          Dynamically Loaded: {this.state.someData}
-        </div>
+        <button onClick={this._lazyLoad}>Lazy Load Button</button>
+        <div style={{ marginTop: 10 }}>Dynamically Loaded: {someData}</div>
         <hr />
         <h3>Counter to Display HMR</h3>
-        <p>Count: {this.state.count}</p>
+        <p>Count: {count}</p>
         <button onClick={this._increaseCount}>Increase</button>
       </div>
     );
   }
 
-  _increaseCount() {
+  _increaseCount = () => {
     this.setState({ count: this.state.count + 1 });
-  }
+  };
 
-  lazyLoad() {
+  _lazyLoad = () => {
     import("./lazyLoad")
       .then(lazy => {
         this.setState({ someData: lazy.default });
@@ -46,5 +41,5 @@ export default class Application extends Component {
       .catch(err => {
         console.error(err);
       });
-  }
+  };
 }
