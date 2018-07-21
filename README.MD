@@ -2,9 +2,9 @@
 
 ![alt text](https://brainhub.eu/static/media/reactjs-brainhub-development.9ea94b0d.png "React!")
 
-This is a basic React JS boilerplate, bootstrapped with a few other features to allow users to get up and going straight off the bat with a development enviroment, for quick prototyping.
+This is a basic React JS boilerplate, bootstrapped with a few other features to allow users to get up and going.
 
-It makes use of Babel, to allow us to use ES6 and all the latest features which JS has to bring to the table.
+It makes use of Babel, to allow us to use ES6/7/Whatever?!
 
 ## Features
 
