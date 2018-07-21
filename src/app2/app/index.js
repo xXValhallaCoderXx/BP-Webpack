@@ -1,6 +1,7 @@
 import React, { Component } from "react";
-import styles from "./test.module.scss";
-//import Header from "../sharedCompoents/Header";
+import styles from "./styles.module.scss";
+
+import { bake, shake } from "./shake"; // Example to show Tree shaking in Action
 
 class Application extends Component {
   constructor(props) {
@@ -10,7 +11,8 @@ class Application extends Component {
       count: 0
     };
     this._increaseCount = this._increaseCount.bind(this);
-  }
+    bake();
+  } 
   render() {
     return (
       <div>
@@ -21,7 +23,7 @@ class Application extends Component {
         <button className={styles.testClass}>CSS Module</button>
         <hr />
         <h3>Lazy Load Example</h3>
-        {/* <button onClick={() => this.lazyLoad()}>Lazy Load Button</button> */}
+        <button onClick={() => this.lazyLoad()}>Lazy Load Button</button>
         <div style={{ marginTop: 10 }}>
           Dynamically Loaded: {this.state.someData}
         </div>
@@ -37,15 +39,15 @@ class Application extends Component {
     this.setState({ count: this.state.count + 1})
   }
 
-  // lazyLoad() {
-  //   import("./LazyLoad")
-  //     .then(lazy => {
-  //       this.setState({ someData: lazy.default });
-  //     })
-  //     .catch(err => {
-  //       console.error(err);
-  //     });
-  // }
+  lazyLoad() {
+    import("./lazyLoad")
+      .then(lazy => {
+        this.setState({ someData: lazy.default });
+      })
+      .catch(err => {
+        console.error(err);
+      });
+  }
 }
 
 export default Application;

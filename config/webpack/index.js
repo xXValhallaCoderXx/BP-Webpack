@@ -11,8 +11,8 @@ module.exports = env => {
   mode = target;
 
   if (mode === "production") {
-    return merge([commonConfig, productionConfig].concat(pages));
+    return merge([commonConfig(env), productionConfig].concat(pages));
   } else {
-    return merge(commonConfig, developmentConfig(app), { mode });
+    return merge(commonConfig(env), developmentConfig(app), { mode });
   }
 };

@@ -1,5 +1,5 @@
 const env = process.env.NODE_ENV;
-let config = require("../../env-vars.json");
+let config = require("../../../env-vars.json");
 // envConfig = dev | stage | prod
 
 let envConfig = config[env];

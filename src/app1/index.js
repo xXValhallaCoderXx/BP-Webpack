@@ -1,11 +1,7 @@
-if(process.env.NODE_ENV !== "production"){
-  require("../shared/styles/index.scss");
-}
+import "../shared/styles/index.scss";
 import React from "react";
 import ReactDOM from "react-dom";
-import App from "./app/Component";
-// import "moment";
-
+import App from "./app";
 
 const root = document.getElementById("render-app");
 const render = () => {
@@ -15,7 +11,7 @@ const render = () => {
 render(App);
 
 if (module.hot) {
-  module.hot.accept("./app/Component", () => {
+  module.hot.accept("./app", () => {
     render(App);
   });
 }

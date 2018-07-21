@@ -1,27 +1,23 @@
 const webpack = require("webpack");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const CleanWebpackPlugin = require("clean-webpack-plugin");
-const HtmlWebpackPlugin = require("html-webpack-plugin");
 const UglifyWebpackPlugin = require("uglifyjs-webpack-plugin");
 const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
-const PATHS = require("../paths");
+const cssnano = require("cssnano");
+const HtmlWebpackPlugin = require("html-webpack-plugin");
 
-exports.setFreeVariable = (key, value) => {
-  const env = {};
-  env[key] = JSON.stringify(value);
-  return {
-    plugins: [new webpack.DefinePlugin(env)]
-  };
-};
-
-// DEVELOPMENT CONFIGS
+/********************
+ * DEVELOPMENT CONFIGS
+    - Functions below are for helping with Development Process
+********************/
 
 exports.devServer = ({ host, port } = {}) => ({
+  // Handles the WDS for Development
   devServer: {
     stats: "errors-only",
     hotOnly: true,
-    host,
-    port,
+    host, // Defaults to `localhost`
+    port, // Defaults to 8080
     overlay: {
       errors: true,
       warnings: true
@@ -30,63 +26,147 @@ exports.devServer = ({ host, port } = {}) => ({
 });
 
 exports.generateSourceMaps = ({ type }) => ({
+  // Handles the type of Source map to use
   devtool: type
 });
 
-// PRODUCTION CONFIGS
+/********************
+ * BUILD CONFIGS
+    - Functions below are for helping with Building / Deployment
+********************/
 
 exports.clean = path => ({
+  // Clean the current build folder to ensure to old files are leftover
   plugins: [new CleanWebpackPlugin([path], { allowExternal: true })]
 });
 
 exports.minifyJavaScript = () => ({
+  // Minify JS Code
   optimization: {
-    minimizer: [
-      new UglifyWebpackPlugin({
-        cache: true,
-        parallel: 4,
-        exclude: /\/node_modules/,
-        sourceMap: true
-      })
-    ]
+    minimizer: [new UglifyWebpackPlugin({ sourceMap: true })]
   }
 });
 
 exports.minifyCSS = ({ options }) => ({
+  // Minify CSS Code
   plugins: [
     new OptimizeCSSAssetsPlugin({
-      cssProcessor: require("cssnano"),
+      cssProcessor: cssnano,
       cssProcessorOptions: options,
       canPrint: false
     })
   ]
 });
 
-exports.page = ({ path, template, title, entry, chunks } = {}) => ({
+/********************
+ * UTIL FUNCTIONS
+    - Functions below provide extra utilities for either enviroment
+********************/
+
+exports.setFreeVariable = (key, value) => {
+  // Sets a global variable which can be accessed throughout the app
+  const env = {};
+  env[key] = JSON.stringify(value);
+  return {
+    plugins: [new webpack.DefinePlugin(env)]
+  };
+};
+
+exports.setFreeVariables = data => {
+  const env = {};
+  Object.keys(data).forEach(function(key) {
+    env[key] = JSON.stringify(data[key]);
+  });
+  return {
+    plugins: [new webpack.DefinePlugin(env)]
+  };
+};
+
+exports.page = ({ path, template, title, entry, chunks, excludeChunks } = {}) => ({
   entry,
   plugins: [
     new HtmlWebpackPlugin({
       filename: `${path}.html`,
       template,
       title,
+      chunks
     })
   ]
 });
 
-// CSS CONFIG
-exports.loadCSS = ({ include, exclude } = {}) => ({
+/********************
+ * LOADERS
+    - Various loader functions for different uses
+********************/
+
+// Javascript Loader
+exports.loadJavaScript = ({ include, exclude } = {}) => ({
+  module: {
+    rules: [
+      {
+        test: /\.js$/,
+        include,
+        exclude,
+        use: "babel-loader"
+      }
+    ]
+  }
+});
+
+exports.loadTypescript = ({ include, exclude }) => ({
+  module: {
+    rules: [
+      {
+        test: /\.(js|ts|tsx)?$/,
+        include,
+        exclude,
+        use: [
+          {
+            loader: "babel-loader",
+            options: {
+              cacheDirectory: true
+            }
+          },
+          {
+            loader: "ts-loader"
+          }
+        ]
+      }
+    ]
+  }
+});
+
+// Image Loader
+exports.loadImages = ({ include, exclude, options } = {}) => ({
+  module: {
+    rules: [
+      {
+        test: /\.(png|jpg|svg|gif)$/,
+        include,
+        exclude,
+        use: {
+          loader: "url-loader",
+          options
+        }
+      }
+    ]
+  }
+});
+
+// Load CSS for Development
+exports.developmentCSS = ({ globalInclude, moduleInclude } = {}) => ({
   module: {
     rules: [
       {
         test: /^((?!\.module).)*scss$/,
-        include: PATHS.sharedFolder,
-        exclude: PATHS.projectApps(),
+        include: globalInclude,
+        //exclude: PATHS.projectApps(),
         use: ["style-loader", "css-loader", "sass-loader"]
       },
       {
         test: /\.module.scss$/,
-        include: PATHS.projectApps(),
-        exclude: PATHS.sharedFolder,
+        include: moduleInclude,
+        //exclude: PATHS.sharedFolder,
         use: [
           {
             loader: "style-loader"
@@ -107,12 +187,12 @@ exports.loadCSS = ({ include, exclude } = {}) => ({
   }
 });
 
-exports.extractCSS = () => {
+
+// Extract CSS
+exports.extractCSS = ({ globalInclude, moduleinclude }) => {
   return {
     plugins: [
       new MiniCssExtractPlugin({
-        // `allChunks` is needed to extract from extracted chunks as well
-        allChunks: true,
         filename: "static/styles/[name].[hash:8].css"
       })
     ],
@@ -120,8 +200,8 @@ exports.extractCSS = () => {
       rules: [
         {
           test: /^((?!\.module).)*scss$/,
-          include: PATHS.sharedFolder,
-          exclude: PATHS.projectApps(),
+          include: globalInclude,
+          //exclude: PATHS.prodAppEntry,
           use: [
             {
               loader: MiniCssExtractPlugin.loader,
@@ -142,16 +222,11 @@ exports.extractCSS = () => {
         },
         {
           test: /\.module.scss$/,
-          include: PATHS.projectApps(),
-          exclude: PATHS.sharedFolder,
+          include: moduleinclude,
+          //exclude: PATHS.subModuleShared,
           use: [
             {
               loader: MiniCssExtractPlugin.loader,
-              options: {
-                // you can specify a publicPath here
-                // by default it use publicPath in webpackOptions.output
-                // publicPath: '../'
-              }
             },
             {
               loader: "css-loader",
@@ -176,38 +251,5 @@ autoprefix = () => ({
   loader: "postcss-loader",
   options: {
     plugins: () => [require("autoprefixer")()]
-  }
-});
-
-// IMAGE CONFIGS
-
-exports.loadImages = ({ include, exclude, options } = {}) => ({
-  module: {
-    rules: [
-      {
-        test: /\.(png|jpg|svg)$/,
-        include,
-        exclude,
-        use: {
-          loader: "url-loader",
-          options
-        }
-      }
-    ]
-  }
-});
-
-// JAVASCRIPT CONFIGS
-
-exports.loadJavaScript = ({ include, exclude } = {}) => ({
-  module: {
-    rules: [
-      {
-        test: /\.js$/,
-        include,
-        exclude,
-        use: "babel-loader"
-      }
-    ]
   }
 });

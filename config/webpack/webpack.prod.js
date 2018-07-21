@@ -18,8 +18,6 @@ const productionConfig = merge([
       filename: "static/js/[name].[chunkhash:8].js",
       chunkFilename: "static/js/[name].[chunkhash:8].js"
     },
-    // plugins: [
-    // ],
     stats: {
       all: undefined,
       children: false,
@@ -37,7 +35,6 @@ const productionConfig = merge([
     recordsPath: PATHS.buildRecords
   },
   //parts.generateSourceMaps({ type: "source-map" }),
-
   parts.minifyJavaScript(),
   parts.minifyCSS({
     options: {
@@ -47,8 +44,10 @@ const productionConfig = merge([
       safe: true
     }
   }),
-  parts.extractCSS(),
-
+  parts.extractCSS({
+    globalInclude: [PATHS.prodAppEntry, PATHS.sharedFolder],
+    moduleInclude: [PATHS.prodAppEntry]
+  }),
   parts.loadImages({
     options: {
       limit: 50000,

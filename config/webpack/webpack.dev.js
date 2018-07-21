@@ -28,7 +28,10 @@ developmentConfig = app =>
       host: process.env.HOST,
       port: process.env.PORT
     }),
-    parts.loadCSS(),
+    parts.developmentCSS({
+      globalInclude: [PATHS.prodAppEntry, PATHS.sharedFolder],
+      moduleInclude: [PATHS.prodAppEntry]
+    }),
     parts.loadImages(),
     parts.loadJavaScript({
       include: PATHS.devAppEntry(app),
