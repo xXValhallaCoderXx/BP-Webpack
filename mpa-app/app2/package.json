@@ -1,0 +1,14 @@
+{
+  "name": "app2",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "start": "webpack-dev-server --env.target development --env.name app2 --env.type spa --config ../../mpa-build/index.js"
+  },
+  "dependencies": {
+    "mpa-build": "1.0.0",
+    "mpa-core": "1.0.0",
+    "mpa-shared": "1.0.0"
+  }
+}

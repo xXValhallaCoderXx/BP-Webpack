@@ -3,7 +3,10 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const CleanWebpackPlugin = require("clean-webpack-plugin");
 const UglifyWebpackPlugin = require("uglifyjs-webpack-plugin");
 const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
+const HtmlWebpackPlugin = require("html-webpack-plugin");
 const cssnano = require("cssnano");
+const path = require("path");
+const fs = require("fs");
 
 /********************
  * DEVELOPMENT CONFIGS
@@ -94,7 +97,14 @@ exports.loadJavaScript = ({ include, exclude } = {}) => ({
         test: /\.js$/,
         include,
         exclude,
-        use: "babel-loader"
+        use: [
+          {
+            loader: "babel-loader",
+            options : {
+              ...JSON.parse(fs.readFileSync(path.resolve(__dirname, '../.babelrc'))) // SHITTY HACK 
+            }
+          }
+        ]
       }
     ]
   }
@@ -238,4 +248,23 @@ autoprefix = () => ({
   options: {
     plugins: () => [require("autoprefixer")()]
   }
+});
+
+exports.page = ({
+  path,
+  template,
+  title,
+  entry,
+  chunks,
+  excludeChunks
+} = {}) => ({
+  entry,
+  plugins: [
+    new HtmlWebpackPlugin({
+      filename: `${path}.html`,
+      template,
+      title,
+      chunks
+    })
+  ]
 });

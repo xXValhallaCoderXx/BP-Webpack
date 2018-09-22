@@ -1,26 +1,25 @@
 const yargs = require("yargs");
-
 const setupNewPage = require("./new-page");
 
-const pageName = {
-  describe: "The name of the Page",
+const appName = {
+  describe: "The name of the app",
   demand: true,
   alias: "n"
 };
 
 const argv = yargs
-  .command("new-page", "Creates a new SCC Page", {
+  .command("new-app", "Creates a new App", {
     // Arguments the Command Requires
-    pageName
+    appName
   })
   .help().argv;
 
 var command = argv._[0];
 
 switch (command) {
-  case "new-page":
-  setupNewPage(argv.pageName, () => {
-      console.log(`Creating new Page: ${argv.pageName}`);
+  case "new-app":
+    setupNewPage(argv.appName, () => {
+      console.log(`Creating new App: ${argv.appName}`);
     });
     break;
   default:
