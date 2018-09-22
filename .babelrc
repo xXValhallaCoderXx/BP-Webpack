@@ -1,20 +1,21 @@
 {
-  "plugins": ["syntax-dynamic-import"],
+  "plugins": [
+    "@babel/plugin-syntax-dynamic-import",
+    "@babel/plugin-proposal-class-properties"
+  ],
   "presets": [
     [
-      "env",
+      "@babel/preset-env",
       {
         "modules": false
       }
     ],
-    "react"
+    "@babel/preset-react"
   ],
   "env": {
     "development": {
       "plugins": ["react-hot-loader/babel"]
     },
-    "production": {
-     
-    }
+    "production": {}
   }
 }

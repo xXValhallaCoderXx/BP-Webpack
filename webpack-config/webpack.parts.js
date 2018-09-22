@@ -8,7 +8,10 @@ const cssnano = require("cssnano");
 /********************
  * DEVELOPMENT CONFIGS
     - Functions below are for helping with Development Process
+<<<<<<< HEAD
 
+=======
+>>>>>>> React
 ********************/
 
 exports.devServer = ({ host, port } = {}) => ({
@@ -33,7 +36,10 @@ exports.generateSourceMaps = ({ type }) => ({
 /********************
  * BUILD CONFIGS
     - Functions below are for helping with Building / Deployment
+<<<<<<< HEAD
 
+=======
+>>>>>>> React
 ********************/
 
 exports.clean = path => ({
@@ -62,7 +68,6 @@ exports.minifyCSS = ({ options }) => ({
 /********************
  * UTIL FUNCTIONS
     - Functions below provide extra utilities for either enviroment
-
 ********************/
 
 exports.setFreeVariable = (key, value) => {
@@ -74,10 +79,19 @@ exports.setFreeVariable = (key, value) => {
   };
 };
 
+exports.setFreeVariables = data => {
+  const env = {};
+  Object.keys(data).forEach(function(key) {
+    env[key] = JSON.stringify(data[key]);
+  });
+  return {
+    plugins: [new webpack.DefinePlugin(env)]
+  };
+};
+
 /********************
  * LOADERS
     - Various loader functions for different uses
-
 ********************/
 
 // Javascript Loader
@@ -134,26 +148,18 @@ exports.loadImages = ({ include, exclude, options } = {}) => ({
   }
 });
 
-// CSS Loader for global Stylesheets
-exports.loadGlobalCSS = ({ include, exclude } = {}) => ({
+// Load CSS for Development
+exports.developmentCSS = ({ include, exclude } = {}) => ({
   module: {
     rules: [
       {
-        test: /\.(scss|css)$/,
+        test: /^((?!\.module).)*scss$/,
         include,
         exclude,
         use: ["style-loader", "css-loader", "sass-loader"]
-      }
-    ]
-  }
-});
-
-// CSS Loader for CSS Modules
-exports.cssModules = ({ include, exclude } = {}) => ({
-  module: {
-    rules: [
+      },
       {
-        test: /\.(scss|css)$/,
+        test: /\.module.scss$/,
         include,
         exclude,
         use: [
@@ -177,7 +183,7 @@ exports.cssModules = ({ include, exclude } = {}) => ({
 });
 
 // Extract CSS
-exports.extractCSS = ({ globalInclude, moduleinclude }) => {
+exports.extractCSS = ({ include, exclude }) => {
   return {
     plugins: [
       new MiniCssExtractPlugin({
@@ -188,8 +194,8 @@ exports.extractCSS = ({ globalInclude, moduleinclude }) => {
       rules: [
         {
           test: /^((?!\.module).)*scss$/,
-          include: globalInclude,
-          //exclude: PATHS.prodAppEntry,
+          include,
+          exclude,
           use: [
             {
               loader: MiniCssExtractPlugin.loader,
@@ -210,11 +216,11 @@ exports.extractCSS = ({ globalInclude, moduleinclude }) => {
         },
         {
           test: /\.module.scss$/,
-          include: moduleinclude,
-          //exclude: PATHS.subModuleShared,
+          include,
+          exclude,
           use: [
             {
-              loader: MiniCssExtractPlugin.loader,
+              loader: MiniCssExtractPlugin.loader
             },
             {
               loader: "css-loader",

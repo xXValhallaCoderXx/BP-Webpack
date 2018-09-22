@@ -4,7 +4,7 @@
 
 This is a basic React + TS boilerplate, bootstrapped with a few other features to allow users to get up and going straight off the bat with a development enviroment, for quick prototyping.
 
-It makes use of Babel, to allow us to use ES6 and all the latest features which JS has to bring to the table.
+It makes use of Babel, to allow us to use ES6/7/Whatever?!
 
 ## Features
 
@@ -47,3 +47,10 @@ The build script will run several optimizations and preapre a single `.html` fil
 1. Run `yarn build` or `npm run build`
 2 Files will output in the `build` directory
 
+## Transpile Targets
+
+### CSS Vendor Prefix
+- Define browser targets in `./browserslistc` file
+
+### JS Tanspilation
+- Define browsers in `.babelrc` file

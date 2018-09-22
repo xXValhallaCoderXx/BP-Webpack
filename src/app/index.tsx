@@ -1,27 +1,25 @@
 import React, { Component } from "react";
+import {hot} from "react-hot-loader";
 const styles = require("./styles.module.scss");
-// import styles from "./styles.module.scss";
 
-interface ComponentProps {
+
+interface IProps {
   name: string;
 }
 
-interface ComponentState {
+interface IState {
   count: number;
   someData: String;
 }
 
-export default class Application extends Component<ComponentProps, ComponentState> {
-  constructor(props: ComponentProps) {
-    super(props);
-    this.state = {
-      count: 0,
-      someData: "NONE"
-    };
-    
-    this._increaseCount = this._increaseCount.bind(this);
-  }
+class Application extends Component<IProps, IState> {
+  state = {
+    count: 0,
+    someData: "NONE"
+  };
   render() {
+    // This is a global variable defined in env-keys.json
+    const { someData, count } = this.state;
     return (
       <div>
         <h2>Name: {this.props.name}</h2>
@@ -32,23 +30,21 @@ export default class Application extends Component<ComponentProps, ComponentStat
         <button className={styles.testClass}>CSS Module</button>
         <hr />
         <h3>Lazy Load Example</h3>
-        <button onClick={() => this.lazyLoad()}>Lazy Load Button</button>
-        <div style={{ marginTop: 10 }}>
-          Dynamically Loaded: {this.state.someData}
-        </div>
+        <button onClick={this._lazyLoad}>Lazy Load Button</button>
+        <div style={{ marginTop: 10 }}>Dynamically Loaded: {someData}</div>
         <hr />
         <h3>Counter to Display HMR</h3>
-        <p>Count: {this.state.count}</p>
+        <p>Count: {count}</p>
         <button onClick={this._increaseCount}>Increase</button>
       </div>
     );
   }
 
-  _increaseCount() {
+  _increaseCount = () => {
     this.setState({ count: this.state.count + 1 });
-  }
+  };
 
-  lazyLoad() {
+  _lazyLoad = () => {
     import("./lazyLoad")
       .then(lazy => {
         this.setState({ someData: lazy.default });
@@ -56,5 +52,7 @@ export default class Application extends Component<ComponentProps, ComponentStat
       .catch(err => {
         console.error(err);
       });
-  }
+  };
 }
+
+export default hot(module)(Application);

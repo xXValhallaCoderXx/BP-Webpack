@@ -13,8 +13,10 @@ developmentConfig = app =>
       host: process.env.HOST,
       port: process.env.PORT
     }),
-    parts.loadGlobalCSS({ include: PATHS.globalCSS }),
-    parts.cssModules({ include: PATHS.cssModules }),
+    parts.developmentCSS({
+      include: PATHS.app,
+      exclude: PATHS.nodeModules
+    }),
     parts.loadImages()
   ]);
 
