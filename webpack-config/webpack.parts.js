@@ -141,19 +141,19 @@ exports.loadImages = ({ include, exclude, options } = {}) => ({
 });
 
 // Load CSS for Development
-exports.developmentCSS = ({ globalInclude, moduleInclude } = {}) => ({
+exports.developmentCSS = ({ include, exclude } = {}) => ({
   module: {
     rules: [
       {
         test: /^((?!\.module).)*scss$/,
-        include: globalInclude,
-        //exclude: PATHS.projectApps(),
+        include,
+        exclude,
         use: ["style-loader", "css-loader", "sass-loader"]
       },
       {
         test: /\.module.scss$/,
-        include: moduleInclude,
-        //exclude: PATHS.sharedFolder,
+        include,
+        exclude,
         use: [
           {
             loader: "style-loader"
@@ -174,9 +174,8 @@ exports.developmentCSS = ({ globalInclude, moduleInclude } = {}) => ({
   }
 });
 
-
 // Extract CSS
-exports.extractCSS = ({ globalInclude, moduleinclude }) => {
+exports.extractCSS = ({ include, exclude }) => {
   return {
     plugins: [
       new MiniCssExtractPlugin({
@@ -187,8 +186,8 @@ exports.extractCSS = ({ globalInclude, moduleinclude }) => {
       rules: [
         {
           test: /^((?!\.module).)*scss$/,
-          include: globalInclude,
-          //exclude: PATHS.prodAppEntry,
+          include,
+          exclude,
           use: [
             {
               loader: MiniCssExtractPlugin.loader,
@@ -209,8 +208,8 @@ exports.extractCSS = ({ globalInclude, moduleinclude }) => {
         },
         {
           test: /\.module.scss$/,
-          include: moduleinclude,
-          //exclude: PATHS.subModuleShared,
+          include,
+          exclude,
           use: [
             {
               loader: MiniCssExtractPlugin.loader
