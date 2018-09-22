@@ -1,8 +1,8 @@
-const webpack = require("webpack");
 const merge = require("webpack-merge");
 const PATHS = require("./paths");
 const path = require("path");
 const parts = require("./webpack.parts");
+const safeParser = require('postcss-safe-parser');
 
 productionConfig = app =>
   merge([
@@ -10,6 +10,7 @@ productionConfig = app =>
     parts.minifyJavaScript(),
     parts.minifyCSS({
       options: {
+        parser: safeParser,
         discardComments: {
           removeAll: true
         },
