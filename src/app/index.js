@@ -1,7 +1,8 @@
 import React, { Component } from "react";
+import {hot} from "react-hot-loader";
 import styles from "./styles.module.scss";
 
-export default class Application extends Component {
+class Application extends Component {
   state = {
     count: 0,
     someData: "NONE"
@@ -43,3 +44,6 @@ export default class Application extends Component {
       });
   };
 }
+
+
+export default hot(module)(Application);

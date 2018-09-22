@@ -2,9 +2,8 @@ const path = require("path");
 
 const PATHS = {
   app: path.resolve(__dirname, "../src"),
-  globalCSS: path.resolve(__dirname, "../src/styles"),
-  cssModules: path.resolve(__dirname, "../src/app"),
-  build: path.resolve(__dirname, "../dist")
+  build: path.resolve(__dirname, "../dist"),
+  nodeModules: path.resolve(__dirname, "../node_modules")
 };
 
 module.exports = PATHS;

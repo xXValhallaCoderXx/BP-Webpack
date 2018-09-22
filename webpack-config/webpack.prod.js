@@ -2,7 +2,7 @@ const merge = require("webpack-merge");
 const PATHS = require("./paths");
 const path = require("path");
 const parts = require("./webpack.parts");
-const safeParser = require('postcss-safe-parser');
+const safeParser = require("postcss-safe-parser");
 
 productionConfig = app =>
   merge([
@@ -33,8 +33,10 @@ productionConfig = app =>
       },
       recordsPath: path.join(__dirname, "../dist/records.json")
     },
-    parts.extractCSS({ globalInclude: PATHS.globalCSS, moduleinclude: PATHS.cssModules }),
-
+    parts.extractCSS({
+      include: PATHS.app,
+      exclude: PATHS.nodeModules
+    }),
     parts.loadImages({
       options: {
         limit: 50000,
