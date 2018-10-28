@@ -7,7 +7,7 @@
     "tslint-config-prettier"
   ],
   "jsRules": {
-    "no-console": false
+    "no-console": false,
   },
   "rules": {
     "prettier": true,
