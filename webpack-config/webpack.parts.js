@@ -1,9 +1,9 @@
-const webpack = require("webpack");
-const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-const CleanWebpackPlugin = require("clean-webpack-plugin");
-const UglifyWebpackPlugin = require("uglifyjs-webpack-plugin");
-const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
-const cssnano = require("cssnano");
+const webpack = require('webpack');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const CleanWebpackPlugin = require('clean-webpack-plugin');
+const UglifyWebpackPlugin = require('uglifyjs-webpack-plugin');
+const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
+const cssnano = require('cssnano');
 
 /********************
  * DEVELOPMENT CONFIGS
@@ -13,7 +13,7 @@ const cssnano = require("cssnano");
 exports.devServer = ({ host, port } = {}) => ({
   // Handles the WDS for Development
   devServer: {
-    stats: "errors-only",
+    stats: 'errors-only',
     hotOnly: true,
     host, // Defaults to `localhost`
     port, // Defaults to 8080
@@ -94,7 +94,7 @@ exports.loadJavaScript = ({ include, exclude } = {}) => ({
         test: /\.(js|ts|tsx)?$/,
         include,
         exclude,
-        use: "babel-loader"
+        use: 'babel-loader'
       }
     ]
   }
@@ -109,7 +109,7 @@ exports.loadImages = ({ include, exclude, options } = {}) => ({
         include,
         exclude,
         use: {
-          loader: "url-loader",
+          loader: 'url-loader',
           options
         }
       }
@@ -125,7 +125,7 @@ exports.developmentCSS = ({ include, exclude } = {}) => ({
         test: /^((?!\.module).)*scss$/,
         include,
         exclude,
-        use: ["style-loader", "css-loader", "sass-loader"]
+        use: ['style-loader', 'css-loader', 'sass-loader']
       },
       {
         test: /\.module.scss$/,
@@ -133,17 +133,17 @@ exports.developmentCSS = ({ include, exclude } = {}) => ({
         exclude,
         use: [
           {
-            loader: "style-loader"
+            loader: 'style-loader'
           },
           {
-            loader: "css-loader",
+            loader: 'css-loader',
             options: {
               modules: true,
-              localIdentName: "[local]_[hash:base64:8]"
+              localIdentName: '[local]_[hash:base64:8]'
             }
           },
           {
-            loader: "sass-loader"
+            loader: 'sass-loader'
           }
         ]
       }
@@ -156,7 +156,7 @@ exports.extractCSS = ({ include, exclude }) => {
   return {
     plugins: [
       new MiniCssExtractPlugin({
-        filename: "static/styles/[name].[hash:8].css"
+        filename: 'static/styles/[name].[hash:8].css'
       })
     ],
     module: {
@@ -175,10 +175,10 @@ exports.extractCSS = ({ include, exclude }) => {
               }
             },
             {
-              loader: "css-loader"
+              loader: 'css-loader'
             },
             {
-              loader: "sass-loader"
+              loader: 'sass-loader'
             },
             autoprefix()
           ]
@@ -192,15 +192,15 @@ exports.extractCSS = ({ include, exclude }) => {
               loader: MiniCssExtractPlugin.loader
             },
             {
-              loader: "css-loader",
+              loader: 'css-loader',
               options: {
                 importLoaders: 1,
                 modules: true,
-                localIdentName: "[local]_[hash:base64:8]"
+                localIdentName: '[local]_[hash:base64:8]'
               }
             },
             {
-              loader: "sass-loader"
+              loader: 'sass-loader'
             },
             autoprefix()
           ]
@@ -210,9 +210,23 @@ exports.extractCSS = ({ include, exclude }) => {
   };
 };
 
+exports.lintJavascript = ({exclude, options}) => ({
+  module: {
+    rules: [
+      {
+        test: /\.(js|ts|tsx)?$/,
+        exclude,
+        enforce: "pre",
+        loader: "tslint-loader",
+        options
+      }
+    ]
+  }
+});
+
 autoprefix = () => ({
-  loader: "postcss-loader",
+  loader: 'postcss-loader',
   options: {
-    plugins: () => [require("autoprefixer")()]
+    plugins: () => [require('autoprefixer')()]
   }
 });

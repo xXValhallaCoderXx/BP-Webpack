@@ -20,6 +20,14 @@ commonConfig = app =>
         new webpack.NamedModulesPlugin()
       ]
     },
+    parts.lintJavascript({
+      exclude: [/node_modules/],
+      options: {
+        tsConfigFile: path.resolve(__dirname, "../tsconfig.json"),
+        failOnHint: true,
+        cache: true
+      }
+    }),
     parts.loadJavaScript({ include: PATHS.app, exclude: PATHS.nodeModules }),
     // Set Env Variable indivdually
     parts.setFreeVariable("SOME_VAR", "This is from the freeee variables"),

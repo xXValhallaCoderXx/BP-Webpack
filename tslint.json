@@ -7,13 +7,15 @@
     "tslint-config-prettier"
   ],
   "jsRules": {
-    "no-console": false
+    "no-console": false,
+    "object-literal-sort-keys": false
   },
   "rules": {
     "prettier": true,
     "member-access": false,
     "no-var-requires": false,
-    "no-console": false
+    "no-console": false,
+    "object-literal-sort-keys": false
   },
   "rulesDirectory": ["tslint-plugin-prettier"]
 }
