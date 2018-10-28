@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import {hot} from "react-hot-loader";
+import { hot } from "react-hot-loader";
 import styles from "./styles.module.scss";
 
 class Application extends Component {
@@ -44,6 +44,5 @@ class Application extends Component {
       });
   };
 }
-
 
 export default hot(module)(Application);
