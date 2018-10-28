@@ -8,10 +8,6 @@ const cssnano = require("cssnano");
 /********************
  * DEVELOPMENT CONFIGS
     - Functions below are for helping with Development Process
-<<<<<<< HEAD
-
-=======
->>>>>>> React
 ********************/
 
 exports.devServer = ({ host, port } = {}) => ({
@@ -36,10 +32,6 @@ exports.generateSourceMaps = ({ type }) => ({
 /********************
  * BUILD CONFIGS
     - Functions below are for helping with Building / Deployment
-<<<<<<< HEAD
-
-=======
->>>>>>> React
 ********************/
 
 exports.clean = path => ({
@@ -99,33 +91,10 @@ exports.loadJavaScript = ({ include, exclude } = {}) => ({
   module: {
     rules: [
       {
-        test: /\.js$/,
-        include,
-        exclude,
-        use: "babel-loader"
-      }
-    ]
-  }
-});
-
-exports.loadTypescript = ({ include, exclude }) => ({
-  module: {
-    rules: [
-      {
         test: /\.(js|ts|tsx)?$/,
         include,
         exclude,
-        use: [
-          {
-            loader: "babel-loader",
-            options: {
-              cacheDirectory: true
-            }
-          },
-          {
-            loader: "ts-loader"
-          }
-        ]
+        use: "babel-loader"
       }
     ]
   }
