@@ -24,7 +24,6 @@ commonConfig = app =>
       exclude: [/node_modules/],
       options: {
         tsConfigFile: path.resolve(__dirname, "../tsconfig.json"),
-        failOnHint: true,
         cache: true
       }
     }),

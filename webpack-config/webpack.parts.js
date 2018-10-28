@@ -3,6 +3,7 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const UglifyWebpackPlugin = require('uglifyjs-webpack-plugin');
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
+const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
 const cssnano = require('cssnano');
 
 /********************
@@ -97,7 +98,10 @@ exports.loadJavaScript = ({ include, exclude } = {}) => ({
         use: 'babel-loader'
       }
     ]
-  }
+  },
+  plugins: [new ForkTsCheckerWebpackPlugin({
+    tslint: true
+  })]
 });
 
 // Image Loader
