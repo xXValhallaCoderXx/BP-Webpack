@@ -214,20 +214,6 @@ exports.extractCSS = ({ include, exclude }) => {
   };
 };
 
-exports.lintJavascript = ({exclude, options}) => ({
-  module: {
-    rules: [
-      {
-        test: /\.(js|ts|tsx)?$/,
-        exclude,
-        enforce: "pre",
-        loader: "tslint-loader",
-        options
-      }
-    ]
-  }
-});
-
 autoprefix = () => ({
   loader: 'postcss-loader',
   options: {
