@@ -91,33 +91,10 @@ exports.loadJavaScript = ({ include, exclude } = {}) => ({
   module: {
     rules: [
       {
-        test: /\.js$/,
-        include,
-        exclude,
-        use: "babel-loader"
-      }
-    ]
-  }
-});
-
-exports.loadTypescript = ({ include, exclude }) => ({
-  module: {
-    rules: [
-      {
         test: /\.(js|ts|tsx)?$/,
         include,
         exclude,
-        use: [
-          {
-            loader: "babel-loader",
-            options: {
-              cacheDirectory: true
-            }
-          },
-          {
-            loader: "ts-loader"
-          }
-        ]
+        use: "babel-loader"
       }
     ]
   }

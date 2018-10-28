@@ -1,13 +1,13 @@
 {
   "defaultSeverity": "error",
   "extends": [
-    "tslint:recommended", 
+    "tslint:recommended",
     "tslint-config-standard",
     "tslint-react",
     "tslint-config-prettier"
   ],
   "jsRules": {
-    "no-console": false,
+    "no-console": false
   },
   "rules": {
     "prettier": true,
@@ -15,5 +15,5 @@
     "no-var-requires": false,
     "no-console": false
   },
-  "rulesDirectory": ["tslint-plugin-prettier"] 
+  "rulesDirectory": ["tslint-plugin-prettier"]
 }
