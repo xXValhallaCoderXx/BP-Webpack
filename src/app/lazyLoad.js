@@ -1,1 +1,1 @@
-export default "This data is dynamically loaded!";
+export default 'This data is dynamically loaded!';

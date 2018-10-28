@@ -1,15 +1,20 @@
-import React, { Component } from "react";
-import { hot } from "react-hot-loader";
-import styles from "./styles.module.scss";
+import React, { Component } from 'react';
+import { hot } from 'react-hot-loader';
+const styles = require('./styles.module.scss');
 
-class Application extends Component {
+interface IState {
+  count: number;
+  someData: string;
+}
+
+class Application extends Component<IState, {}> {
   state = {
     count: 0,
-    someData: "NONE"
+    someData: 'NONE'
   };
   render() {
     // This is a global variable defined in env-keys.json
-    console.log("ENV: ", ENV_VAR);
+    // console.log("ENV: ", ENV_VAR);
     const { someData, count } = this.state;
     return (
       <div>
@@ -35,7 +40,7 @@ class Application extends Component {
   };
 
   _lazyLoad = () => {
-    import("./lazyLoad")
+    import('./lazyLoad')
       .then(lazy => {
         this.setState({ someData: lazy.default });
       })
